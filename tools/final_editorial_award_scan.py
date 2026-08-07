@@ -67,6 +67,27 @@ for s in texts.values():
     pp=prose(s)
     for name,pat in habit_patterns.items(): habits[name]+=len(re.findall(pat,pp,re.I if name not in ('AI','Ne.') else 0))
 
+# heading and numeric reference map
+chapter_nums={int(p.name[:2]) for p in chapters}
+section_ids=set()
+for p,s in texts.items():
+    for m in re.finditer(r'^#{2,4}\s+(\d+)\.(\d+)\b',s,re.M):
+        section_ids.add(f'{m.group(1)}.{m.group(2)}')
+
+crossref_issues=[]
+for p,s in texts.items():
+    body=prose(s)
+    # chapter refs in Czech prose
+    for m in re.finditer(r'(?i)\bkapitol(?:a|y|e|u|ou|ách|ami)?\s+(\d{1,2})\b',body):
+        n=int(m.group(1))
+        if n not in chapter_nums:
+            crossref_issues.append((p.name, f'chapter {n}', 'missing chapter'))
+    # section refs such as sekci 34.10 / sekce 3.8
+    for m in re.finditer(r'(?i)\bsekc(?:e|i|í|emi|ích)\s+(\d{1,2}\.\d{1,2})\b',body):
+        sec=m.group(1)
+        if sec not in section_ids:
+            crossref_issues.append((p.name, f'section {sec}', 'missing section'))
+
 out=[]
 out += ['# Raw final editorial scan', '', f'- Numbered chapters: **{len(chapters)}**', f'- Appendices: **{len(appendices)}**', '']
 out += ['## Suspicious editorial residues', '']
@@ -79,6 +100,13 @@ for p,s in texts.items():
             out.append(f'- `{p.name}:{line}` — `{snippet}`')
             found+=1
 if not found: out.append('- none')
+
+out += ['', '## Numeric cross-reference issues', '']
+if crossref_issues:
+    for file,ref,reason in crossref_issues:
+        out.append(f'- `{file}` — **{ref}** — {reason}')
+else:
+    out.append('- none')
 
 out += ['', '## Snapshot mentions by file', '']
 for p,s in texts.items():
@@ -123,4 +151,4 @@ for p in chapters:
     out.append('')
 
 (BOOK/'FINAL_EDITORIAL_SCAN_RAW.md').write_text('\n'.join(out)+'\n',encoding='utf-8')
-print('chapters',len(chapters),'suspicious',found,'repeats',len(repeats))
+print('chapters',len(chapters),'suspicious',found,'crossrefs',len(crossref_issues),'repeats',len(repeats))
