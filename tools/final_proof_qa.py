@@ -35,21 +35,17 @@ for pno, page in enumerate(doc, start=1):
                 bbox = fitz.Rect(span.get('bbox'))
                 spans.append((txt, size, font, bbox))
                 font_counts[(round(size,2), font)] += 1
-                # Ignore running header/footer when estimating body minimum.
                 if bbox.y0 > 35 and bbox.y1 < page_h - 30:
                     min_body = min(min_body, size)
-                # Safe trim check: anything inside 7 mm from page edge is suspicious,
-                # except running header/footer.
                 safe = 7 / 25.4 * 72
                 if bbox.y0 > 35 and bbox.y1 < page_h - 30:
                     if bbox.x0 < safe or bbox.x1 > page_w - safe:
                         margin_risks.append((pno, round(size,2), txt[:80], tuple(round(v,1) for v in bbox)))
 
-    # Sparse page heuristic: ignore pages with strong visual content.
     if pno > 4 and len(words) < 35 and not images and len(drawings) < 8:
-        sparse.append((pno, len(words), len(drawings)))
+        snippet = ' / '.join(x.strip() for x in page.get_text('text').splitlines() if x.strip())[:420]
+        sparse.append((pno, len(words), len(drawings), snippet))
 
-    # Heading/orphan heuristic: large text very near bottom with no following body line.
     ordered = sorted(spans, key=lambda x: (x[3].y0, x[3].x0))
     for i, (txt, size, font, bbox) in enumerate(ordered):
         if size >= 10.5 and bbox.y0 > page_h * 0.78:
@@ -57,7 +53,6 @@ for pno, page in enumerate(doc, start=1):
             if not below:
                 orphan_headings.append((pno, round(size,2), txt[:100], round(bbox.y0,1)))
 
-    # Overlap heuristic for visible text spans. Ignore same text and tiny intersections.
     for i in range(len(spans)):
         t1, s1, f1, b1 = spans[i]
         if b1.y0 < 35 or b1.y1 > page_h - 30:
@@ -72,11 +67,9 @@ for pno, page in enumerate(doc, start=1):
             a1 = max(b1.get_area(), 1)
             a2 = max(b2.get_area(), 1)
             if inter.get_area() / min(a1, a2) > 0.25 and t1 != t2:
-                # Adjacent spans on the same baseline can touch by rounding; require real area.
                 if inter.width > 1.5 and inter.height > 1.5:
                     overlap_risks.append((pno, t1[:50], t2[:50], tuple(round(v,1) for v in inter)))
 
-# Deduplicate coarse heuristics.
 def dedup(rows):
     seen=set(); out=[]
     for r in rows:
@@ -115,7 +108,9 @@ else:
 
 if sparse:
     lines += ['', '## Sparse page candidates']
-    for r in sparse[:60]: lines.append(f'- page {r[0]}: {r[1]} words, {r[2]} drawings')
+    for r in sparse[:60]:
+        snippet = r[3].replace('`','\'')
+        lines.append(f'- page {r[0]}: {r[1]} words, {r[2]} drawings — `{snippet}`')
 if orphan_headings:
     lines += ['', '## Possible orphan headings']
     for r in orphan_headings[:80]: lines.append(f'- page {r[0]}: {r[1]} pt — `{r[2]}` at y={r[3]}')
