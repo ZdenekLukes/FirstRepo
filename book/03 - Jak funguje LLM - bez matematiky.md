@@ -1,3 +1,11 @@
+---
+title: "3. Jak funguje LLM — bez matematiky"
+part: "II — Co vlastně dnešní AI je"
+status: draft
+version: "0.1"
+updated: 2026-08-07
+---
+
 # 3. Jak funguje LLM — bez matematiky
 
 Velký jazykový model působí při používání téměř magicky. Napíšeme otázku a během několika sekund dostaneme odpověď, která může připomínat text napsaný člověkem. Model dokáže vysvětlovat, programovat, překládat, shrnovat dokumenty nebo diskutovat o problému.
@@ -21,7 +29,7 @@ Tato kapitola nevysvětluje matematiku Transformeru. Cílem je vytvořit mentál
 - proč LLM někdy halucinuje,
 - proč je důležitý context window,
 - proč model potřebuje RAG a nástroje,
-- proč nový chat začíná prakticky „od nuly“,
+- proč samotný model bez externí paměti mezi oddělenými konverzacemi nic automaticky nepřenáší,
 - co znamená training a inference,
 - proč velký model potřebuje tolik GPU paměti,
 - proč může stejná otázka dostat různé odpovědi,
@@ -261,6 +269,8 @@ Je ale dobré rozlišovat:
 - embedding model používaný například pro vyhledávání dokumentů.
 
 Princip je podobný, použití se liší.
+
+Ještě jedno důležité zpřesnění: **vstupní token embedding je pouze počáteční reprezentace tokenu**. Při průchodu Transformerem se jeho reprezentace mění podle okolního kontextu. Slovo tak nemusí mít uvnitř modelu stále jeden pevný „významový vektor“. Embedding model používaný v RAG je navíc samostatný model určený k převodu textových úseků do vektorů vhodných pro vyhledávání.
 
 ---
 
@@ -705,7 +715,7 @@ V roce 2026 je právě kvalita post-trainingu jedním z významných rozdílů m
 
 Model má při každém požadavku omezené množství informací, které může současně zpracovat.
 
-Tento prostor nazýváme **context window**.
+Tento prostor nazýváme **context window** neboli kontextové okno.
 
 Můžeme si jej představit jako pracovní stůl.
 
@@ -992,7 +1002,7 @@ Výsledkem je odpověď, kterou vidíme.
 
 ---
 
-# Jeden obrázek, který vysvětluje téměř celou kapitolu
+## Jeden obrázek, který vysvětluje téměř celou kapitolu
 
 Celý základ LLM lze shrnout takto:
 
@@ -1043,11 +1053,11 @@ Celý základ LLM lze shrnout takto:
 
 ---
 
-# Ještě důležitější obrázek: model není systém
+## Ještě důležitější obrázek: model není systém
 
 Po pochopení této kapitoly bychom měli vidět rozdíl mezi třemi věcmi.
 
-## Samotný model
+### Samotný model
 
 ```text
 PROMPT
@@ -1059,7 +1069,7 @@ TEXT
 
 To je nejjednodušší varianta.
 
-## AI aplikace
+### AI aplikace
 
 ```text
                  ┌── memory
@@ -1080,7 +1090,7 @@ USER ──→ APP ────┼── web
 
 Model už je pouze jednou součástí systému.
 
-## Agent
+### Agent
 
 Agent přidává další zásadní věc:
 
@@ -1117,7 +1127,7 @@ LLM může být nejdůležitější inteligentní komponenta systému, ale celý
 
 ---
 
-# Praktický příklad: návrh integrovaného obvodu
+## Praktický příklad: návrh integrovaného obvodu
 
 Představme si otázku:
 
@@ -1192,7 +1202,7 @@ a později až k:
 
 ---
 
-# Co si z kapitoly zapamatovat
+## Co si z kapitoly zapamatovat
 
 Pokud si čtenář z celé kapitoly odnese pouze několik myšlenek, měly by to být tyto:
 
@@ -1258,7 +1268,7 @@ A právě tato rovnice bude jedním z hlavních témat zbytku knihy.
 
 ---
 
-# Mentální model kapitoly
+## Mentální model kapitoly
 
 Na začátku jsme měli:
 
@@ -1309,3 +1319,5 @@ RULES ──────┤                   │
 Samotný LLM je fascinující technologie.
 
 Ale největší praktická hodnota začíná vznikat teprve tehdy, když jej správně zasadíme do celého systému.
+
+V další kapitole se podíváme na to, **co LLM skutečně umí, kde jsou jeho hranice a proč plynulá odpověď ještě neznamená správnou odpověď**.
