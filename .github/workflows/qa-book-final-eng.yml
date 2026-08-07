@@ -1,0 +1,150 @@
+name: QA English edition
+
+on:
+  push:
+    paths:
+      - '.github/workflows/qa-book-final-eng.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  qa:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Run edition QA
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import re, html, json
+
+          root=Path('book_final_eng')
+          chapters=sorted([p for p in root.glob('[0-9][0-9] - *.md') if not p.name.startswith('00 -')])
+          intro=root/'00 - Introduction - How to Read This Book.md'
+          appendices=sorted((root/'appendices').glob('*.md'))
+          screen=sorted((root/'assets/diagrams').glob('*.svg'))
+          prnt=sorted((root/'assets/diagrams-print').glob('*.svg'))
+          all_md=[intro]+chapters+appendices+[p for p in [root/'00 - INDEX.md',root/'README.md',root/'STYLE_GUIDE.md',root/'ENGLISH_EDITION_NOTES.md',root/'BIBLIOGRAPHY.md'] if p.exists()]
+
+          problems=[]
+          if len(chapters)!=36: problems.append(f'numbered chapters={len(chapters)}, expected 36')
+          if not intro.exists(): problems.append('missing introduction')
+          if len(appendices)!=7: problems.append(f'appendices={len(appendices)}, expected 7')
+          if len(screen)!=43: problems.append(f'screen SVG={len(screen)}, expected 43')
+          if len(prnt)!=43: problems.append(f'print SVG={len(prnt)}, expected 43')
+
+          # frontmatter and placeholders
+          for p in [intro]+chapters+appendices:
+              s=p.read_text(encoding='utf-8')
+              if 'version: "0.8-eng"' not in s: problems.append(f'{p.name}: wrong/missing version')
+              if 'status: international-draft' not in s: problems.append(f'{p.name}: wrong/missing status')
+              if re.search(r'\b(TODO|FIXME|DOPLNIT|TBD)\b',s,re.I): problems.append(f'{p.name}: placeholder')
+              if s.count('```')%2: problems.append(f'{p.name}: unclosed code fence')
+
+          # image references
+          missing_images=[]
+          for p in [intro]+chapters:
+              s=p.read_text(encoding='utf-8')
+              for rel in re.findall(r'!\[[^\]]*\]\((assets/[^)]+)\)',s):
+                  if not (root/rel).exists(): missing_images.append((p.name,rel))
+          if missing_images: problems.append(f'missing image refs={len(missing_images)}')
+
+          # index chapter links and stale Czech links
+          index=(root/'00 - INDEX.md').read_text(encoding='utf-8')
+          nums=sorted({int(x) for x in re.findall(r'\[\[(\d{2})\s+-\s+',index) if int(x)>0})
+          if nums!=list(range(1,37)): problems.append(f'index chapters={nums}')
+          stale_link_terms=['Uvod - Jak cist','Sto let vývoje','Co LLM umí','Přehled modelů','Bezpecnostni checklist','Vlastni experimenty']
+          stale=[x for x in stale_link_terms if x in index]
+          if stale: problems.append('stale Czech index links: '+', '.join(stale))
+
+          # Czech prose residue: high-signal words/diacritics. Exclude URLs and source names.
+          cz_words=[
+              'kapitola','kapitoly','obrázek','modelů','nástroje','nástrojů','uživatel','uživatele','ověření','výsledek','výsledku',
+              'zdroj','zdroje','zdrojů','vyhledávání','paměť','požadavek','požadavky','měření','náklady','bezpečnost','schválení',
+              'smyčka','agentní','čtenář','kniha','poznámka','příloha','přílohy','vývoj','proč','jak','který','které','může','musí',
+              'není','jsou','bude','budou','pouze','například','proto','důležité','vlastní','firemní','lokální'
+          ]
+          wordpat=re.compile(r'(?<![A-Za-z])(?:'+'|'.join(map(re.escape,cz_words))+r')(?![A-Za-z])',re.I)
+          md_hits=[]
+          for p in all_md:
+              s=p.read_text(encoding='utf-8')
+              s=re.sub(r'https?://\S+',' ',s)
+              for i,line in enumerate(s.splitlines(),1):
+                  if wordpat.search(line): md_hits.append((str(p.relative_to(root)),i,line.strip()[:180]))
+          # Expected proper-name/history diacritics are not Czech-prose markers; high-signal list above avoids those.
+
+          # SVG labels: scan text nodes only.
+          svg_hits=[]
+          ascii_cz=['uzivatel','uzivatele','vysledek','vysledku','overeni','nastroje','nastroju','vyhledavani','pamet','pozadavek','pozadavky','mereni','naklady','bezpecnost','schvaleni','smycka','agentni','ctenar','kniha','obrazek','kapitola','modelu']
+          svgpat=re.compile(r'[áčďéěíňóřšťúůýž]|(?<![A-Za-z])(?:'+'|'.join(map(re.escape,ascii_cz))+r')(?![A-Za-z])',re.I)
+          for p in screen+prnt:
+              s=p.read_text(encoding='utf-8')
+              texts=re.findall(r'<text\b[^>]*>(.*?)</text>',s,flags=re.S|re.I)
+              for t in texts:
+                  plain=html.unescape(re.sub(r'<[^>]+>',' ',t))
+                  plain=re.sub(r'\s+',' ',plain).strip()
+                  if plain and svgpat.search(plain): svg_hits.append((str(p.relative_to(root)),plain[:200]))
+
+          # Word count only for the actual manuscript (intro + numbered chapters + appendices).
+          def wc(s):
+              s=re.sub(r'^---.*?^---\s*',' ',s,flags=re.S|re.M)
+              s=re.sub(r'```.*?```',' ',s,flags=re.S)
+              s=re.sub(r'<!--.*?-->',' ',s,flags=re.S)
+              s=re.sub(r'https?://\S+',' ',s)
+              return len(re.findall(r"\b[\w’'-]+\b",s,flags=re.UNICODE))
+          ch_words=sum(wc(p.read_text(encoding='utf-8')) for p in [intro]+chapters)
+          app_words=sum(wc(p.read_text(encoding='utf-8')) for p in appendices)
+
+          lines=[
+              '# English Edition QA — v0.8-eng','',
+              '## Structural checks','',
+              f'- Introduction: **{1 if intro.exists() else 0}**',
+              f'- Numbered chapters: **{len(chapters)}**',
+              f'- Appendices: **{len(appendices)}**',
+              f'- Screen SVG: **{len(screen)}**',
+              f'- Print SVG: **{len(prnt)}**',
+              f'- Missing image references: **{len(missing_images)}**',
+              f'- Approx. manuscript word tokens (intro + chapters): **{ch_words}**',
+              f'- Approx. appendix word tokens: **{app_words}**','',
+              '## Localization checks','',
+              f'- High-signal Czech prose hits in English Markdown: **{len(md_hits)}**',
+              f'- Possible Czech text labels inside SVG: **{len(svg_hits)}**',''
+          ]
+          if md_hits:
+              lines+=['### Markdown hits','']+[f'- `{p}:{i}` — `{line}`' for p,i,line in md_hits[:100]]+['']
+          if svg_hits:
+              lines+=['### SVG hits','']+[f'- `{p}` — `{text}`' for p,text in svg_hits[:200]]+['']
+          lines+=['## Mechanical blockers','']
+          if problems:
+              lines += [f'- {x}' for x in problems]
+          else:
+              lines += ['- none']
+          lines += ['', '## Gate', '']
+          gate = not problems and not md_hits and not svg_hits
+          lines += ['**PASS — international English manuscript is mechanically consistent and localized.**' if gate else '**BLOCKED — resolve the findings above before calling the English edition localized.**']
+          (root/'ENGLISH_EDITION_QA.md').write_text('\n'.join(lines)+'\n',encoding='utf-8')
+
+          print('chapters',len(chapters),'appendices',len(appendices),'screen',len(screen),'print',len(prnt))
+          print('missing_images',len(missing_images),'md_czech_hits',len(md_hits),'svg_czech_hits',len(svg_hits),'problems',len(problems))
+          for x in md_hits[:30]: print('MD_HIT',*x,sep=' | ')
+          for x in svg_hits[:60]: print('SVG_HIT',*x,sep=' | ')
+          for x in problems: print('PROBLEM',x)
+          # Do not fail yet; commit report so findings are inspectable.
+          PY
+
+      - name: Commit QA report
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add book_final_eng/ENGLISH_EDITION_QA.md
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "book: add English edition QA report"
+          git push
