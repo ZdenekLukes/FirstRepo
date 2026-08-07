@@ -14,6 +14,10 @@
 - `34 - Co mě ještě čeká.md:83` — `průběžně doplňovat do přílohy G. Poslední část knihy už není teorie. Je to kuchařka: > **Jaký minimální stack potřebuji (kapitola 35) a jaké projekty mám skut`
 - `34 - Co mě ještě čeká.md:83` — `budu průběžně doplňovat do přílohy G. Poslední část knihy už není teorie. Je to kuchařka: > **Jaký minimální stack potřebuji (kapitola 35) a jaké projekty mám`
 
+## Numeric cross-reference issues
+
+- `33 - Co jsem se zatím naučil.md` — **section 34.10** — missing section
+
 ## Snapshot mentions by file
 
 - `00 - Uvod - Jak cist tuto knihu.md` — 3
