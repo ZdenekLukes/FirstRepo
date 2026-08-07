@@ -8,6 +8,13 @@ updated: 2026-08-07
 
 # 6. Jak modely porovnávat
 
+<!-- visual:06-model-selection.svg -->
+
+![Jak vybrat model](assets/diagrams/06-model-selection.svg)
+
+*Obrázek: Vlastní test set propojuje kvalitu modelu s provozními omezeními.*
+
+
 Po přečtení předchozí kapitoly může člověk získat nepříjemný pocit, že modelů je příliš mnoho a že se jejich názvy mění rychleji, než je možné sledovat.
 
 To je pravda.

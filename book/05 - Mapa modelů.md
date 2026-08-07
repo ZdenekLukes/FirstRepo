@@ -9,6 +9,13 @@ snapshot: "2026-08-07"
 
 # 5. Mapa modelů
 
+<!-- visual:05-model-map.svg -->
+
+![Mapa AI modelů podle úlohy](assets/diagrams/05-model-map.svg)
+
+*Obrázek: Model vybíráme podle konkrétního use-case, ne podle jediné univerzální tabulky.*
+
+
 > **Snapshot k 7. 8. 2026.** Tato kapitola bude stárnout rychleji než většina knihy. Názvy konkrétních modelů proto berme jako mapu současného trhu, ne jako seznam, který má platit několik let.
 
 Ještě před několika lety bylo možné o trhu velkých jazykových modelů mluvit téměř jako o seznamu několika jmen. Dnes je situace mnohem složitější.

@@ -97,6 +97,13 @@ S RAG může pracovat nad znalostmi, které:
 
 ## 12.2 Nejjednodušší RAG bez buzzwords
 
+<!-- visual:12-model-rag-agent.svg -->
+
+![Model vs. RAG vs. Agent](assets/diagrams/12-model-rag-agent.svg)
+
+*Obrázek: Model generuje, RAG přidává znalosti a agent přidává akce a opakovanou smyčku.*
+
+
 Představme si, že máme jednu knihu a hledáme odpověď na otázku.
 
 Člověk udělá přibližně toto:

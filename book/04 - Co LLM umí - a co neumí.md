@@ -8,6 +8,13 @@ updated: 2026-08-07
 
 # 4. Co LLM umí — a co neumí
 
+<!-- visual:04-llm-strengths-limits.svg -->
+
+![Silné stránky a limity LLM](assets/diagrams/04-llm-strengths-limits.svg)
+
+*Obrázek: LLM je silný v práci s jazykem; přesná nebo aktuální data často dodává nástroj.*
+
+
 Po předchozí kapitole už máme základní mentální model toho, jak Large Language Model funguje. Dostane kontext, zpracuje jej a postupně generuje další tokeny.
 
 Teď přichází praktičtější otázka:

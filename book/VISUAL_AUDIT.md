@@ -3,47 +3,51 @@
 > Automaticky vytvořeno skriptem `tools/add_book_visuals.py`.
 
 - Projito kapitol: **38**
-- Vytvořeno SVG diagramů: **35**
-- Naplánováno vložení vizuálů: **35**
+- Vytvořeno SVG diagramů: **39**
+- Naplánováno vložení vizuálů: **39**
 - Zbývající podezřelé ASCII diagramy: **356**
 
 ## Vložené / kontrolované vizuály
 
-- `01 - Sto let vývoje AI na několika stránkách.md` → `01-history-timeline.svg` — inserted
-- `02 - AI, Machine Learning, Deep Learning a Generative AI.md` → `02-ai-taxonomy.svg` — inserted
-- `03 - Jak funguje LLM - bez matematiky.md` → `03-model-vs-database.svg` — replaced-ascii
-- `03 - Jak funguje LLM - bez matematiky.md` → `03-embeddings.svg` — replaced-ascii
-- `03 - Jak funguje LLM - bez matematiky.md` → `03-token-generation-loop.svg` — replaced-ascii
-- `03 - Jak funguje LLM - bez matematiky.md` → `03-enter-to-answer.svg` — replaced-ascii
-- `07 - Cloud vs. on-prem vs. hybrid.md` → `07-cloud-onprem-hybrid.svg` — inserted
-- `08 - Jak provozovat LLM lokálně.md` → `08-local-memory-stack.svg` — inserted
-- `09 - Prompting.md` → `09-prompt-anatomy.svg` — inserted
-- `10 - Context Engineering.md` → `10-context-stack.svg` — inserted
-- `11 - Proč model nezná moje data.md` → `11-external-data-bridge.svg` — inserted
-- `12 - RAG - Retrieval-Augmented Generation.md` → `12-rag-pipeline.svg` — inserted
-- `13 - Druhý mozek.md` → `13-second-brain.svg` — inserted
-- `14 - Tool Use.md` → `14-tool-use.svg` — inserted
-- `15 - MCP, skills, plugins a connectors.md` → `15-mcp-architecture.svg` — inserted
-- `16 - Co je AI agent.md` → `16-agent-anatomy.svg` — inserted
-- `17 - Agentní smyčka.md` → `17-agent-loop.svg` — inserted
-- `18 - Jak postavit jednoduchého agenta.md` → `18-build-agent.svg` — inserted
-- `19 - Multi-agentní systémy.md` → `19-multi-agent.svg` — inserted
-- `20 - Orchestrace agentních systémů.md` → `20-orchestration.svg` — inserted
-- `21 - Coding Agents.md` → `21-coding-agent.svg` — inserted
-- `22 - AI nad dokumenty a firemními daty.md` → `22-document-pipeline.svg` — inserted
-- `23 - AI pro technické a inženýrské úlohy.md` → `23-engineering-loop.svg` — inserted
-- `24 - Případová studie - AI-assisted analog IC design.md` → `24-analog-ic-loop.svg` — inserted
-- `25 - Bezpečnost AI.md` → `25-security-boundaries.svg` — inserted
-- `26 - Proč nestačí „máme ChatGPT“.md` → `26-ai-capability-stack.svg` — inserted
-- `27 - AI readiness.md` → `27-ai-readiness.svg` — inserted
-- `28 - Jak vybírat AI use-cases.md` → `28-usecase-matrix.svg` — inserted
-- `29 - Pilot → důkaz → škálování.md` → `29-pilot-scale.svg` — inserted
-- `30 - Lidé a adopce.md` → `30-adoption-loop.svg` — inserted
-- `31 - Evaluace.md` → `31-evaluation-stack.svg` — inserted
-- `32 - Ekonomika AI.md` → `32-ai-tco.svg` — inserted
-- `35 - Co mě ještě čeká.md` → `35-learning-roadmap.svg` — inserted
-- `36 - Můj minimální AI stack.md` → `36-minimal-ai-stack.svg` — inserted
-- `37 - Deset praktických projektů od začátečníka k agentnímu systému.md` → `37-project-ladder.svg` — inserted
+- `01 - Sto let vývoje AI na několika stránkách.md` → `01-history-timeline.svg` — already-present
+- `02 - AI, Machine Learning, Deep Learning a Generative AI.md` → `02-ai-taxonomy.svg` — already-present
+- `03 - Jak funguje LLM - bez matematiky.md` → `03-model-vs-database.svg` — already-present
+- `03 - Jak funguje LLM - bez matematiky.md` → `03-embeddings.svg` — already-present
+- `03 - Jak funguje LLM - bez matematiky.md` → `03-token-generation-loop.svg` — already-present
+- `03 - Jak funguje LLM - bez matematiky.md` → `03-enter-to-answer.svg` — already-present
+- `07 - Cloud vs. on-prem vs. hybrid.md` → `07-cloud-onprem-hybrid.svg` — already-present
+- `08 - Jak provozovat LLM lokálně.md` → `08-local-memory-stack.svg` — already-present
+- `09 - Prompting.md` → `09-prompt-anatomy.svg` — already-present
+- `10 - Context Engineering.md` → `10-context-stack.svg` — already-present
+- `11 - Proč model nezná moje data.md` → `11-external-data-bridge.svg` — already-present
+- `12 - RAG - Retrieval-Augmented Generation.md` → `12-rag-pipeline.svg` — already-present
+- `13 - Druhý mozek.md` → `13-second-brain.svg` — already-present
+- `14 - Tool Use.md` → `14-tool-use.svg` — already-present
+- `15 - MCP, skills, plugins a connectors.md` → `15-mcp-architecture.svg` — already-present
+- `16 - Co je AI agent.md` → `16-agent-anatomy.svg` — already-present
+- `17 - Agentní smyčka.md` → `17-agent-loop.svg` — already-present
+- `18 - Jak postavit jednoduchého agenta.md` → `18-build-agent.svg` — already-present
+- `19 - Multi-agentní systémy.md` → `19-multi-agent.svg` — already-present
+- `20 - Orchestrace agentních systémů.md` → `20-orchestration.svg` — already-present
+- `21 - Coding Agents.md` → `21-coding-agent.svg` — already-present
+- `22 - AI nad dokumenty a firemními daty.md` → `22-document-pipeline.svg` — already-present
+- `23 - AI pro technické a inženýrské úlohy.md` → `23-engineering-loop.svg` — already-present
+- `24 - Případová studie - AI-assisted analog IC design.md` → `24-analog-ic-loop.svg` — already-present
+- `25 - Bezpečnost AI.md` → `25-security-boundaries.svg` — already-present
+- `26 - Proč nestačí „máme ChatGPT“.md` → `26-ai-capability-stack.svg` — already-present
+- `27 - AI readiness.md` → `27-ai-readiness.svg` — already-present
+- `28 - Jak vybírat AI use-cases.md` → `28-usecase-matrix.svg` — already-present
+- `29 - Pilot → důkaz → škálování.md` → `29-pilot-scale.svg` — already-present
+- `30 - Lidé a adopce.md` → `30-adoption-loop.svg` — already-present
+- `31 - Evaluace.md` → `31-evaluation-stack.svg` — already-present
+- `32 - Ekonomika AI.md` → `32-ai-tco.svg` — already-present
+- `35 - Co mě ještě čeká.md` → `35-learning-roadmap.svg` — already-present
+- `36 - Můj minimální AI stack.md` → `36-minimal-ai-stack.svg` — already-present
+- `37 - Deset praktických projektů od začátečníka k agentnímu systému.md` → `37-project-ladder.svg` — already-present
+- `04 - Co LLM umí - a co neumí.md` → `04-llm-strengths-limits.svg` — inserted
+- `05 - Mapa modelů.md` → `05-model-map.svg` — inserted
+- `06 - Jak modely porovnávat.md` → `06-model-selection.svg` — inserted
+- `12 - RAG - Retrieval-Augmented Generation.md` → `12-model-rag-agent.svg` — inserted
 
 ## Zbývající textové bloky, které vypadají jako ASCII diagram
 
@@ -108,52 +112,52 @@ Nejsou automaticky odstraněny bez jistoty, že nejde o užitečný příklad, v
 - řádek ~1297: `AI SYSTEM`
 
 ### 04 - Co LLM umí - a co neumí.md
-- řádek ~21: `text`
-- řádek ~117: `dlouhý dokument`
-- řádek ~127: `technický text`
-- řádek ~151: `CSV → skript → report`
-- řádek ~157: `poznámky + e-maily + transcript`
-- řádek ~211: `libovolný text`
-- řádek ~242: `příchozí požadavek`
-- řádek ~252: `technický dokument`
-- řádek ~318: `prohledat repository`
-- řádek ~350: `otázka uživatele`
-- řádek ~405: `fotografie přístroje`
-- řádek ~415: `screenshot aplikace`
-- řádek ~532: `potřebuji aktuální informaci`
-- řádek ~539: `potřebuji přesný výpočet`
-- řádek ~546: `potřebuji data z databáze`
-- řádek ~553: `potřebuji ověřit návrh obvodu`
-- řádek ~562: `LLM`
+- řádek ~28: `text`
+- řádek ~124: `dlouhý dokument`
+- řádek ~134: `technický text`
+- řádek ~158: `CSV → skript → report`
+- řádek ~164: `poznámky + e-maily + transcript`
+- řádek ~218: `libovolný text`
+- řádek ~249: `příchozí požadavek`
+- řádek ~259: `technický dokument`
+- řádek ~325: `prohledat repository`
+- řádek ~357: `otázka uživatele`
+- řádek ~412: `fotografie přístroje`
+- řádek ~422: `screenshot aplikace`
+- řádek ~539: `potřebuji aktuální informaci`
+- řádek ~546: `potřebuji přesný výpočet`
+- řádek ~553: `potřebuji data z databáze`
+- řádek ~560: `potřebuji ověřit návrh obvodu`
 - řádek ~569: `LLM`
-- řádek ~657: `odpověď zní profesionálně`
-- řádek ~664: `odpověď obsahuje tvrzení`
-- řádek ~679: `návrh AI`
-- řádek ~877: `člověk`
+- řádek ~576: `LLM`
+- řádek ~664: `odpověď zní profesionálně`
+- řádek ~671: `odpověď obsahuje tvrzení`
+- řádek ~686: `návrh AI`
+- řádek ~884: `člověk`
 
 ### 05 - Mapa modelů.md
-- řádek ~37: `úloha`
-- řádek ~81: `jedna modelová rodina`
-- řádek ~383: `jednoduchý dotaz`
-- řádek ~546: `text`
-- řádek ~570: `audio → text → LLM → text → audio`
-- řádek ~603: `LLM`
-- řádek ~648: `text`
-- řádek ~686: `dotaz`
-- řádek ~744: `jeden největší model`
-- řádek ~751: `router`
+- řádek ~44: `úloha`
+- řádek ~88: `jedna modelová rodina`
+- řádek ~390: `jednoduchý dotaz`
+- řádek ~553: `text`
+- řádek ~577: `audio → text → LLM → text → audio`
+- řádek ~610: `LLM`
+- řádek ~655: `text`
+- řádek ~693: `dotaz`
+- řádek ~751: `jeden největší model`
+- řádek ~758: `router`
 
 ### 06 - Jak modely porovnávat.md
-- řádek ~29: `náš konkrétní use-case`
-- řádek ~222: `potřebuji najít soubor`
-- řádek ~227: `potřebuji aktuální informaci`
-- řádek ~232: `potřebuji spočítat statistiku`
-- řádek ~237: `potřebuji ověřit elektrické parametry`
-- řádek ~269: `1M > 128K`
-- řádek ~360: `Model A`
-- řádek ~423: `váhy jsou na Hugging Face`
-- řádek ~480: `token`
-- řádek ~511: `FP16`
+- řádek ~36: `náš konkrétní use-case`
+- řádek ~229: `potřebuji najít soubor`
+- řádek ~234: `potřebuji aktuální informaci`
+- řádek ~239: `potřebuji spočítat statistiku`
+- řádek ~244: `potřebuji ověřit elektrické parametry`
+- řádek ~276: `1M > 128K`
+- řádek ~367: `Model A`
+- řádek ~430: `váhy jsou na Hugging Face`
+- řádek ~487: `token`
+- řádek ~518: `FP16`
 
 ### 07 - Cloud vs. on-prem vs. hybrid.md
 - řádek ~61: `uživatel / aplikace`
@@ -196,21 +200,21 @@ Nejsou automaticky odstraněny bez jistoty, že nejde o užitečný příklad, v
 ### 12 - RAG - Retrieval-Augmented Generation.md
 - řádek ~30: `uživatel:`
 - řádek ~71: `dotaz`
-- řádek ~134: `.txt / .md`
-- řádek ~202: `100stránkový PDF`
-- řádek ~241: `kapitola`
-- řádek ~257: `"startup time must be below 120 µs"`
-- řádek ~291: `dokumenty`
-- řádek ~303: `dotaz`
-- řádek ~436: `50 kandidátů`
-- řádek ~450: `hybrid search`
-- řádek ~601: `user`
-- řádek ~613: `search everything`
-- řádek ~650: `change event`
-- řádek ~702: `ingestion`
-- řádek ~772: `Project A17`
-- řádek ~821: `přesná strukturovaná informace`
-- řádek ~838: `INGESTION`
+- řádek ~141: `.txt / .md`
+- řádek ~209: `100stránkový PDF`
+- řádek ~248: `kapitola`
+- řádek ~264: `"startup time must be below 120 µs"`
+- řádek ~298: `dokumenty`
+- řádek ~310: `dotaz`
+- řádek ~443: `50 kandidátů`
+- řádek ~457: `hybrid search`
+- řádek ~608: `user`
+- řádek ~620: `search everything`
+- řádek ~657: `change event`
+- řádek ~709: `ingestion`
+- řádek ~779: `Project A17`
+- řádek ~828: `přesná strukturovaná informace`
+- řádek ~845: `INGESTION`
 
 ### 13 - Druhý mozek.md
 - řádek ~169: `najít zdroje`
