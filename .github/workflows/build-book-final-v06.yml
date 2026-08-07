@@ -44,6 +44,7 @@ jobs:
                   line = indent + 'return m.group(1) + "16-" + m.group(3) if "agent-loop" in m.group(3) else m.group(0)'
               out.append(line)
           s = '\n'.join(out) + '\n'
+          s = s.replace('for marker in ("\\n## Co si z kapitoly odnést", "\\n# Co si z kapitoly odnést"):', 'for marker in ("\\n## Co si z kapitoly odnést", "\\n# Co si z kapitoly odnést", "\\n## Co si z kapitoly zapamatovat"):')
           s = s.replace('**„Claude Opus 5“ není k datu tohoto snapshotu správný veřejný název modelu.**', '**„Opus 5“ není k datu tohoto snapshotu správný veřejný název modelu.**')
           p.write_text(s, encoding='utf-8')
           PY
