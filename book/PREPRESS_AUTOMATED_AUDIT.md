@@ -13,16 +13,15 @@
 - Neexistující image reference: **0**
 - Screen SVG strukturální chyby: **0**
 - Print SVG problémy: **0**
-- Kandidátní TODO/placeholder výskyty: **2**
+- Explicitní TODO/placeholder markery: **0**
 - Neuzavřené code fences: **0**
 - Přesně duplicitní dlouhé odstavce mezi soubory: **0**
 
 ## Final-editorial gate
 
-**FAIL — zbývají mechanické blockery:**
+**PASS — mechanické blockery finálního redakčního draftu jsou odstraněny.**
 
-- Kapitola 37 je stále příliš krátká (<1500 slov).
-- Rukopis obsahuje 2 TODO/placeholder kandidátů.
+Další gate musí proběhnout nad skutečně vysázeným proof PDF: stránkování, fonty, sirotci/vdovy, tabulky, grayscale/CMYK proof a fyzická velikost diagramů.
 
 ## Kapitoly — rozsah a metadata
 
@@ -82,10 +81,6 @@
 
 - Kapitoly v indexu: `[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37]`
 - Očekáváno: `[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37]`
-
-## TODO / placeholder kandidáti
-- 04 - Co LLM umí - a co neumí.md:232 — `doplnit`
-- 04 - Co LLM umí - a co neumí.md:314 — `doplnit`
 
 ## Vizuální minimum
 
