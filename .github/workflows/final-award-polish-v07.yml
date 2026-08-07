@@ -1,0 +1,39 @@
+name: Final award micro-polish v0.7
+
+on:
+  push:
+    paths:
+      - 'tools/final_award_polish_v07.py'
+      - '.github/workflows/final-award-polish-v07.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  polish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Apply micro-polish
+        run: python tools/final_award_polish_v07.py
+      - name: Re-run editorial scan
+        run: python tools/final_editorial_award_scan.py
+      - name: Assertions
+        run: |
+          grep -q 'Numeric cross-reference issues' book_final/FINAL_EDITORIAL_SCAN_RAW.md
+          ! grep -q 'missing section' book_final/FINAL_EDITORIAL_SCAN_RAW.md
+          ! grep -q 'V další kapitole v pořadí' 'book_final/16 - Co je AI agent.md'
+      - name: Commit polish
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add book_final tools/final_editorial_award_scan.py
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "book: polish final chapter landings v0.7"
+          git push
