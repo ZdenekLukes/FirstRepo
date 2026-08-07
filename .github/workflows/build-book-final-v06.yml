@@ -27,41 +27,24 @@ jobs:
           python - <<'PY'
           from pathlib import Path
           p = Path('tools/build_book_final_v06.py')
-          s = p.read_text(encoding='utf-8')
-
-          old = '''        placeholders = {}
-        idx = 0
-        def protect(value: str) -> str:
-            nonlocal idx
-            key = f"@@CHREF{idx}@@"; idx += 1; placeholders[key] = value; return key
-'''
-          new = '''        placeholders = {}
-        idx = [0]
-        def protect(value: str) -> str:
-            key = f"@@CHREF{idx[0]}@@"
-            idx[0] += 1
-            placeholders[key] = value
-            return key
-'''
-          if old not in s:
-              raise SystemExit('nonlocal patch marker not found')
-          s = s.replace(old, new, 1)
-
-          old = '''        part = pm.group(1).strip('"\\'') if pm else "KNIHA"'''
-          new = '''        part = pm.group(1).strip().strip("\\\"'") if pm else "KNIHA"'''
-          if old not in s:
-              raise SystemExit('part strip patch marker not found')
-          s = s.replace(old, new, 1)
-
-          old = '''                return m.group(1) + "16-" if "agent-loop" in m.group(3) else m.group(0)'''
-          new = '''                return m.group(1) + "16-" + m.group(3) if "agent-loop" in m.group(3) else m.group(0)'''
-          if old not in s:
-              raise SystemExit('agent loop map patch marker not found')
-          s = s.replace(old, new, 1)
-
-          s = s.replace('**„Claude Opus 5“ není k datu tohoto snapshotu správný veřejný název modelu.**',
-                        '**„Opus 5“ není k datu tohoto snapshotu správný veřejný název modelu.**')
-
+          lines = p.read_text(encoding='utf-8').splitlines()
+          out = []
+          for line in lines:
+              if line.strip() == 'idx = 0':
+                  line = line.replace('idx = 0', 'idx = [0]')
+              elif line.strip() == 'nonlocal idx':
+                  continue
+              elif 'key = f"@@CHREF{idx}@@"; idx += 1; placeholders[key] = value; return key' in line:
+                  line = line.replace('key = f"@@CHREF{idx}@@"; idx += 1; placeholders[key] = value; return key', 'key = f"@@CHREF{idx[0]}@@"; idx[0] += 1; placeholders[key] = value; return key')
+              elif 'part = pm.group(1).strip(' in line:
+                  indent = line[:len(line) - len(line.lstrip())]
+                  line = indent + "part = pm.group(1).strip().strip(\"\\\"'\") if pm else \"KNIHA\""
+              elif 'return m.group(1) + "16-" if "agent-loop"' in line:
+                  indent = line[:len(line) - len(line.lstrip())]
+                  line = indent + 'return m.group(1) + "16-" + m.group(3) if "agent-loop" in m.group(3) else m.group(0)'
+              out.append(line)
+          s = '\n'.join(out) + '\n'
+          s = s.replace('**„Claude Opus 5“ není k datu tohoto snapshotu správný veřejný název modelu.**', '**„Opus 5“ není k datu tohoto snapshotu správný veřejný název modelu.**')
           p.write_text(s, encoding='utf-8')
           PY
           python -m py_compile tools/build_book_final_v06.py
@@ -74,19 +57,16 @@ jobs:
           rm -rf /tmp/book_original_v06
           mv book /tmp/book_original_v06
           cp -a book_final book
-
-          # Prepress audit was originally written for 37 chapters and no 00-intro.
           python - <<'PY'
           from pathlib import Path
-          p=Path('tools/prepress_audit.py')
-          s=p.read_text(encoding='utf-8')
-          s=s.replace("chapters=sorted([p for p in BOOK.glob('[0-9][0-9] - *.md') if p.name!='00 - INDEX.md'])", "chapters=sorted([p for p in BOOK.glob('[0-9][0-9] - *.md') if not p.name.startswith('00 -')])")
-          s=s.replace("expected=list(range(1,38))", "expected=list(range(1,37))")
-          s=s.replace("ch37=row_by.get('37 - Deset praktických projektů od začátečníka k agentnímu systému.md')", "ch37=row_by.get('36 - Deset praktických projektů od začátečníka k agentnímu systému.md')")
-          s=s.replace('Kapitola 37 je stále příliš krátká', 'Kapitola 36 je stále příliš krátká')
-          p.write_text(s,encoding='utf-8')
-
-          # Build a separate v0.6 proof without touching the historical v0.4 files.
+          p = Path('tools/prepress_audit.py')
+          s = p.read_text(encoding='utf-8')
+          s = s.replace("chapters=sorted([p for p in BOOK.glob('[0-9][0-9] - *.md') if p.name!='00 - INDEX.md'])", "chapters=sorted([p for p in BOOK.glob('[0-9][0-9] - *.md') if not p.name.startswith('00 -')])")
+          s = s.replace("expected=list(range(1,38))", "expected=list(range(1,37))")
+          s = s.replace("ch37=row_by.get('37 - Deset praktických projektů od začátečníka k agentnímu systému.md')", "ch37=row_by.get('36 - Deset praktických projektů od začátečníka k agentnímu systému.md')")
+          s = s.replace('Kapitola 37 je stále příliš krátká', 'Kapitola 36 je stále příliš krátká')
+          p.write_text(s, encoding='utf-8')
+          PY
           for f in tools/build_book_proof.py tools/add_bibliography_to_proof.py tools/refine_book_proof.py tools/audit_book_proof.py tools/final_proof_qa.py tools/inspect_proof_small_fonts.py; do
             sed -i 's/v0\.4/v0.6/g' "$f"
           done
