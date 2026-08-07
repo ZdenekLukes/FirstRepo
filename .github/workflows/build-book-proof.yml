@@ -4,12 +4,16 @@ on:
   push:
     paths:
       - '.github/workflows/build-book-proof.yml'
+      - 'tools/final_copyedit_pass.py'
       - 'tools/build_book_proof.py'
+      - 'tools/add_bibliography_to_proof.py'
       - 'tools/refine_book_proof.py'
+      - 'tools/prepress_audit.py'
+      - 'tools/editorial_style_audit.py'
       - 'tools/audit_book_proof.py'
+      - 'tools/final_proof_qa.py'
+      - 'tools/inspect_proof_small_fonts.py'
       - 'book/assets/diagrams-print/**'
-      - 'book/*.md'
-      - 'book/appendices/**'
   workflow_dispatch:
 
 permissions:
@@ -25,20 +29,31 @@ jobs:
           python-version: '3.12'
       - name: Install proof dependencies
         run: python -m pip install --upgrade markdown weasyprint pymupdf pillow
+      - name: Final copyedit and metadata pass
+        run: python tools/final_copyedit_pass.py
+      - name: Refresh source audits
+        run: |
+          python tools/prepress_audit.py
+          python tools/editorial_style_audit.py
       - name: Build proof
         run: python tools/build_book_proof.py
+      - name: Include bibliography in proof
+        run: python tools/add_bibliography_to_proof.py
       - name: Refine proof typography
         run: python tools/refine_book_proof.py
       - name: Audit proof
-        run: python tools/audit_book_proof.py
-      - name: Commit proof outputs
+        run: |
+          python tools/audit_book_proof.py
+          python tools/final_proof_qa.py
+          python tools/inspect_proof_small_fonts.py
+      - name: Commit release-candidate sources and proof
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add book/proof
+          git add book README.md
           if git diff --cached --quiet; then
             echo "No changes"
           else
-            git commit -m "Refresh v0.4 typeset proof PDF and audit"
+            git commit -m "Finalize AI book release candidate and proof"
             git push
           fi
