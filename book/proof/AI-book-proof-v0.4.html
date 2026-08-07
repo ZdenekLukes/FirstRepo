@@ -8,7 +8,7 @@
 }
 @page:first { @top-center { content: none; } @bottom-center { content: none; } }
 html { font-family: "DejaVu Sans", "Liberation Sans", sans-serif; color: #17202b; }
-body { font-size: 9.7pt; line-height: 1.43; margin: 0; }
+body { font-size: 9.5pt; line-height: 1.38; margin: 0; }
 .title-page { page-break-after: always; min-height: 195mm; display: flex; flex-direction: column; justify-content: center; }
 .title-page h1 { font-size: 28pt; line-height: 1.1; margin: 0 0 8mm; color: #10263b; }
 .title-page .subtitle { font-size: 14pt; line-height: 1.35; color: #43566a; max-width: 120mm; }
@@ -21,24 +21,24 @@ body { font-size: 9.7pt; line-height: 1.43; margin: 0; }
 .toc .part { margin-top: 5mm; font-size: 8pt; color: #687386; text-transform: uppercase; letter-spacing: .05em; }
 .chapter { page-break-before: always; }
 h1 { string-set: chapter-title content(); font-size: 21pt; line-height: 1.15; margin: 0 0 7mm; color: #0e2a43; page-break-after: avoid; }
-h2 { font-size: 14.5pt; line-height: 1.2; margin: 8mm 0 3mm; color: #173d5c; page-break-after: avoid; }
-h3 { font-size: 11.6pt; line-height: 1.2; margin: 6mm 0 2mm; color: #264f6b; page-break-after: avoid; }
-h4 { font-size: 10.2pt; margin: 4mm 0 1.5mm; page-break-after: avoid; }
-p { margin: 0 0 3.1mm; orphans: 3; widows: 3; }
-blockquote { border-left: 1.2mm solid #3e759d; margin: 4mm 0; padding: 2.5mm 4mm; background: #f3f7fa; page-break-inside: avoid; }
+h2 { font-size: 14.5pt; line-height: 1.2; margin: 6mm 0 2.2mm; color: #173d5c; page-break-after: avoid; }
+h3 { font-size: 11.6pt; line-height: 1.2; margin: 4.5mm 0 1.6mm; color: #264f6b; page-break-after: avoid; }
+h4 { font-size: 10.2pt; margin: 3mm 0 1.2mm; page-break-after: avoid; }
+p { margin: 0 0 1.55mm; orphans: 3; widows: 3; }
+blockquote { border-left: 1.2mm solid #3e759d; margin: 2.8mm 0; padding: 2.2mm 3.5mm; background: #f3f7fa; page-break-inside: avoid; }
 blockquote p:last-child { margin-bottom: 0; }
 strong { color: #102f47; }
-pre { font-family: "DejaVu Sans Mono", "Liberation Mono", monospace; font-size: 7.8pt; line-height: 1.35; background: #f4f6f8; border: .2mm solid #d9dfe5; padding: 3mm; white-space: pre-wrap; word-break: break-word; page-break-inside: avoid; }
+pre { font-family: "DejaVu Sans Mono", "Liberation Mono", monospace; font-size: 7.8pt; line-height: 1.32; background: #f4f6f8; border: .2mm solid #d9dfe5; padding: 2.5mm; white-space: pre-wrap; word-break: break-word; page-break-inside: avoid; }
 code { font-family: "DejaVu Sans Mono", "Liberation Mono", monospace; font-size: .92em; }
 table { width: 100%; border-collapse: collapse; font-size: 7.7pt; line-height: 1.28; margin: 4mm 0 5mm; page-break-inside: avoid; }
 th { background: #e9f0f5; color: #173d5c; font-weight: 700; }
 th, td { border: .2mm solid #cfd7df; padding: 1.6mm 1.8mm; vertical-align: top; }
-ul, ol { margin: 1mm 0 3mm 5mm; padding-left: 5mm; }
+ul, ol { margin: .8mm 0 2mm 5mm; padding-left: 5mm; }
 li { margin-bottom: 1mm; }
-img { display: block; max-width: 100%; max-height: 155mm; height: auto; margin: 4mm auto 2mm; page-break-inside: avoid; }
+img { display: block; width: 152mm; max-width: none; max-height: 160mm; height: auto; margin: 3.5mm -8mm 2mm; page-break-inside: avoid; }
 p:has(> img) { page-break-inside: avoid; margin-bottom: 1mm; }
 p:has(> img) + p em { font-size: 8pt; color: #586174; }
-hr { border: 0; border-top: .2mm solid #d8dee5; margin: 7mm 0; }
+hr { border: 0; border-top: .2mm solid #d8dee5; margin: 3.5mm 0; }
 a { color: #245d84; text-decoration: none; overflow-wrap: anywhere; }
 /* Keep compact takeaway lists together when possible, but permit long sections to flow. */
 h1 + p, h2 + p, h3 + p { page-break-before: avoid; }
