@@ -2,9 +2,12 @@
 title: "1. Sto let vývoje AI na několika stránkách"
 part: "I — Jak jsme se sem dostali"
 status: working-outline
+version: "0.1"
+updated: 2026-08-07
 ---
 
 # 1. Sto let vývoje AI na několika stránkách
+
 Pouze časová osa: **rok → objev → proč byl důležitý**.
 
 ## 1.1 Kořeny moderní AI
