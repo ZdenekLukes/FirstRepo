@@ -27,16 +27,15 @@ replace_once(
 replace_once(
     ch34,
     "[DOPLNIT: konkrétní lokální model / coding / dokumentový experiment, který překvapil nejvíce.]",
-    """Dobrou lekcí byly lokální modely. Na notebooku s 8 GB VRAM šlo rozumně experimentovat s menšími textovými modely, ale u náročnějších úloh se rychle ukázal paměťový limit a offload do systémové RAM výrazně zhoršoval interaktivnost.\n\nPřechod na kartu s 32 GB VRAM otevřel praktické experimenty s modely přibližně 30B–40B třídy. Vedle textového LLM jsem si mohl spojit lokální stack s Open WebUI, speech-to-text přes Whisper a text-to-speech. Nejdůležitější zjištění pro mě ale nebylo, že větší model "běží". Bylo to zjištění, že jednotlivé části stacku lze skládat a měřit odděleně.\n\nMalý model může být dostatečný pro jednu roli, zatímco těžší reasoning pošlu jinam. To je praktičtější než hledat jeden model, který musí umět všechno.""",
+    """Dobrou lekcí byly lokální modely. Na notebooku s 8 GB VRAM šlo rozumně experimentovat s menšími textovými modely, ale u náročnějších úloh se rychle ukázal paměťový limit a offload do systémové RAM výrazně zhoršoval interaktivnost.\n\nPřechod na kartu s 32 GB VRAM otevřel praktické experimenty s modely přibližně 30B–40B třídy. Vedle textového LLM jsem si mohl spojit lokální stack s Open WebUI, speech-to-text přes Whisper a text-to-speech. Nejdůležitější zjištění pro mě ale nebylo, že větší model \"běží\". Bylo to zjištění, že jednotlivé části stacku lze skládat a měřit odděleně.\n\nMalý model může být dostatečný pro jednu roli, zatímco těžší reasoning pošlu jinam. To je praktičtější než hledat jeden model, který musí umět všechno.""",
 )
 
 replace_once(
     ch34,
     "[DOPLNIT: vlastní zkušenosti s konkrétním hardware a modely — rychlost, VRAM, co už bylo překvapivě použitelné a co ne.]",
-    """Moje vlastní experimenty mi tento pohled ještě posílily. Osm gigabajtů VRAM je dost na to, aby si člověk lokální AI skutečně osahal, ale zároveň velmi rychle ukáže rozdíl mezi "model lze spustit" a "model je příjemné používat". Jakmile část modelu nebo cache přeteče do pomalejší paměti, papírově funkční konfigurace může přestat být praktická.\n\nS 32 GB VRAM se otevře úplně jiná třída experimentů, včetně větších kvantizovaných modelů. Ani tam ale nedává smysl automaticky vybírat největší model, který se vejde. Pro mnoho úzkých úloh je menší model rychlejší a dostatečně kvalitní.\n\nProto dnes hardware neberu jako soutěž o maximální počet parametrů. Je to další routing constraint: která úloha má běžet lokálně, která na silnějším interním serveru a která si opravdu zaslouží frontier cloud.""",
+    """Moje vlastní experimenty mi tento pohled ještě posílily. Osm gigabajtů VRAM je dost na to, aby si člověk lokální AI skutečně osahal, ale zároveň velmi rychle ukáže rozdíl mezi \"model lze spustit\" a \"model je příjemné používat\". Jakmile část modelu nebo cache přeteče do pomalejší paměti, papírově funkční konfigurace může přestat být praktická.\n\nS 32 GB VRAM se otevře úplně jiná třída experimentů, včetně větších kvantizovaných modelů. Ani tam ale nedává smysl automaticky vybírat největší model, který se vejde. Pro mnoho úzkých úloh je menší model rychlejší a dostatečně kvalitní.\n\nProto dnes hardware neberu jako soutěž o maximální počet parametrů. Je to další routing constraint: která úloha má běžet lokálně, která na silnějším interním serveru a která si opravdu zaslouží frontier cloud.""",
 )
 
-# Upgrade metadata after removing placeholders.
 text = ch34.read_text(encoding="utf-8")
 text = text.replace("status: personal-draft", "status: final-draft")
 text = text.replace('version: "0.2"', 'version: "0.4"', 1)
@@ -427,13 +426,10 @@ colors = {
 
 
 def bump_font(m):
+    # At the 170 x 240 mm proof trim, 25 SVG units render at ~8 pt.
+    # Keep larger titles larger, but never let diagram body text fall below 25.
     n = int(m.group(1))
-    if n <= 13:
-        n = 18
-    elif n <= 15:
-        n = 19
-    elif n <= 18:
-        n = 20
+    n = max(n, 25)
     return f'font-size="{n}"'
 
 for svg in sorted(src_dir.glob("*.svg")):
@@ -441,7 +437,6 @@ for svg in sorted(src_dir.glob("*.svg")):
     for a, b in colors.items():
         s = s.replace(a, b)
     s = re.sub(r'font-size="(\d+)"', bump_font, s)
-    s = s.replace('<rect width="1200"', '<rect width="1200"')
     dst = dst_dir / svg.name
     dst.write_text(s, encoding="utf-8")
 
