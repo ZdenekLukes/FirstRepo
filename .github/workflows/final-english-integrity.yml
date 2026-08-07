@@ -1,0 +1,67 @@
+name: Final English edition integrity check
+
+on:
+  push:
+    paths:
+      - '.github/workflows/final-english-integrity.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Verify Czech master untouched and English edition complete
+        run: |
+          set -euo pipefail
+          BASE=9c87a445167d2c9e72adceabf9bac76330c87852
+          git cat-file -e "$BASE^{commit}"
+          BASE_BOOK=$(git rev-parse "$BASE:book_final")
+          HEAD_BOOK=$(git rev-parse "HEAD:book_final")
+          test "$BASE_BOOK" = "$HEAD_BOOK"
+
+          BAD=$(git diff --name-only "$BASE" HEAD | grep -v '^book_final_eng/' | grep -v '^\.github/workflows/final-english-integrity\.yml$' || true)
+          if [ -n "$BAD" ]; then
+            echo "Unexpected non-English-edition changes:"
+            echo "$BAD"
+            exit 1
+          fi
+
+          CHAPTERS=$(find book_final_eng -maxdepth 1 -type f -regex '.*/[0-9][0-9] - .*\.md' ! -name '00 -*' | wc -l)
+          APPENDICES=$(find book_final_eng/appendices -maxdepth 1 -type f -name '*.md' | wc -l)
+          SCREEN=$(find book_final_eng/assets/diagrams -maxdepth 1 -type f -name '*.svg' | wc -l)
+          PRINT=$(find book_final_eng/assets/diagrams-print -maxdepth 1 -type f -name '*.svg' | wc -l)
+          test "$CHAPTERS" -eq 36
+          test "$APPENDICES" -eq 7
+          test "$SCREEN" -eq 43
+          test "$PRINT" -eq 43
+          test -f book_final_eng/QA_PASS.md
+
+          cat > book_final_eng/INTEGRITY_CHECK.md <<EOF
+          # English Edition Integrity Check
+
+          **PASS — the Czech print-candidate master remained byte/tree-identical while the international English edition was added separately.**
+
+          - Baseline commit before English edition: \`$BASE\`
+          - Czech \`book_final/\` tree at baseline: \`$BASE_BOOK\`
+          - Czech \`book_final/\` tree at verification: \`$HEAD_BOOK\`
+          - Numbered English chapters: **$CHAPTERS**
+          - English appendices: **$APPENDICES**
+          - Screen SVG: **$SCREEN**
+          - Print SVG: **$PRINT**
+          - English mechanical/localization QA marker: **present**
+
+          The only intended net repository changes since the baseline are under \`book_final_eng/\`.
+          EOF
+
+          git rm .github/workflows/final-english-integrity.yml
+          git add book_final_eng/INTEGRITY_CHECK.md
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "book: finalize English edition integrity audit"
+          git push
