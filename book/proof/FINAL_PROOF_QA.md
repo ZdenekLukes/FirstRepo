@@ -12,12 +12,12 @@
 Nebyl nalezen mechanický layout blocker.
 
 ## Sparse page candidates
-- page 329: 27 words, 2 drawings
-- page 395: 16 words, 0 drawings
-- page 406: 18 words, 2 drawings
-- page 490: 8 words, 0 drawings
-- page 531: 29 words, 0 drawings
-- page 532: 27 words, 0 drawings
+- page 329: 27 words, 2 drawings — `V další kapitole tento princip přeneseme z repository na jiný obrovský zdroj / firemní práce: / dokumenty, e-maily, tabulky, prezentace, chaty a logy. / Co si z kapitoly odnést / 329`
+- page 395: 16 words, 0 drawings — `Agentic AI — Threats and Mitigations — https://genai.owasp.org/resource/ / agentic-ai-threats-and-mitigations/ / • / Co si z kapitoly odnést / 395`
+- page 406: 18 words, 2 drawings — `Jak poznat, zda je firma a její data na AI vůbec připravená? / Co si z kapitoly odnést / 406`
+- page 490: 8 words, 0 drawings — `Ale jako historii vlastního porozumění. / Pracovní závěr / 490`
+- page 531: 29 words, 0 drawings — `Tím se kruh knihy uzavírá. / Začali jsme otázkou, co vlastně AI je. / Končíme systémem, který dokážeme postavit, změřit, omezit, ověřit a postupně / zlepšovat. / Co si z kapitoly odnést / 531`
+- page 532: 27 words, 0 drawings — `A. Slovník AI pojmů / Tento slovník používá terminologii knihy. Anglický termín ponechávám tam, kde / se běžně používá i v českém technickém prostředí. / A. Slovník AI pojmů / 532`
 
 ## Most common text sizes/fonts
 
