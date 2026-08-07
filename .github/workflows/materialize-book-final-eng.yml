@@ -1,0 +1,147 @@
+name: Materialize English edition
+
+on:
+  push:
+    paths:
+      - '.github/workflows/materialize-book-final-eng.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Materialize English chapters from prepared blobs
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import urllib.request, json, base64, os
+
+          repo='ZdenekLukes/FirstRepo'
+          items={
+          'book_final_eng/00 - Introduction - How to Read This Book.md':'309ac8e05c272ba95de820792104c83ab3c0ce7b',
+          'book_final_eng/01 - A Century of AI in One Chapter.md':'6894420e8484632a6b2b39d6ceddfc8e3872afe5',
+          'book_final_eng/02 - AI, Machine Learning, Deep Learning, and Generative AI.md':'99812f83a2b7409c019ef7b3c409e26f63e7df72',
+          'book_final_eng/03 - How an LLM Works - Without the Math.md':'8ceca42dee11e87657e7c5b05a985aa92549107f',
+          'book_final_eng/04 - What LLMs Can Do - and Where They Break.md':'cdd7a5730864074dba22e72c0157aef15776b21f',
+          'book_final_eng/05 - The Model Landscape.md':'3747d01e724681496e396e85351eb9e431004c36',
+          'book_final_eng/06 - How to Compare AI Models.md':'ec8efc424b1d521a8bbbc7089df3b1d7db70b272',
+          'book_final_eng/07 - Cloud vs. On-Prem vs. Hybrid.md':'683735df3c04a36c475c1a4e3a44a69066be2477',
+          'book_final_eng/08 - Running LLMs Locally.md':'175ac82f8ca38a0cdc9055b33b8151eec74e6fc8',
+          'book_final_eng/09 - Prompting as Task Specification.md':'26d2e940505587e7a2a110ce9a2b7ca30b36e3e7',
+          'book_final_eng/10 - Context Engineering.md':'c07659c0309ae9b01e8114f625ab0db16f5bfcf6',
+          'book_final_eng/11 - Why the Model Does Not Know Your Data.md':'87cc6b1352f7a0ba1463972ce4230ef3dde8c4f2',
+          'book_final_eng/12 - RAG - Retrieval-Augmented Generation.md':'29891838b56ad9bf0e11f4d6fddb80ce6cbbce9a',
+          'book_final_eng/13 - The Second Brain.md':'273bd417a98d5f2ebdb5b59cf9817ab53bd8be18',
+          'book_final_eng/14 - Tool Use.md':'a88a5294910fb76ba1a49e06b7c3af9581e78d98',
+          'book_final_eng/15 - MCP, Skills, Plugins, and Connectors.md':'54917592c31dcf9aa57db795f782394385f7d104',
+          'book_final_eng/16 - Anatomy and Loop of an AI Agent.md':'fdbb4e4fd7a1039f91e07e9099caf56aab031c55',
+          'book_final_eng/17 - Building a Simple Agent.md':'c1c84bddcb3941a0f898ac5a1efcadfea0658575',
+          'book_final_eng/18 - Multi-Agent Systems.md':'ed9eede64bc8061739b4caefed45f04b5a5cecf9',
+          'book_final_eng/19 - Orchestrating Agentic Systems.md':'589940a6b7c50ad7abc351a8fdb85b476b188f50',
+          'book_final_eng/20 - Coding Agents.md':'b30a3fb832ccd7ec1a6177d3e53b6f23c313a4e2',
+          'book_final_eng/21 - AI over Documents and Enterprise Data.md':'14b324818e00167f5980b205328038d0f80d2ee9',
+          'book_final_eng/22 - AI for Technical and Engineering Work.md':'2119f57b87cab6fec08beedbf0f1ce930e36309b',
+          'book_final_eng/23 - Case Study - AI-Assisted Analog IC Design.md':'9890b6df737cf562363769e0bd582bb4112af498',
+          'book_final_eng/24 - AI Security.md':'711a41941c3c56a6aac8cedc6bdddaa674e710c2',
+          'book_final_eng/25 - Why We Have ChatGPT Is Not an AI Strategy.md':'b402401087240ed911dc335e9ed66c04544360d8',
+          'book_final_eng/26 - AI Readiness.md':'9ee5ca3d141da95d35a27220e3a45d85b31171bf',
+          'book_final_eng/27 - Choosing AI Use Cases.md':'b9bd43a10096f3640d5088d19de00e73547e5142',
+          'book_final_eng/28 - Pilot - Evidence - Scale.md':'20fdf8044399fe07a4a236ec9c139475ba363b0c',
+          'book_final_eng/29 - People and Adoption.md':'ff30a9de39c392e20d8a409866ed2e3ca46decca',
+          'book_final_eng/30 - Evaluation.md':'0d0de34fb41b2d13c31ae68022d7e533cabc0851',
+          'book_final_eng/31 - The Economics of AI.md':'7ad0a633d464309494170f515a823725c4eff844',
+          'book_final_eng/32 - Where AI Is Going.md':'0f04d246c2be8128a59792832867300f878c00a2',
+          'book_final_eng/33 - What I Have Learned So Far.md':'e7cc91e040c3651e5f54c54cdfba6c7926074e2a',
+          'book_final_eng/34 - What I Still Need to Learn.md':'431069c46ef81c2fb0d1c348ef46c2fd45dccdbd',
+          'book_final_eng/35 - My Minimal AI Stack.md':'9904f42ef2de46f238fc97870877b702b2d8f974',
+          'book_final_eng/36 - Ten Projects from Beginner to Agentic Systems.md':'e40ae34bc6aed0251261308439a6c143e99038d8',
+          }
+          token=os.environ['GH_TOKEN']
+          for path,sha in items.items():
+              url=f'https://api.github.com/repos/{repo}/git/blobs/{sha}'
+              req=urllib.request.Request(url,headers={'Authorization':f'Bearer {token}','Accept':'application/vnd.github+json','X-GitHub-Api-Version':'2022-11-28'})
+              with urllib.request.urlopen(req) as r:
+                  obj=json.load(r)
+              data=base64.b64decode(obj['content'])
+              p=Path(path); p.parent.mkdir(parents=True,exist_ok=True); p.write_bytes(data)
+          print('materialized chapters:',len(items))
+          PY
+
+      - name: Copy visual assets and scan text labels
+        run: |
+          mkdir -p book_final_eng/assets
+          rm -rf book_final_eng/assets/diagrams book_final_eng/assets/diagrams-print
+          cp -a book_final/assets/diagrams book_final_eng/assets/
+          cp -a book_final/assets/diagrams-print book_final_eng/assets/
+          python - <<'PY'
+          from pathlib import Path
+          import re, html
+          roots=[Path('book_final_eng/assets/diagrams'),Path('book_final_eng/assets/diagrams-print')]
+          lines=['# SVG Localization Scan','']
+          # Czech diacritics + high-signal Czech words that may be ASCII-only in labels.
+          pat=re.compile(r'[áčďéěíňóřšťúůýž]|\b(modely|nástroje|data|ověření|uživatel|výsledek|paměť|kontext|zdroj|cílový|měření|simulace|požadavek|náklady|lidé|bezpečnost|vyhledávání|agentní|smyčka|schválení|přínos|chyba)\b',re.I)
+          count=0
+          for root in roots:
+              for p in sorted(root.glob('*.svg')):
+                  s=p.read_text(encoding='utf-8')
+                  texts=re.findall(r'<text\b[^>]*>(.*?)</text>',s,flags=re.S|re.I)
+                  hits=[]
+                  for t in texts:
+                      plain=re.sub(r'<[^>]+>',' ',t)
+                      plain=html.unescape(re.sub(r'\s+',' ',plain)).strip()
+                      if plain and pat.search(plain): hits.append(plain)
+                  if hits:
+                      count+=1
+                      lines.append(f'## {p.relative_to(Path("book_final_eng"))}')
+                      lines.extend(f'- {x}' for x in hits)
+                      lines.append('')
+          lines.insert(2,f'- SVG files with possible Czech labels: **{count}**')
+          Path('book_final_eng/SVG_LOCALIZATION_SCAN.md').write_text('\n'.join(lines)+'\n',encoding='utf-8')
+          print('screen SVG',len(list(roots[0].glob('*.svg'))),'print SVG',len(list(roots[1].glob('*.svg'))),'possible Czech',count)
+          PY
+
+      - name: Basic manuscript QA
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import re
+          root=Path('book_final_eng')
+          chapters=sorted([p for p in root.glob('[0-9][0-9] - *.md') if not p.name.startswith('00 -')])
+          intro=root/'00 - Introduction - How to Read This Book.md'
+          apps=sorted((root/'appendices').glob('*.md'))
+          missing=[]
+          for p in [intro]+chapters:
+              s=p.read_text(encoding='utf-8')
+              for rel in re.findall(r'!\[[^\]]*\]\((assets/[^)]+)\)',s):
+                  if not (root/rel).exists(): missing.append((p.name,rel))
+          problems=[]
+          for p in [intro]+chapters:
+              s=p.read_text(encoding='utf-8')
+              if 'version: "0.8-eng"' not in s: problems.append(f'{p.name}: version')
+              if 'status: international-draft' not in s: problems.append(f'{p.name}: status')
+              if re.search(r'\b(TODO|FIXME|DOPLNIT)\b',s,re.I): problems.append(f'{p.name}: placeholder')
+          print('numbered chapters',len(chapters),'appendices',len(apps),'missing image refs',len(missing),'problems',problems[:20])
+          if len(chapters)!=36 or not intro.exists() or len(apps)!=7 or missing or problems:
+              raise SystemExit(1)
+          PY
+
+      - name: Commit English manuscript and assets
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add book_final_eng
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "book: materialize international English manuscript v0.8-eng"
+          git push
