@@ -1,0 +1,30 @@
+name: Cleanup English edition temp tooling
+
+on:
+  push:
+    paths:
+      - '.github/workflows/cleanup-book-final-eng.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Remove one-off English edition tooling
+        run: |
+          git rm -f .github/workflows/materialize-book-final-eng.yml \
+                    .github/workflows/qa-book-final-eng.yml \
+                    .github/workflows/assert-book-final-eng.yml \
+                    .github/workflows/cleanup-book-final-eng.yml
+          rm -f book_final_eng/SVG_LOCALIZATION_SCAN.md
+          git add -A
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "chore: clean English edition build tooling"
+          git push
