@@ -1,0 +1,32 @@
+name: Final editorial pass
+
+on:
+  push:
+    paths:
+      - '.github/workflows/final-editorial-pass.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  finalize:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Apply final editorial transformations
+        run: python tools/final_editorial_pass.py
+      - name: Commit editorial changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add book README.md
+          if git diff --cached --quiet; then
+            echo "No changes"
+          else
+            git commit -m "Complete final editorial pass before typesetting"
+            git push
+          fi
