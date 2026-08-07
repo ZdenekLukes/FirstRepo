@@ -8,6 +8,13 @@ updated: 2026-08-07
 
 # 32. Ekonomika AI
 
+<!-- visual:32-ai-tco.svg -->
+
+![TCO AI řešení](assets/diagrams/32-ai-tco.svg)
+
+*Obrázek: Tokeny a GPU jsou jen část celkových nákladů.*
+
+
 AI může být velmi levná i velmi drahá.
 
 Záleží na tom, co počítáme.

@@ -8,6 +8,13 @@ updated: 2026-08-07
 
 # 26. Proč nestačí „máme ChatGPT“
 
+<!-- visual:26-ai-capability-stack.svg -->
+
+![Firemní AI capability stack](assets/diagrams/26-ai-capability-stack.svg)
+
+*Obrázek: Chatbot je jen jedna vrstva celého pracovního systému.*
+
+
 Firma může všem zaměstnancům koupit přístup k velmi schopnému AI chatbotu.
 
 To je užitečný krok.

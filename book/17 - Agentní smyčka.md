@@ -8,6 +8,13 @@ updated: 2026-08-07
 
 # 17. Agentní smyčka
 
+<!-- visual:17-agent-loop.svg -->
+
+![Agentní smyčka](assets/diagrams/17-agent-loop.svg)
+
+*Obrázek: Observe → reason → plan → act → verify.*
+
+
 V předchozí kapitole jsme definovali agenta jako software, který dostane cíl, provede akci, podívá se na výsledek a podle něj zvolí další krok.
 
 Tento opakující se proces můžeme popsat několika slovy:

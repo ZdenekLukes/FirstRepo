@@ -64,15 +64,13 @@ Místo toho se během tréninku mění miliardy číselných parametrů modelu.
 
 Velmi zjednodušeně:
 
-```text
-trénovací data
-      ↓
-učení vztahů a vzorů
-      ↓
-miliardy parametrů
-      ↓
-model
-```
+
+<!-- visual:03-model-vs-database.svg -->
+
+![LLM není databáze](assets/diagrams/03-model-vs-database.svg)
+
+*Obrázek: Modelové parametry nejsou knihovna dokumentů.*
+
 
 Model tedy obsahuje něco spíše podobného **komprimovanému systému vztahů** než knihovně dokumentů.
 
@@ -212,11 +210,13 @@ Vznikne takzvaný **embedding**.
 
 Můžeme si jej představit jako dlouhý seznam čísel:
 
-```text
-tranzistor
-      ↓
-[0.13, -0.42, 0.78, ...]
-```
+
+<!-- visual:03-embeddings.svg -->
+
+![Princip embeddings](assets/diagrams/03-embeddings.svg)
+
+*Obrázek: Embedding převádí text do číselné reprezentace.*
+
 
 Samotná čísla pro člověka nic intuitivního neznamenají.
 
@@ -403,21 +403,13 @@ A znovu.
 
 Celá odpověď vzniká **autoregresivně**:
 
-```text
-prompt
-↓
-token 1
-↓
-prompt + token 1
-↓
-token 2
-↓
-prompt + token 1 + token 2
-↓
-token 3
-↓
-...
-```
+
+<!-- visual:03-token-generation-loop.svg -->
+
+![Autoregresivní generování tokenů](assets/diagrams/03-token-generation-loop.svg)
+
+*Obrázek: LLM skládá odpověď token po tokenu.*
+
 
 Model tedy zpravidla nevytvoří celou odpověď najednou.
 
@@ -911,13 +903,13 @@ Výsledkem je vstup pro model.
 
 Text se převede na tokeny.
 
-```text
-text
-↓
-tokenizer
-↓
-[1543, 81, 9921, ...]
-```
+
+<!-- visual:03-enter-to-answer.svg -->
+
+![Od Enteru po odpověď](assets/diagrams/03-enter-to-answer.svg)
+
+*Obrázek: Zjednodušená inferenční cesta od kontextu k odpovědi.*
+
 
 Čísla zde reprezentují jednotlivé tokeny ve slovníku modelu.
 

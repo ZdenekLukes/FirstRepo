@@ -8,6 +8,13 @@ updated: 2026-08-07
 
 # 7. Cloud vs. on-prem vs. hybrid
 
+<!-- visual:07-cloud-onprem-hybrid.svg -->
+
+![Cloud, hybrid a on-prem](assets/diagrams/07-cloud-onprem-hybrid.svg)
+
+*Obrázek: Rozdělení úloh podle dat, výkonu, ceny a provozní odpovědnosti.*
+
+
 Když firma nebo jednotlivec začne AI používat vážněji, velmi rychle narazí na otázku:
 
 > **Kde má model vlastně běžet?**

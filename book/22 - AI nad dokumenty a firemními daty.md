@@ -8,6 +8,13 @@ updated: 2026-08-07
 
 # 22. AI nad dokumenty a firemními daty
 
+<!-- visual:22-document-pipeline.svg -->
+
+![Pipeline nad firemními dokumenty](assets/diagrams/22-document-pipeline.svg)
+
+*Obrázek: Heterogenní soubory se musí normalizovat, indexovat a citovat.*
+
+
 Ve firmách nejsou znalosti uložené v jedné čisté databázi.
 
 Jsou rozptýlené.

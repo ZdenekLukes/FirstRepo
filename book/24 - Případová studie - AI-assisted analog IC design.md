@@ -8,6 +8,13 @@ updated: 2026-08-07
 
 # 24. Případová studie — AI-assisted analog IC design
 
+<!-- visual:24-analog-ic-loop.svg -->
+
+![AI-assisted analog IC design loop](assets/diagrams/24-analog-ic-loop.svg)
+
+*Obrázek: Specifikace → gm/ID → simulace → extrakce → optimalizace.*
+
+
 > Praktický příklad, na kterém lze ukázat celý řetězec od znalostí po agenta.
 
 Analog IC design je velmi dobrý test toho, co dnešní AI skutečně umí a co zatím neumí.

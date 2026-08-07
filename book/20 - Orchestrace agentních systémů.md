@@ -8,6 +8,13 @@ updated: 2026-08-07
 
 # 20. Orchestrace agentních systémů
 
+<!-- visual:20-orchestration.svg -->
+
+![Orchestrace agentního systému](assets/diagrams/20-orchestration.svg)
+
+*Obrázek: State, retry, checkpointy a agentní kroky v jednom workflow.*
+
+
 Jakmile agent přestane dělat jednu krátkou akci a začne pracovat několik minut, hodin nebo přes více systémů, narazíme na klasické softwarové problémy.
 
 Co když:

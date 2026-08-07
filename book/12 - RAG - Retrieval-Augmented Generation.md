@@ -8,6 +8,13 @@ updated: 2026-08-07
 
 # 12. RAG — Retrieval-Augmented Generation
 
+<!-- visual:12-rag-pipeline.svg -->
+
+![RAG pipeline](assets/diagrams/12-rag-pipeline.svg)
+
+*Obrázek: Od dokumentů přes retrieval až k odpovědi s citacemi.*
+
+
 RAG je jeden z nejpoužívanějších pojmů moderní AI.
 
 Zkratka znamená **Retrieval-Augmented Generation**.

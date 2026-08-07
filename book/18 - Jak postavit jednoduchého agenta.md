@@ -8,6 +8,13 @@ updated: 2026-08-07
 
 # 18. Jak postavit jednoduchého agenta
 
+<!-- visual:18-build-agent.svg -->
+
+![Postup stavby jednoduchého agenta](assets/diagrams/18-build-agent.svg)
+
+*Obrázek: Autonomii přidávat až po validaci a měření.*
+
+
 Po předchozích kapitolách může vzniknout chuť postavit rovnou něco velkého:
 
 ```text

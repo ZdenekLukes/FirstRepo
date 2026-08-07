@@ -8,6 +8,13 @@ updated: 2026-08-07
 
 # 10. Context Engineering
 
+<!-- visual:10-context-stack.svg -->
+
+![Vrstvy kontextu](assets/diagrams/10-context-stack.svg)
+
+*Obrázek: Co model při řešení úlohy skutečně vidí.*
+
+
 Prompting řeší, **co modelu řekneme**.
 
 Context engineering řeší širší otázku:

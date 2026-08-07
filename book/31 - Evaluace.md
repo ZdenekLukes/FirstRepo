@@ -8,6 +8,13 @@ updated: 2026-08-07
 
 # 31. Evaluace
 
+<!-- visual:31-evaluation-stack.svg -->
+
+![Evaluační stack](assets/diagrams/31-evaluation-stack.svg)
+
+*Obrázek: Od regresních testů až po business metriku.*
+
+
 Největší rozdíl mezi AI experimentem a engineering systémem může být v jediné otázce:
 
 > **Jak víme, že funguje?**

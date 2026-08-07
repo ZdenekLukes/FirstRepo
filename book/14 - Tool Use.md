@@ -8,6 +8,13 @@ updated: 2026-08-07
 
 # 14. Tool Use
 
+<!-- visual:14-tool-use.svg -->
+
+![Tool use](assets/diagrams/14-tool-use.svg)
+
+*Obrázek: Model zvolí nástroj, obdrží výsledek a pokračuje.*
+
+
 Samotný LLM je velmi schopný v práci s jazykem.
 
 Ale bez nástrojů má zásadní omezení.

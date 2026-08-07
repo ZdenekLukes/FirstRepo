@@ -8,6 +8,13 @@ updated: 2026-08-07
 
 # 16. Co je AI agent
 
+<!-- visual:16-agent-anatomy.svg -->
+
+![Anatomie AI agenta](assets/diagrams/16-agent-anatomy.svg)
+
+*Obrázek: Agent je software kolem LLM: cíl, stav, nástroje, kontroly a smyčka.*
+
+
 Slovo **agent** se v roce 2026 používá téměř všude.
 
 Někdy označuje skutečný autonomnější systém.

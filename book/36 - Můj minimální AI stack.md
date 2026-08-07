@@ -9,6 +9,13 @@ snapshot: "2026-08-07"
 
 # 36. Můj minimální AI stack
 
+<!-- visual:36-minimal-ai-stack.svg -->
+
+![Minimální AI stack](assets/diagrams/36-minimal-ai-stack.svg)
+
+*Obrázek: Modely, data, nástroje, Git, automatizace a monitoring.*
+
+
 Po celé knize jsme přidávali další vrstvy:
 
 ```text

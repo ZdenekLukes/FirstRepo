@@ -8,6 +8,13 @@ updated: 2026-08-07
 
 # 21. Coding Agents
 
+<!-- visual:21-coding-agent.svg -->
+
+![Coding agent loop](assets/diagrams/21-coding-agent.svg)
+
+*Obrázek: Čtení kódu, editace, testy, review diffu a commit.*
+
+
 Programování je jedna z oblastí, kde je přechod od chatbotu k agentovi vidět nejjasněji.
 
 První generace AI nástrojů hlavně doplňovala další řádek kódu.

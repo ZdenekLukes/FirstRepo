@@ -8,6 +8,13 @@ updated: 2026-08-07
 
 # 29. Pilot → důkaz → škálování
 
+<!-- visual:29-pilot-scale.svg -->
+
+![Pilot až škálování](assets/diagrams/29-pilot-scale.svg)
+
+*Obrázek: Každá fáze má vlastní měřitelnou bránu.*
+
+
 AI pilot má velmi jednoduchý účel:
 
 > **Snížit nejistotu dostatečně na to, abychom mohli udělat další rozhodnutí.**

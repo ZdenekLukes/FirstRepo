@@ -8,6 +8,13 @@ updated: 2026-08-07
 
 # 35. Co mě ještě čeká
 
+<!-- visual:35-learning-roadmap.svg -->
+
+![Roadmapa dalšího učení](assets/diagrams/35-learning-roadmap.svg)
+
+*Obrázek: Lokální stack → RAG → tools → agent → production.*
+
+
 > Roadmapa dalšího učení a experimentů.
 
 Po třiceti čtyřech kapitolách by se mohlo zdát, že jsme prošli téměř všechno důležité.

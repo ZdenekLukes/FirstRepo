@@ -9,6 +9,13 @@ snapshot: "2026-08-07"
 
 # 15. MCP, skills, plugins a connectors
 
+<!-- visual:15-mcp-architecture.svg -->
+
+![MCP architektura](assets/diagrams/15-mcp-architecture.svg)
+
+*Obrázek: Standardizované propojení AI aplikace s nástroji a zdroji.*
+
+
 V předchozí kapitole jsme připojili LLM k nástrojům.
 
 Narazíme ale na nový problém.

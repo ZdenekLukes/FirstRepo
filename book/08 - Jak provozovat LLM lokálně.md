@@ -8,6 +8,13 @@ updated: 2026-08-07
 
 # 8. Jak provozovat LLM lokálně
 
+<!-- visual:08-local-memory-stack.svg -->
+
+![Paměťové vrstvy lokálního LLM](assets/diagrams/08-local-memory-stack.svg)
+
+*Obrázek: VRAM není jen velikost modelových vah.*
+
+
 Když poprvé začneme zkoušet lokální LLM, velmi rychle narazíme na záplavu pojmů:
 
 ```text

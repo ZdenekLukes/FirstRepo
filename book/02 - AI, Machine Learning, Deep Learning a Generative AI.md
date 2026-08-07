@@ -8,6 +8,13 @@ updated: 2026-08-07
 
 # 2. AI, Machine Learning, Deep Learning a Generative AI
 
+<!-- visual:02-ai-taxonomy.svg -->
+
+![Vztah AI, ML, deep learningu, generativní AI a LLM](assets/diagrams/02-ai-taxonomy.svg)
+
+*Obrázek: Pojmy tvoří vrstvy; agentní systém je nadstavba kolem modelu.*
+
+
 Když se dnes řekne **AI**, často se tím myslí ChatGPT, Claude, Gemini nebo jiný velký jazykový model. To je ale jen malá část mnohem širšího oboru.
 
 Pojmy **Artificial Intelligence, Machine Learning, Neural Networks, Deep Learning, Generative AI, Foundation Model, LLM, Reasoning Model** a **Agentic AI** spolu souvisejí, ale nejsou zaměnitelné.

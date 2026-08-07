@@ -9,6 +9,13 @@ snapshot: "2026-08-07"
 
 # 25. Bezpečnost AI
 
+<!-- visual:25-security-boundaries.svg -->
+
+![Bezpečnostní hranice agentního systému](assets/diagrams/25-security-boundaries.svg)
+
+*Obrázek: Data, LLM a nástroje musí oddělovat oprávnění a kontroly.*
+
+
 Čím schopnější AI systém je, tím důležitější je bezpečnost.
 
 Chatbot, který pouze navrhuje text, může udělat špatnou odpověď.

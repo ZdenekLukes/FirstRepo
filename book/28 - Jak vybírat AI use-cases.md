@@ -8,6 +8,13 @@ updated: 2026-08-07
 
 # 28. Jak vybírat AI use-cases
 
+<!-- visual:28-usecase-matrix.svg -->
+
+![Matice AI use-case](assets/diagrams/28-usecase-matrix.svg)
+
+*Obrázek: Hodnota versus složitost rozlišuje quick wins a strategic bets.*
+
+
 Ve firmě lze téměř vždy vymyslet desítky nebo stovky míst, kde by „AI mohla pomoci“.
 
 To je snadná část.

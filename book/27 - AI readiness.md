@@ -8,6 +8,13 @@ updated: 2026-08-07
 
 # 27. AI readiness
 
+<!-- visual:27-ai-readiness.svg -->
+
+![Vrstvy AI readiness](assets/diagrams/27-ai-readiness.svg)
+
+*Obrázek: Proces, data, security, measurement a lidé musí být připraveni společně.*
+
+
 Než začneme vybírat model, framework nebo GPU, je dobré položit méně vzrušující otázku:
 
 > **Je náš proces vůbec připravený na to, aby v něm AI mohla spolehlivě pracovat?**

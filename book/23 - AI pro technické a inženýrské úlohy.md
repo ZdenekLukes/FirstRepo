@@ -8,6 +8,13 @@ updated: 2026-08-07
 
 # 23. AI pro technické a inženýrské úlohy
 
+<!-- visual:23-engineering-loop.svg -->
+
+![AI a deterministické engineering nástroje](assets/diagrams/23-engineering-loop.svg)
+
+*Obrázek: LLM orchestruje; specializovaný nástroj rozhoduje fyziku.*
+
+
 Engineering je pro AI velmi zajímavé prostředí.
 
 Na jedné straně obsahuje mnoho nestrukturovaných informací:

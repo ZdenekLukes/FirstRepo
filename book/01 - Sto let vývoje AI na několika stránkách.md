@@ -8,6 +8,13 @@ updated: 2026-08-07
 
 # 1. Sto let vývoje AI na několika stránkách
 
+<!-- visual:01-history-timeline.svg -->
+
+![Časová osa vývoje AI](assets/diagrams/01-history-timeline.svg)
+
+*Obrázek: Zlomové body od obecného výpočtu po agentní systémy.*
+
+
 Dnešní AI může působit jako technologie, která se objevila téměř přes noc. Ještě před několika lety většina lidí velký jazykový model nikdy nepoužila. Dnes dokáže AI během několika sekund psát programy, analyzovat dokumenty, pracovat s obrazem a zvukem nebo používat externí nástroje.
 
 Ve skutečnosti ale dnešní systémy nevznikly jedním objevem. Jsou výsledkem téměř století postupného vývoje matematiky, algoritmů, výpočetního hardware, dat a způsobů, jakými se stroje učí.

@@ -8,6 +8,13 @@ updated: 2026-08-07
 
 # 30. Lidé a adopce
 
+<!-- visual:30-adoption-loop.svg -->
+
+![Smyčka adopce AI](assets/diagrams/30-adoption-loop.svg)
+
+*Obrázek: Experiment, měření, sdílení, trénink a standardizace.*
+
+
 Technicky dobrý AI systém může mít přesná data, kvalitní model, perfektní security i výborné benchmarky.
 
 A přesto může ve firmě selhat.

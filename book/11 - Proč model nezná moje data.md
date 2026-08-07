@@ -8,6 +8,13 @@ updated: 2026-08-07
 
 # 11. Proč model nezná moje data
 
+<!-- visual:11-external-data-bridge.svg -->
+
+![Připojení modelu k vlastním datům](assets/diagrams/11-external-data-bridge.svg)
+
+*Obrázek: Soukromá a aktuální data musí být do kontextu přivedena externí vrstvou.*
+
+
 Velký jazykový model může vědět překvapivě mnoho o světě.
 
 Můžeme se ho zeptat na:

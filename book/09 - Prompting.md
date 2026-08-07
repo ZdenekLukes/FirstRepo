@@ -8,6 +8,13 @@ updated: 2026-08-07
 
 # 9. Prompting
 
+<!-- visual:09-prompt-anatomy.svg -->
+
+![Anatomie kvalitního promptu](assets/diagrams/09-prompt-anatomy.svg)
+
+*Obrázek: Prompt jako strukturovaná specifikace úlohy.*
+
+
 Kolem promptingu vznikla v prvních letech generativní AI téměř samostatná disciplína.
 
 Internet byl plný seznamů typu:

@@ -1,5 +1,12 @@
 # 37. Deset praktických projektů od začátečníka k agentnímu systému
 
+<!-- visual:37-project-ladder.svg -->
+
+![Deset projektů od začátečníka k agentům](assets/diagrams/37-project-ladder.svg)
+
+*Obrázek: Postupné přidávání schopností i rizik.*
+
+
 ## Projekt 1 — Chat nad jedním dokumentem
 ## Projekt 2 — Analýza několika dokumentů
 ## Projekt 3 — Osobní knowledge base

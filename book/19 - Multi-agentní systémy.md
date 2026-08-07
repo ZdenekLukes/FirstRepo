@@ -8,6 +8,13 @@ updated: 2026-08-07
 
 # 19. Multi-agentní systémy
 
+<!-- visual:19-multi-agent.svg -->
+
+![Multi-agentní systém](assets/diagrams/19-multi-agent.svg)
+
+*Obrázek: Orchestrátor koordinuje specialisty s jasnými rolemi.*
+
+
 Když jeden agent funguje dobře, další přirozená myšlenka je:
 
 > „Co kdybychom měli několik agentů, každý specializovaný na jinou část práce?“

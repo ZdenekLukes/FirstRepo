@@ -8,6 +8,13 @@ updated: 2026-08-07
 
 # 13. Druhý mozek
 
+<!-- visual:13-second-brain.svg -->
+
+![Architektura druhého mozku](assets/diagrams/13-second-brain.svg)
+
+*Obrázek: AI jako navigátor nad znalostní bází.*
+
+
 Pojem **second brain — druhý mozek** vznikl dávno před dnešní generativní AI.
 
 Původní myšlenka byla jednoduchá:
