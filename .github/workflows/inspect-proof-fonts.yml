@@ -1,0 +1,32 @@
+name: Inspect proof fonts
+
+on:
+  push:
+    paths:
+      - '.github/workflows/inspect-proof-fonts.yml'
+      - 'tools/inspect_proof_small_fonts.py'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install PyMuPDF
+        run: python -m pip install --upgrade pymupdf
+      - name: Inspect small fonts
+        run: python tools/inspect_proof_small_fonts.py
+      - name: Commit report
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add book/proof/SMALL_FONT_INSPECTION.md
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "Inspect small fonts in proof PDF"
+          git push
