@@ -42,6 +42,9 @@ jobs:
               elif 'return m.group(1) + "16-" if "agent-loop"' in line:
                   indent = line[:len(line) - len(line.lstrip())]
                   line = indent + 'return m.group(1) + "16-" + m.group(3) if "agent-loop" in m.group(3) else m.group(0)'
+              elif line.strip().startswith('linked = sorted(set(int(x)'):
+                  indent = line[:len(line) - len(line.lstrip())]
+                  line = indent + "linked = sorted({int(x) for x in re.findall(r'\\[\\[(\\d{2}) - ', idx) if int(x) > 0})"
               out.append(line)
           s = '\n'.join(out) + '\n'
           s = s.replace('for marker in ("\\n## Co si z kapitoly odnést", "\\n# Co si z kapitoly odnést"):', 'for marker in ("\\n## Co si z kapitoly odnést", "\\n# Co si z kapitoly odnést", "\\n## Co si z kapitoly zapamatovat"):')
