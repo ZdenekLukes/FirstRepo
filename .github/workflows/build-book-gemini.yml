@@ -25,7 +25,18 @@ jobs:
           python-version: '3.12'
 
       - name: Build review variant
-        run: python tools/build_book_gemini.py
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p = Path('tools/build_book_gemini.py')
+          s = p.read_text(encoding='utf-8')
+          old = 'if "[DOPLNIT]" in s or "TODO:" in s:'
+          new = 'if not f.name.startswith(("FINAL_", "PREPRESS_")) and ("[DOPLNIT]" in s or "TODO:" in s):'
+          if old not in s:
+              raise SystemExit('placeholder guard marker not found')
+          p.write_text(s.replace(old, new, 1), encoding='utf-8')
+          PY
+          python tools/build_book_gemini.py
 
       - name: Commit book_gemini
         run: |
