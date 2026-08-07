@@ -4,6 +4,11 @@ on:
   push:
     paths:
       - '.github/workflows/build-book-proof.yml'
+      - 'tools/build_book_proof.py'
+      - 'tools/audit_book_proof.py'
+      - 'book/assets/diagrams-print/**'
+      - 'book/*.md'
+      - 'book/appendices/**'
   workflow_dispatch:
 
 permissions:
@@ -31,6 +36,6 @@ jobs:
           if git diff --cached --quiet; then
             echo "No changes"
           else
-            git commit -m "Add v0.4 typeset proof PDF and audit"
+            git commit -m "Refresh v0.4 typeset proof PDF and audit"
             git push
           fi
