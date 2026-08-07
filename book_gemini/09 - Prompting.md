@@ -148,7 +148,7 @@ U produkčního systému je užitečné přestat chápat prompt jako jednu větu
 ```text
 ┌──────────────────────────────────────────────┐
 │ SYSTEM / DEVELOPER INSTRUCTIONS              │
-│ role, pravidla aplikace, bezpečnostní hranice│
+│ role, pravidla aplikace, bezpečnostní pravidla│
 ├──────────────────────────────────────────────┤
 │ RUNTIME CONTEXT                              │
 │ dokumenty, RAG, stav workflow, tool outputs  │

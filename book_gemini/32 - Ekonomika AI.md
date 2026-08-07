@@ -363,7 +363,7 @@ ne pouze na cenu prvního měsíce.
 
 ## 32.9.1 Konkrétní TCO příklad: API vs. dedicated GPU
 
-**[Snapshot 08/2026 — ilustrativní model, nikoli ceník konkrétního poskytovatele.]**
+**[Snapshot 08/2026]** — Ilustrativní model, nikoli ceník konkrétního poskytovatele.
 
 Příklad slouží k postupu výpočtu. Před rozhodnutím dosaď aktuální ceny API, elektřiny, hardware a skutečný throughput vlastního modelu.
 

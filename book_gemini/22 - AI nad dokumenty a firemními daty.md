@@ -90,7 +90,7 @@ API nebo skript umožní zejména:
 - přímé napojení na dokumentové zdroje a nástroje,
 - logging, metriky a evals.
 
-Proto „máme přístup k chatbota“ a „máme AI workflow nad firemními daty“ nejsou stejná capability.
+Proto „máme přístup k chatbotu“ a „máme AI workflow nad firemními daty“ nejsou stejná capability.
 
 Obecný princip chunkingu, embeddings, vector search a hybridního retrievalu už řeší kapitola 12. Tady se soustředíme na **to, co se pokazí při skutečném firemním nasazení**: parsing, OCR, tabulky, ACL, provenance, citlivá data a audit.
 
@@ -746,7 +746,8 @@ Každý typ dat používáme způsobem, který zachovává jeho strukturu.
 6. **Technické informace musí zachovat units, conditions, revision a source.**
 7. **Otázky přes stovky zdrojů jsou často agentní research workflow, ne jeden RAG dotaz.**
 8. **Nejdříve sbíráme evidence a až potom generujeme narrative.**
-9. **Důležitý AI výstup má být verzovaný, citovaný a auditovatelný artifact.**
+9. **Permissioning musí filtrovat data před retrievalem a před vložením do kontextu modelu.**
+10. **Důležitý AI výstup má být verzovaný, citovaný a auditovatelný artifact.**
 
 Když stejný princip přeneseme do skutečného engineering workflow, můžeme model spojit nejen s dokumenty, ale také s:
 

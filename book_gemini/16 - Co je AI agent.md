@@ -172,7 +172,7 @@ Správnost ověří například:
 - compiler,
 - simulator,
 - schema validator,
-- databázová constraint,
+- databázové omezení,
 - měření.
 
 > **Když lze správnost ověřit deterministicky, nenechávejme ji pouze na úsudku LLM.**
