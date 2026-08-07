@@ -1,0 +1,43 @@
+name: Final award editorial pass v0.7
+
+on:
+  push:
+    paths:
+      - 'tools/final_award_edit_v07.py'
+      - '.github/workflows/final-award-edit-v07.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  edit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Apply editorial pass
+        run: python tools/final_award_edit_v07.py
+      - name: Re-run editorial scan
+        run: python tools/final_editorial_award_scan.py
+      - name: Basic v0.7 assertions
+        run: |
+          test -f book_final/assets/diagrams/00-ai-system-stack.svg
+          test -f book_final/assets/diagrams/33-model-to-system.svg
+          test -f book_final/assets/diagrams/36-debug-ai-system.svg
+          test -f book_final/assets/diagrams-print/00-ai-system-stack.svg
+          ! grep -q 'section 34.10.*missing section' book_final/FINAL_EDITORIAL_SCAN_RAW.md
+          ! grep -q 'Osobní kapitola — průběžně' 'book_final/33 - Co jsem se zatím naučil.md'
+          ! grep -q 'Důležitá redakční oprava' 'book_final/05 - Mapa modelů.md'
+      - name: Commit v0.7
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add book_final
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "book: final award-level editorial pass v0.7"
+          git push
