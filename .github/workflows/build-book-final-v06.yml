@@ -22,6 +22,50 @@ jobs:
         with:
           python-version: '3.12'
 
+      - name: Patch and validate hybrid builder
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p = Path('tools/build_book_final_v06.py')
+          s = p.read_text(encoding='utf-8')
+
+          old = '''        placeholders = {}
+        idx = 0
+        def protect(value: str) -> str:
+            nonlocal idx
+            key = f"@@CHREF{idx}@@"; idx += 1; placeholders[key] = value; return key
+'''
+          new = '''        placeholders = {}
+        idx = [0]
+        def protect(value: str) -> str:
+            key = f"@@CHREF{idx[0]}@@"
+            idx[0] += 1
+            placeholders[key] = value
+            return key
+'''
+          if old not in s:
+              raise SystemExit('nonlocal patch marker not found')
+          s = s.replace(old, new, 1)
+
+          old = '''        part = pm.group(1).strip('"\\'') if pm else "KNIHA"'''
+          new = '''        part = pm.group(1).strip().strip("\\\"'") if pm else "KNIHA"'''
+          if old not in s:
+              raise SystemExit('part strip patch marker not found')
+          s = s.replace(old, new, 1)
+
+          old = '''                return m.group(1) + "16-" if "agent-loop" in m.group(3) else m.group(0)'''
+          new = '''                return m.group(1) + "16-" + m.group(3) if "agent-loop" in m.group(3) else m.group(0)'''
+          if old not in s:
+              raise SystemExit('agent loop map patch marker not found')
+          s = s.replace(old, new, 1)
+
+          s = s.replace('**„Claude Opus 5“ není k datu tohoto snapshotu správný veřejný název modelu.**',
+                        '**„Opus 5“ není k datu tohoto snapshotu správný veřejný název modelu.**')
+
+          p.write_text(s, encoding='utf-8')
+          PY
+          python -m py_compile tools/build_book_final_v06.py
+
       - name: Build hybrid source
         run: python tools/build_book_final_v06.py
 
