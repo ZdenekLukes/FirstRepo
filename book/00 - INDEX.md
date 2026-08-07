@@ -9,7 +9,7 @@ status: release-candidate
 # AI od základů k agentním systémům
 
 > **Obsidian master index — v0.4**  
-> Každá kapitola je samostatný Markdown soubor. Verze 0.4 je finální redakční draft před sazbou: hlavní kapitoly i přílohy jsou rozepsané, proběhl content/visual audit a další kontrola se má dělat nad vysázeným proof PDF.
+> Verze 0.4 je release candidate po redakčním, obsahovém, vizuálním a proof auditu. Každá kapitola je samostatný Markdown soubor; společně s přílohami a bibliografií tvoří aktuální knižní rukopis.
 
 ## ČÁST I — Jak jsme se sem dostali
 - [[01 - Sto let vývoje AI na několika stránkách|1. Sto let vývoje AI na několika stránkách]]
@@ -85,12 +85,10 @@ status: release-candidate
 - [[appendices/F - Checklist pro navrh agenta|F. Checklist pro návrh agenta]]
 - [[appendices/G - Vlastni experimenty|G. Vlastní experimenty]]
 
-
 ## ZDROJE A DALŠÍ ČTENÍ
 - [[BIBLIOGRAPHY|Zdroje a další čtení]]
 
 ## REDAKČNÍ PODKLADY
 - [[STYLE_GUIDE|Style guide]]
-- [[BIBLIOGRAPHY|Bibliografie a další čtení]]
 - [[PRINT_VISUAL_GUIDE|Print visual guide]]
 - [[FINAL_EDITORIAL_AUDIT_2026-08-07|Finální redakční audit]]
