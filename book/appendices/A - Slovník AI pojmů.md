@@ -1,0 +1,31 @@
+# A. Slovník AI pojmů
+
+- AI
+- ML
+- DL
+- LLM
+- LMM
+- token
+- parameter
+- embedding
+- transformer
+- attention
+- inference
+- training
+- fine-tuning
+- quantization
+- context
+- prompt
+- RAG
+- vector database
+- reranker
+- tool calling
+- MCP
+- agent
+- memory
+- MoE
+- reasoning
+- multimodality
+- benchmark
+- eval
+- hallucination
