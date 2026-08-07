@@ -1,6 +1,6 @@
 # Small-font inspection
 
-- Spans below 7.5 pt: **5915**
+- Spans below 7.5 pt: **5918**
 
 | Page | Size | Font | Text | BBox |
 |---:|---:|---|---|---|

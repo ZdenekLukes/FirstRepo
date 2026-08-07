@@ -1,3 +1,11 @@
+---
+title: "E. Bezpečnostní checklist"
+part: "PŘÍLOHY"
+status: final-draft
+version: "0.4"
+updated: 2026-08-07
+---
+
 # E. Bezpečnostní checklist
 
 Tento checklist je určený pro návrh a review AI systému před pilotem a před produkčním nasazením. Není náhradou právního, bezpečnostního ani privacy review.
@@ -50,7 +58,7 @@ Tento checklist je určený pro návrh a review AI systému před pilotem a pře
 - [ ] Je definováno, co se stane po automatickém nebo ručním upgrade modelu?
 - [ ] Umíme se vrátit na předchozí verzi?
 
-## E.6 Tool permissions
+## E.6 Tool oprávnění
 
 Pro každý tool:
 
@@ -88,7 +96,7 @@ Pro každý tool:
 - [ ] Je u každé důležité položky provenance?
 - [ ] Má informace timestamp / validity?
 - [ ] Lze starou informaci nahradit bez ztráty historie?
-- [ ] Jsou permissions aplikované i na memory retrieval?
+- [ ] Jsou oprávnění aplikované i na memory retrieval?
 - [ ] Testujeme memory poisoning?
 
 ## E.10 Human approval

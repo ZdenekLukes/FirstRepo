@@ -1,7 +1,7 @@
 ---
 title: "28. Jak vybírat AI use-cases"
 part: "XI — Jak zavádět AI do firmy"
-status: draft
+status: final-draft
 version: "0.2"
 updated: 2026-08-07
 ---
@@ -212,9 +212,9 @@ Chyba může způsobit incident.
 
 Při vysokém riziku potřebujeme:
 
-- silnější verification,
+- silnější verifikace,
 - approvals,
-- permissions,
+- oprávnění,
 - audit.
 
 To zvyšuje technickou cenu projektu.

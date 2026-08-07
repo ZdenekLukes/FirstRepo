@@ -1,3 +1,11 @@
+---
+title: "B. Přehled modelů — snapshot 08/2026"
+part: "PŘÍLOHY"
+status: final-draft
+version: "0.4"
+updated: 2026-08-07
+---
+
 # B. Přehled modelů — snapshot 08/2026
 
 > **Snapshot k 7. 8. 2026.** Tato tabulka je orientační mapa trhu, ne žebříček. Konkrétní dostupnost, ceny, limity a licence se mohou měnit rychle. Před nasazením vždy ověř aktuální primární zdroj výrobce.
@@ -50,7 +58,7 @@ Model, který vede obecný benchmark, může být horší volba než menší mod
 - vyžadujeme specifickou licenci,
 - model musí spolehlivě vracet konkrétní schema.
 
-## B.4 Praktické velikostní kategorie pro local AI
+## B.4 Praktické velikostní kategorie pro lokální AI
 
 Velikost modelu berme jen jako hrubý první filtr.
 

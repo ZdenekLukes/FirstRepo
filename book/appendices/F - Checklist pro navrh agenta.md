@@ -1,3 +1,11 @@
+---
+title: "F. Checklist pro návrh agenta"
+part: "PŘÍLOHY"
+status: final-draft
+version: "0.4"
+updated: 2026-08-07
+---
+
 # F. Checklist pro návrh agenta
 
 Tento checklist je určený pro review před tím, než se z prototypu stane agentní systém s reálnými oprávněními.

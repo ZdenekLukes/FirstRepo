@@ -1,7 +1,7 @@
 ---
 title: "27. AI readiness"
 part: "XI — Jak zavádět AI do firmy"
-status: draft
+status: final-draft
 version: "0.2"
 updated: 2026-08-07
 ---
@@ -52,7 +52,7 @@ Stačí například:
 | Proces | Vstup | Hlavní kroky | Výstup | Owner |
 |---|---|---|---|---|
 | Spec review | customer spec | review, comments, approval | released requirements | system engineer |
-| Regression analysis | simulation results | filter, compare, report | issue list | designer |
+| Regression analysis | výsledky simulace | filter, compare, report | issue list | designer |
 | Design review | design + results | prepare, meeting, actions | decisions | project lead |
 
 U každého procesu se ptáme:
@@ -72,7 +72,7 @@ Teprve potom hledáme AI use-case.
 
 AI potřebuje vědět, odkud informace pochází.
 
-Například při verification mohou data vznikat v:
+Například při verifikace mohou data vznikat v:
 
 ```text
 simulator

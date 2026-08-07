@@ -8,8 +8,8 @@
 - Přílohy: **7**
 - Screen SVG: **39**
 - Print SVG: **39**
-- Celkem slov v kapitolách: **51118**
-- Celkem slov v přílohách: **5059**
+- Celkem slov v kapitolách: **51124**
+- Celkem slov v přílohách: **5171**
 - Neexistující image reference: **0**
 - Screen SVG strukturální chyby: **0**
 - Print SVG problémy: **0**
@@ -27,55 +27,55 @@ Další gate musí proběhnout nad skutečně vysázeným proof PDF: stránková
 
 | Soubor | slov | kB | H2 | obr. | odkazy | status | verze | updated/snapshot |
 |---|---:|---:|---:|---:|---:|---|---|---|
-| 01 - Sto let vývoje AI na několika stránkách.md | 3849 | 34.6 | 8 | 1 | 0 | draft | 0.2 | 2026-08-07 |
-| 02 - AI, Machine Learning, Deep Learning a Generative AI.md | 1976 | 18.1 | 12 | 1 | 0 | draft | 0.1 | 2026-08-07 |
-| 03 - Jak funguje LLM - bez matematiky.md | 2649 | 27.6 | 23 | 4 | 0 | draft | 0.1 | 2026-08-07 |
-| 04 - Co LLM umí - a co neumí.md | 2157 | 20.0 | 16 | 1 | 0 | draft | 0.2 | 2026-08-07 |
-| 05 - Mapa modelů.md | 2389 | 19.5 | 14 | 1 | 10 | draft | 0.2 | 2026-08-07 |
-| 06 - Jak modely porovnávat.md | 1624 | 14.3 | 15 | 1 | 0 | draft | 0.2 | 2026-08-07 |
-| 07 - Cloud vs. on-prem vs. hybrid.md | 1394 | 13.0 | 11 | 1 | 0 | draft | 0.2 | 2026-08-07 |
-| 08 - Jak provozovat LLM lokálně.md | 1901 | 15.8 | 19 | 1 | 2 | draft | 0.2 | 2026-08-07 |
-| 09 - Prompting.md | 1054 | 11.4 | 14 | 1 | 0 | draft | 0.2 | 2026-08-07 |
-| 10 - Context Engineering.md | 1109 | 10.7 | 10 | 1 | 0 | draft | 0.2 | 2026-08-07 |
-| 11 - Proč model nezná moje data.md | 731 | 6.0 | 4 | 1 | 0 | draft | 0.2 | 2026-08-07 |
-| 12 - RAG - Retrieval-Augmented Generation.md | 1485 | 15.0 | 20 | 2 | 0 | draft | 0.2 | 2026-08-07 |
-| 13 - Druhý mozek.md | 1269 | 12.0 | 16 | 1 | 0 | draft | 0.2 | 2026-08-07 |
-| 14 - Tool Use.md | 1138 | 10.5 | 15 | 1 | 0 | draft | 0.2 | 2026-08-07 |
-| 15 - MCP, skills, plugins a connectors.md | 1373 | 15.0 | 13 | 1 | 5 | draft | 0.2 | 2026-08-07 |
-| 16 - Co je AI agent.md | 860 | 9.9 | 10 | 1 | 0 | draft | 0.2 | 2026-08-07 |
-| 17 - Agentní smyčka.md | 892 | 9.8 | 11 | 1 | 0 | draft | 0.2 | 2026-08-07 |
-| 18 - Jak postavit jednoduchého agenta.md | 1031 | 10.2 | 12 | 1 | 0 | draft | 0.2 | 2026-08-07 |
-| 19 - Multi-agentní systémy.md | 1252 | 13.4 | 17 | 1 | 0 | draft | 0.2 | 2026-08-07 |
-| 20 - Orchestrace agentních systémů.md | 1045 | 11.4 | 14 | 1 | 0 | draft | 0.2 | 2026-08-07 |
-| 21 - Coding Agents.md | 1075 | 10.5 | 12 | 1 | 0 | draft | 0.2 | 2026-08-07 |
-| 22 - AI nad dokumenty a firemními daty.md | 1115 | 12.0 | 16 | 1 | 0 | draft | 0.2 | 2026-08-07 |
-| 23 - AI pro technické a inženýrské úlohy.md | 1017 | 10.4 | 11 | 1 | 0 | draft | 0.2 | 2026-08-07 |
-| 24 - Případová studie - AI-assisted analog IC design.md | 1632 | 16.8 | 16 | 1 | 0 | draft | 0.2 | 2026-08-07 |
-| 25 - Bezpečnost AI.md | 2090 | 20.1 | 21 | 1 | 7 | draft | 0.4 | 2026-08-07 |
-| 26 - Proč nestačí „máme ChatGPT“.md | 947 | 8.7 | 10 | 1 | 0 | draft | 0.2 | 2026-08-07 |
-| 27 - AI readiness.md | 977 | 8.3 | 10 | 1 | 0 | draft | 0.2 | 2026-08-07 |
-| 28 - Jak vybírat AI use-cases.md | 814 | 7.8 | 10 | 1 | 0 | draft | 0.2 | 2026-08-07 |
-| 29 - Pilot → důkaz → škálování.md | 860 | 8.5 | 12 | 1 | 0 | draft | 0.2 | 2026-08-07 |
-| 30 - Lidé a adopce.md | 1041 | 9.8 | 12 | 1 | 0 | draft | 0.2 | 2026-08-07 |
-| 31 - Evaluace.md | 963 | 9.4 | 12 | 1 | 0 | draft | 0.2 | 2026-08-07 |
-| 32 - Ekonomika AI.md | 1016 | 9.0 | 11 | 1 | 0 | draft | 0.2 | 2026-08-07 |
-| 33 - Kam se AI posouvá.md | 1326 | 11.5 | 15 | 0 | 0 | draft | 0.2 | 2026-08-07 |
+| 01 - Sto let vývoje AI na několika stránkách.md | 3849 | 34.6 | 8 | 1 | 0 | final-draft | 0.2 | 2026-08-07 |
+| 02 - AI, Machine Learning, Deep Learning a Generative AI.md | 1976 | 18.1 | 12 | 1 | 0 | final-draft | 0.1 | 2026-08-07 |
+| 03 - Jak funguje LLM - bez matematiky.md | 2649 | 27.6 | 23 | 4 | 0 | final-draft | 0.1 | 2026-08-07 |
+| 04 - Co LLM umí - a co neumí.md | 2157 | 20.0 | 16 | 1 | 0 | final-draft | 0.2 | 2026-08-07 |
+| 05 - Mapa modelů.md | 2389 | 19.5 | 14 | 1 | 10 | final-draft | 0.2 | 2026-08-07 |
+| 06 - Jak modely porovnávat.md | 1624 | 14.3 | 15 | 1 | 0 | final-draft | 0.2 | 2026-08-07 |
+| 07 - Cloud vs. on-prem vs. hybrid.md | 1394 | 13.0 | 11 | 1 | 0 | final-draft | 0.2 | 2026-08-07 |
+| 08 - Jak provozovat LLM lokálně.md | 1901 | 15.8 | 19 | 1 | 2 | final-draft | 0.2 | 2026-08-07 |
+| 09 - Prompting.md | 1054 | 11.4 | 14 | 1 | 0 | final-draft | 0.2 | 2026-08-07 |
+| 10 - Context Engineering.md | 1109 | 10.7 | 10 | 1 | 0 | final-draft | 0.2 | 2026-08-07 |
+| 11 - Proč model nezná moje data.md | 731 | 6.0 | 4 | 1 | 0 | final-draft | 0.2 | 2026-08-07 |
+| 12 - RAG - Retrieval-Augmented Generation.md | 1485 | 15.0 | 20 | 2 | 0 | final-draft | 0.2 | 2026-08-07 |
+| 13 - Druhý mozek.md | 1269 | 12.0 | 16 | 1 | 0 | final-draft | 0.2 | 2026-08-07 |
+| 14 - Tool Use.md | 1138 | 10.5 | 15 | 1 | 0 | final-draft | 0.2 | 2026-08-07 |
+| 15 - MCP, skills, plugins a connectors.md | 1373 | 15.0 | 13 | 1 | 5 | final-draft | 0.2 | 2026-08-07 |
+| 16 - Co je AI agent.md | 860 | 9.9 | 10 | 1 | 0 | final-draft | 0.2 | 2026-08-07 |
+| 17 - Agentní smyčka.md | 892 | 9.8 | 11 | 1 | 0 | final-draft | 0.2 | 2026-08-07 |
+| 18 - Jak postavit jednoduchého agenta.md | 1031 | 10.2 | 12 | 1 | 0 | final-draft | 0.2 | 2026-08-07 |
+| 19 - Multi-agentní systémy.md | 1252 | 13.4 | 17 | 1 | 0 | final-draft | 0.2 | 2026-08-07 |
+| 20 - Orchestrace agentních systémů.md | 1045 | 11.4 | 14 | 1 | 0 | final-draft | 0.2 | 2026-08-07 |
+| 21 - Coding Agents.md | 1075 | 10.6 | 12 | 1 | 0 | final-draft | 0.2 | 2026-08-07 |
+| 22 - AI nad dokumenty a firemními daty.md | 1115 | 12.0 | 16 | 1 | 0 | final-draft | 0.2 | 2026-08-07 |
+| 23 - AI pro technické a inženýrské úlohy.md | 1017 | 10.4 | 11 | 1 | 0 | final-draft | 0.2 | 2026-08-07 |
+| 24 - Případová studie - AI-assisted analog IC design.md | 1632 | 16.8 | 16 | 1 | 0 | final-draft | 0.2 | 2026-08-07 |
+| 25 - Bezpečnost AI.md | 2090 | 20.1 | 21 | 1 | 7 | final-draft | 0.4 | 2026-08-07 |
+| 26 - Proč nestačí „máme ChatGPT“.md | 947 | 8.7 | 10 | 1 | 0 | final-draft | 0.2 | 2026-08-07 |
+| 27 - AI readiness.md | 977 | 8.3 | 10 | 1 | 0 | final-draft | 0.2 | 2026-08-07 |
+| 28 - Jak vybírat AI use-cases.md | 814 | 7.8 | 10 | 1 | 0 | final-draft | 0.2 | 2026-08-07 |
+| 29 - Pilot → důkaz → škálování.md | 860 | 8.6 | 12 | 1 | 0 | final-draft | 0.2 | 2026-08-07 |
+| 30 - Lidé a adopce.md | 1041 | 9.8 | 12 | 1 | 0 | final-draft | 0.2 | 2026-08-07 |
+| 31 - Evaluace.md | 963 | 9.4 | 12 | 1 | 0 | final-draft | 0.2 | 2026-08-07 |
+| 32 - Ekonomika AI.md | 1016 | 9.0 | 11 | 1 | 0 | final-draft | 0.2 | 2026-08-07 |
+| 33 - Kam se AI posouvá.md | 1332 | 11.6 | 15 | 0 | 0 | final-draft | 0.2 | 2026-08-07 |
 | 34 - Co jsem se zatím naučil.md | 1445 | 12.5 | 11 | 0 | 0 | final-draft | 0.4 | 2026-08-07 |
-| 35 - Co mě ještě čeká.md | 928 | 8.9 | 14 | 1 | 0 | roadmap-draft | 0.2 | 2026-08-07 |
-| 36 - Můj minimální AI stack.md | 1246 | 11.2 | 11 | 1 | 9 | draft | 0.2 | 2026-08-07 |
+| 35 - Co mě ještě čeká.md | 928 | 8.9 | 14 | 1 | 0 | final-draft | 0.2 | 2026-08-07 |
+| 36 - Můj minimální AI stack.md | 1246 | 11.2 | 11 | 1 | 9 | final-draft | 0.2 | 2026-08-07 |
 | 37 - Deset praktických projektů od začátečníka k agentnímu systému.md | 1448 | 13.7 | 10 | 1 | 0 | final-draft | 0.4 | 2026-08-07 |
 
 ## Přílohy — rozsah
 
 | Soubor | slov | bajtů | status |
 |---|---:|---:|---|
-| A - Slovník AI pojmů.md | 934 | 8128 | — |
-| B - Prehled modelu - snapshot 08-2026.md | 620 | 4987 | — |
-| C - Prehled nastroju - snapshot 08-2026.md | 535 | 4926 | — |
-| D - Hardware sizing.md | 843 | 7739 | — |
-| E - Bezpecnostni checklist.md | 919 | 6682 | — |
-| F - Checklist pro navrh agenta.md | 782 | 5655 | — |
-| G - Vlastni experimenty.md | 426 | 4083 | — |
+| A - Slovník AI pojmů.md | 950 | 8241 | final-draft |
+| B - Prehled modelu - snapshot 08-2026.md | 637 | 5123 | final-draft |
+| C - Prehled nastroju - snapshot 08-2026.md | 552 | 5065 | final-draft |
+| D - Hardware sizing.md | 858 | 7853 | final-draft |
+| E - Bezpecnostni checklist.md | 934 | 6803 | final-draft |
+| F - Checklist pro navrh agenta.md | 799 | 5777 | final-draft |
+| G - Vlastni experimenty.md | 441 | 4202 | final-draft |
 
 ## Struktura
 
@@ -85,7 +85,7 @@ Další gate musí proběhnout nad skutečně vysázeným proof PDF: stránková
 ## Vizuální minimum
 
 - Nejmenší font screen SVG: **12** SVG units
-- Nejmenší font print SVG: **18** SVG units
+- Nejmenší font print SVG: **25** SVG units
 
 ## Externí odkazy
 

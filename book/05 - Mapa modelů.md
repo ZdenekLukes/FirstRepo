@@ -1,7 +1,7 @@
 ---
 title: "5. Mapa modelů"
 part: "III — Svět AI modelů v srpnu 2026"
-status: draft
+status: final-draft
 version: "0.2"
 updated: 2026-08-07
 snapshot: "2026-08-07"

@@ -1,7 +1,7 @@
 ---
 title: "11. Proč model nezná moje data"
 part: "VI — Data, RAG a druhý mozek"
-status: draft
+status: final-draft
 version: "0.2"
 updated: 2026-08-07
 ---
@@ -144,7 +144,7 @@ Informace musí být:
 1. uložená,
 2. dohledatelná,
 3. přístupná podle oprávnění,
-4. vložená do contextu ve správný okamžik.
+4. vložená do kontextu ve správný okamžik.
 
 ---
 
@@ -186,7 +186,7 @@ Je to vlastnost připojeného systému.
 
 Existuje několik způsobů, jak modelu dodat externí informace.
 
-### 1. Ručně vložit dokument do contextu
+### 1. Ručně vložit dokument do kontextu
 
 Nejjednodušší varianta.
 

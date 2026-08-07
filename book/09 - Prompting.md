@@ -1,7 +1,7 @@
 ---
 title: "9. Prompting"
 part: "V — Jak s modelem skutečně pracovat"
-status: draft
+status: final-draft
 version: "0.2"
 updated: 2026-08-07
 ---
@@ -365,7 +365,7 @@ Zero-shot je vhodný, když:
 
 - úloha je jasná,
 - kategorie jsou intuitivní,
-- nechceme plýtvat contextem.
+- nechceme plýtvat kontextem.
 
 Začínat jednoduchým zero-shot promptem je často lepší než okamžitě stavět složitou prompt šablonu.
 

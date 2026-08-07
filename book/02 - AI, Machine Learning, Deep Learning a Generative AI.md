@@ -1,7 +1,7 @@
 ---
 title: "2. AI, Machine Learning, Deep Learning a Generative AI"
 part: "II — Co vlastně dnešní AI je"
-status: draft
+status: final-draft
 version: "0.1"
 updated: 2026-08-07
 ---

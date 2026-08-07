@@ -1,7 +1,7 @@
 ---
 title: "21. Coding Agents"
 part: "IX — AI jako pracovní systém"
-status: draft
+status: final-draft
 version: "0.2"
 updated: 2026-08-07
 ---
@@ -633,7 +633,7 @@ Princip zůstává.
 # Co si z kapitoly odnést
 
 1. **Coding agent je více než autocomplete — pracuje v celé smyčce search → edit → test → repair.**
-2. **Celý projekt se typicky nevkládá do contextu; agent jej průběžně prohledává.**
+2. **Celý projekt se typicky nevkládá do kontextu; agent jej průběžně prohledává.**
 3. **Git vytváří bezpečný workspace, audit trail a rollback.**
 4. **Testy jsou objektivní verifier a zásadní důvod úspěchu coding agentů.**
 5. **Nejlepší změna je často minimální diff, ne nevyžádaný refactoring.**

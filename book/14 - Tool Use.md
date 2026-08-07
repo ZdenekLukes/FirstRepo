@@ -1,7 +1,7 @@
 ---
 title: "14. Tool Use"
 part: "VII — Nástroje: když LLM přestane jen psát"
-status: draft
+status: final-draft
 version: "0.2"
 updated: 2026-08-07
 ---

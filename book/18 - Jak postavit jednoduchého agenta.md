@@ -1,7 +1,7 @@
 ---
 title: "18. Jak postavit jednoduchého agenta"
 part: "VIII — Agentní AI"
-status: draft
+status: final-draft
 version: "0.2"
 updated: 2026-08-07
 ---
@@ -188,7 +188,7 @@ Například:
 - rozumět technické češtině a angličtině,
 - structured output,
 - spolehlivý tool use,
-- práce s 20k contextem.
+- práce s 20k kontextem.
 
 Nemusíme automaticky použít nejsilnější model.
 
@@ -270,7 +270,7 @@ verification_mapping.yaml
 
 než přístup ke všem dokumentům firmy.
 
-Retrieval musí mít metadata a permissions, které jsme řešili v RAG kapitole.
+Retrieval musí mít metadata a oprávnění, které jsme řešili v RAG kapitole.
 
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: "13. Druhý mozek"
 part: "VI — Data, RAG a druhý mozek"
-status: draft
+status: final-draft
 version: "0.2"
 updated: 2026-08-07
 ---
@@ -415,7 +415,7 @@ Firemní second brain je mnohem složitější.
 
 Musí řešit:
 
-- permissions,
+- oprávnění,
 - confidential data,
 - ownership,
 - versioning,

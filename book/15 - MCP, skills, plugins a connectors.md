@@ -1,7 +1,7 @@
 ---
 title: "15. MCP, skills, plugins a connectors"
 part: "VII — Nástroje: když LLM přestane jen psát"
-status: draft
+status: final-draft
 version: "0.2"
 updated: 2026-08-07
 snapshot: "2026-08-07"
@@ -486,7 +486,7 @@ SharePoint connector
 Connector může řešit:
 
 - autentizaci,
-- permissions,
+- oprávnění,
 - synchronizaci,
 - search,
 - převod datového formátu.

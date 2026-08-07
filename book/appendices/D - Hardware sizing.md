@@ -1,3 +1,11 @@
+---
+title: "D. Hardware sizing"
+part: "PŘÍLOHY"
+status: final-draft
+version: "0.4"
+updated: 2026-08-07
+---
+
 # D. Hardware sizing
 
 Tato příloha je praktický orientační návod pro lokální inference. Nejde o benchmark konkrétních GPU. Skutečná paměť a rychlost závisí na modelu, kvantizaci, runtime, context length, KV cache, batch size a míře offloadu.
@@ -94,7 +102,7 @@ MODEL JE PRAKTICKY POUŽITELNÝ
 
 ## D.4 8 GB VRAM
 
-Tuto třídu beru jako vstup do GPU local AI.
+Tuto třídu beru jako vstup do GPU lokální AI.
 
 ### Prakticky zajímavé
 
@@ -106,7 +114,7 @@ Tuto třídu beru jako vstup do GPU local AI.
 
 ### Limity
 
-- málo prostoru pro dlouhý context,
+- málo prostoru pro dlouhý kontext,
 - větší modely vyžadují offload do RAM,
 - více současných komponent rychle vyčerpá VRAM.
 

@@ -1,7 +1,7 @@
 ---
 title: "29. Pilot → důkaz → škálování"
 part: "XI — Jak zavádět AI do firmy"
-status: draft
+status: final-draft
 version: "0.2"
 updated: 2026-08-07
 ---
@@ -264,7 +264,7 @@ Ale musíme to změřit.
 
 Ne všechny chyby jsou stejně závažné.
 
-Například ve verification:
+Například ve verifikace:
 
 ```text
 FALSE FAIL
@@ -407,7 +407,7 @@ Potřebujeme throughput, queues, identity.
 
 ### Více dat
 
-Potřebujeme ingestion lifecycle a permissions.
+Potřebujeme ingestion lifecycle a oprávnění.
 
 ### Více use-cases
 

@@ -1,4 +1,4 @@
-# BIBLIOGRAPHY — primární zdroje a další čtení
+# Zdroje a další čtení
 
 > Tato bibliografie doplňuje zdroje uvedené přímo u snapshotových kapitol. Není cílem citovat každou didaktickou větu, ale umožnit čtenáři dohledat primární zdroje klíčových konceptů.
 

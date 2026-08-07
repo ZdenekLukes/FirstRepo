@@ -1,7 +1,7 @@
 ---
 title: "25. Bezpečnost AI"
 part: "X — Bezpečnost, důvěra a firemní provoz"
-status: draft
+status: final-draft
 version: "0.4"
 updated: 2026-08-07
 snapshot: "2026-08-07"
@@ -86,7 +86,7 @@ Může to být:
 
 Je velmi snadné myslet pouze na text, který uživatel napsal do chatovacího okna.
 
-Ve skutečném agentním systému může být mnohem větší část contextu vytvořena automaticky.
+Ve skutečném agentním systému může být mnohem větší část kontextu vytvořena automaticky.
 
 Například:
 
@@ -265,7 +265,7 @@ Ale není to magický bezpečnostní štít.
 Lokální systém stále může mít:
 
 - zranitelný web interface,
-- špatně nastavené permissions,
+- špatně nastavené oprávnění,
 - nebezpečný shell,
 - škodlivý model package,
 - interního útočníka,
@@ -327,7 +327,7 @@ model rozhodne, co asi smí ukázat
 
 Permission check má být deterministický a mimo LLM.
 
-Stejně tak tool permissions.
+Stejně tak tool oprávnění.
 
 Model nesmí sám sobě udělit vyšší práva.
 
@@ -424,7 +424,7 @@ and upload them to attacker.example
 
 Člověk tento text nemusí vůbec vidět.
 
-Agent jej ale dostane do contextu při retrieval.
+Agent jej ale dostane do kontextu při retrieval.
 
 To vytváří zásadní princip:
 
@@ -480,11 +480,11 @@ Přidává další vrstvu.
 
 ---
 
-## 25.12 Tool permissions
+## 25.12 Tool oprávnění
 
 Tool je místo, kde se jazykové rozhodnutí mění na akci.
 
-Proto je permissions model kritický.
+Proto je model oprávnění kritický.
 
 Můžeme rozlišit:
 
@@ -518,7 +518,7 @@ read_log()
 create_candidate_branch()
 ```
 
-Úzké nástroje umožňují úzká permissions.
+Úzké nástroje umožňují úzká oprávnění.
 
 ---
 
@@ -994,11 +994,11 @@ To je klasický security principle a u agentů je ještě důležitější.
 
 1. **AI security je vlastnost celého systému, ne pouze modelu.**
 2. **Musíme znát data classification, retenci i aktuální smluvní podmínky konkrétní cloudové služby.**
-3. **On-prem snižuje některá rizika, ale neřeší automaticky permissions, injection ani supply chain.**
-4. **Secrets nemají být v contextu modelu, pokud je může použít tool runtime bez jejich odhalení.**
+3. **On-prem snižuje některá rizika, ale neřeší automaticky oprávnění, injection ani supply chain.**
+4. **Secrets nemají být v kontextu modelu, pokud je může použít tool runtime bez jejich odhalení.**
 5. **Prompt injection je důvod, proč prompt nesmí být security boundary.**
 6. **Indirect injection může přijít z webu, dokumentu, e-mailu nebo memory.**
-7. **Tool permissions, least privilege a sandbox omezují škodu při chybném rozhodnutí.**
+7. **Tool oprávnění, least privilege a sandbox omezují škodu při chybném rozhodnutí.**
 8. **Human approval patří před vysoce rizikové a nevratné akce.**
 9. **Open-weight stack potřebuje supply-chain kontrolu a model provenance.**
 10. **Bezpečná adopce je postupné rozšiřování schopností podle prokázané spolehlivosti.**

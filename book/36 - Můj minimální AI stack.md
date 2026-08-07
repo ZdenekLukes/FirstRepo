@@ -1,7 +1,7 @@
 ---
 title: "36. Můj minimální AI stack"
 part: "XIV — Praktická kuchařka"
-status: draft
+status: final-draft
 version: "0.2"
 updated: 2026-08-07
 snapshot: "2026-08-07"

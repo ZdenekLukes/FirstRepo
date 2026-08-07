@@ -1,7 +1,7 @@
 ---
 title: "32. Ekonomika AI"
 part: "XII — Jak poznat, že AI opravdu funguje"
-status: draft
+status: final-draft
 version: "0.2"
 updated: 2026-08-07
 ---
@@ -70,7 +70,7 @@ Cena může být odlišná pro:
 - reasoning,
 - multimodální data.
 
-Proto dlouhý context může být významný cost driver.
+Proto dlouhý kontext může být významný cost driver.
 
 Například špatný RAG může posílat modelu 100 stran místo pěti relevantních odstavců.
 
@@ -193,7 +193,7 @@ Model je často nejlevnější část projektu.
 Skutečnou práci může zabrat:
 
 - data ingestion,
-- permissions,
+- oprávnění,
 - API integration,
 - MCP server,
 - UI,

@@ -61,7 +61,7 @@ To jsou stále legitimní otázky.
 
 Jen dnes už je nevnímám jako hlavní.
 
-Model bez dobrého contextu může být téměř k ničemu.
+Model bez dobrého kontextu může být téměř k ničemu.
 
 Model bez tools může pouze radit, ale nemůže ověřit výsledek.
 
@@ -121,13 +121,13 @@ Ale pokud model dostane špatný dokument nebo starou revizi, ani lepší reason
 
 Technicky možná.
 
-Prakticky tím můžeme zvýšit cenu a zároveň zhoršit relevance.
+Prakticky tím můžeme zvýšit cenu a zároveň zhoršit relevanci.
 
 ### „Když máme RAG, model zná firemní data.“
 
 Ne.
 
-RAG je search pipeline a její kvalita závisí na parsing, chunking, metadata, permissions a reranking.
+RAG je search pipeline a její kvalita závisí na parsing, chunking, metadata, oprávnění a reranking.
 
 ### „Agent je LLM, který má delší prompt.“
 
@@ -234,7 +234,7 @@ Zvlášť když AI může:
 
 Ne proto, že by vector database byla zázračná technologie.
 
-Ale protože dostane firemní knowledge do pracovního contextu.
+Ale protože dostane firemní knowledge do pracovního kontextu.
 
 ### Tool use
 

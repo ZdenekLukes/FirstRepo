@@ -1,7 +1,7 @@
 ---
 title: "7. Cloud vs. on-prem vs. hybrid"
 part: "IV — Cloud, lokální AI a hardware"
-status: draft
+status: final-draft
 version: "0.2"
 updated: 2026-08-07
 ---
@@ -640,7 +640,7 @@ To je mnohem realističtější než rozhodnutí:
 
 nebo:
 
-> „Firma bude používat pouze local AI.“
+> „Firma bude používat pouze lokální AI.“
 
 ---
 

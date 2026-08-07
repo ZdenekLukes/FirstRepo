@@ -1,7 +1,7 @@
 ---
 title: "24. Případová studie — AI-assisted analog IC design"
 part: "IX — AI jako pracovní systém"
-status: draft
+status: final-draft
 version: "0.2"
 updated: 2026-08-07
 ---
@@ -134,7 +134,7 @@ Například:
 
 Člověk tento převod jednou ověří.
 
-Od té chvíle má verification agent přesný zdroj limitů.
+Od té chvíle má verifikace agent přesný zdroj limitů.
 
 To je velmi silná změna.
 
@@ -174,7 +174,7 @@ Verification/
   testbench_guidelines.md
 ```
 
-Agent nemusí dostat celý archiv do contextu.
+Agent nemusí dostat celý archiv do kontextu.
 
 Použije retrieval podle aktuálního problému.
 
@@ -437,7 +437,7 @@ Agent dostane:
 Topology = fixed
 ```
 
-A automatizuje sizing a verification.
+A automatizuje sizing a verifikace.
 
 Tím dramaticky zmenšíme design space a získáme měřitelný problém.
 
@@ -843,7 +843,7 @@ Ale i velmi schopný budoucí systém bude potřebovat:
 - specification,
 - trustworthy PDK,
 - simulator,
-- verification,
+- verifikace,
 - audit.
 
 Silnější AI nezruší fyziku.
@@ -911,7 +911,7 @@ Tento postup je mnohem bezpečnější než pokus o „autonomního analog desig
 3. **Knowledge base má dodávat prior knowledge, ne nekriticky kopírovat staré sizing.**
 4. **gm/ID vytváří užitečnou strukturovanou mezivrstvu mezi design intent a device sizing.**
 5. **Characterization data musí pocházet ze skutečného PDK modelu a simulatoru.**
-6. **Pro první pilot je rozumné fixovat topologii a automatizovat sizing, simulation a verification.**
+6. **Pro první pilot je rozumné fixovat topologii a automatizovat sizing, simulation a verifikace.**
 7. **PASS/FAIL má počítat deterministický comparator; LLM interpretuje výsledek.**
 8. **Optimalizační smyčka může kombinovat LLM s klasickými optimalizačními algoritmy.**
 9. **Human designer zůstává decision makerem pro topologii a zásadní trade-offy.**

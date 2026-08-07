@@ -1,7 +1,7 @@
 ---
 title: "19. Multi-agentní systémy"
 part: "VIII — Agentní AI"
-status: draft
+status: final-draft
 version: "0.2"
 updated: 2026-08-07
 ---
@@ -127,7 +127,7 @@ Výhody:
 - specializace,
 - paralelizace,
 - nezávislé review,
-- oddělené permissions.
+- oddělené oprávnění.
 
 Nevýhoda je koordinace.
 
@@ -498,7 +498,7 @@ Handoff by měl obsahovat:
 - constraints,
 - expected output.
 
-Předávání celého contextu všem agentům je drahé a vytváří pollution.
+Předávání celého kontextu všem agentům je drahé a vytváří pollution.
 
 Předáváme **minimum potřebné pro další roli**.
 
@@ -643,7 +643,7 @@ research → implementation → review
 author vs. reviewer
 ```
 
-### Chceme oddělit permissions
+### Chceme oddělit oprávnění
 
 ```text
 reader vs. executor
@@ -762,9 +762,9 @@ A teprve pokud zjistíme, že například retrieval a design reasoning se vzáje
 1. **Více agentů neznamená automaticky lepší systém.**
 2. **Dobré důvody pro multi-agent jsou specializace, paralelizace, nezávislé review a oddělení oprávnění.**
 3. **Orchestrator rozděluje práci a skládá výsledky.**
-4. **Specialisté mají mít skutečně jinou roli, context, tools nebo permissions.**
+4. **Specialisté mají mít skutečně jinou roli, context, tools nebo oprávnění.**
 5. **Shared memory má být strukturovaný state s provenance, ne nekonečný chat log.**
-6. **Handoffs musí být explicitní a předávat minimum potřebného contextu.**
+6. **Handoffs musí být explicitní a předávat minimum potřebného kontextu.**
 7. **Hlasování několika agentů není náhrada za evidence nebo deterministický verifier.**
 8. **Multi-agent architekturu vždy porovnáváme se single-agent baseline.**
 9. **Pokud systém přidává hlavně komunikaci mezi agenty, ale ne měřitelnou hodnotu, je to dražší chaos.**

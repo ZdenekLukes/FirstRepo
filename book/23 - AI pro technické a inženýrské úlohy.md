@@ -1,7 +1,7 @@
 ---
 title: "23. AI pro technické a inženýrské úlohy"
 part: "IX — AI jako pracovní systém"
-status: draft
+status: final-draft
 version: "0.2"
 updated: 2026-08-07
 ---
@@ -32,7 +32,7 @@ Na druhé straně má velmi silné deterministické nástroje:
 - compilers,
 - CAD,
 - měřicí přístroje,
-- verification frameworks.
+- verifikace frameworks.
 
 To je ideální kombinace.
 
@@ -212,7 +212,7 @@ Agent může:
 - najít rozpory,
 - mapovat requirements na tests,
 - porovnat revisions,
-- zjistit missing verification.
+- zjistit missing verifikace.
 
 Je velmi užitečné převést požadavky do struktury:
 

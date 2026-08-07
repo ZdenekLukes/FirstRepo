@@ -1,7 +1,7 @@
 ---
 title: "16. Co je AI agent"
 part: "VIII — Agentní AI"
-status: draft
+status: final-draft
 version: "0.2"
 updated: 2026-08-07
 ---
@@ -269,7 +269,7 @@ execute_test_suite()
 
 Dobrý agent má co nejmenší, dobře definovaný action surface.
 
-Například pro verification agenta je lepší:
+Například pro verifikace agenta je lepší:
 
 ```text
 run_testbench(testbench, corner)
@@ -458,7 +458,7 @@ Kolem toho potřebujeme klasický engineering:
 - API,
 - retry,
 - timeouts,
-- permissions,
+- oprávnění,
 - logging,
 - monitoring,
 - testy.
@@ -514,7 +514,7 @@ nemusí opravit špatně navrženého agenta.
 Pokud agent:
 
 - dostává špatný context,
-- má příliš široká permissions,
+- má příliš široká oprávnění,
 - nemá stop condition,
 - neověřuje výsledky,
 

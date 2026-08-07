@@ -1,3 +1,11 @@
+---
+title: "G. Vlastní experimenty"
+part: "PŘÍLOHY"
+status: final-draft
+version: "0.4"
+updated: 2026-08-07
+---
+
 # G. Vlastní experimenty
 
 Tato příloha není katalog benchmarků z internetu. Je to šablona pro vlastní evidence: co jsem skutečně zkusil, na jakém hardware, s jakou verzí modelu a co z toho vyplynulo.
@@ -183,7 +191,7 @@ Měř:
 - peak memory,
 - kvalitu na stejném eval setu.
 
-### EXP-002 — Malý local model vs. frontier cloud
+### EXP-002 — Malý lokální model vs. frontier cloud
 
 Použij stejných 30–50 reálných úloh.
 

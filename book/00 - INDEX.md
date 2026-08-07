@@ -3,7 +3,7 @@ title: "AI od základů k agentním systémům"
 subtitle: "Co jsem se zatím naučil, jak AI chápu v srpnu 2026 a co mě ještě čeká"
 version: "0.4"
 date: 2026-08-07
-status: final-editorial-draft
+status: release-candidate
 ---
 
 # AI od základů k agentním systémům
@@ -85,6 +85,9 @@ status: final-editorial-draft
 - [[appendices/F - Checklist pro navrh agenta|F. Checklist pro návrh agenta]]
 - [[appendices/G - Vlastni experimenty|G. Vlastní experimenty]]
 
+
+## ZDROJE A DALŠÍ ČTENÍ
+- [[BIBLIOGRAPHY|Zdroje a další čtení]]
 
 ## REDAKČNÍ PODKLADY
 - [[STYLE_GUIDE|Style guide]]

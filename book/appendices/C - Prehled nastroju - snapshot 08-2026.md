@@ -1,3 +1,11 @@
+---
+title: "C. Přehled nástrojů — snapshot 08/2026"
+part: "PŘÍLOHY"
+status: final-draft
+version: "0.4"
+updated: 2026-08-07
+---
+
 # C. Přehled nástrojů — snapshot 08/2026
 
 > **Snapshot k 7. 8. 2026.** Smyslem není doporučit jeden „správný stack“, ale ukázat typy nástrojů, které řeší jednotlivé vrstvy AI systému. Před použitím ověř aktuální licenci, podporované modely a security model.
@@ -28,7 +36,7 @@ rate limits
 observability
 ```
 
-## C.2 Local inference
+## C.2 Lokální inference
 
 ### Ollama
 

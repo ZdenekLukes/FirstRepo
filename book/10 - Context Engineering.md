@@ -1,7 +1,7 @@
 ---
 title: "10. Context Engineering"
 part: "V — Jak s modelem skutečně pracovat"
-status: draft
+status: final-draft
 version: "0.2"
 updated: 2026-08-07
 ---
@@ -177,7 +177,7 @@ Všechny tyto části soutěží o místo v context window.
 
 ## 10.3 Relevantní vs. nerelevantní informace
 
-Přirozená reakce na velký context window je:
+Přirozená reakce na velký kontext window je:
 
 > „Když máme milion tokenů, pošleme modelu všechno.“
 
@@ -602,14 +602,14 @@ To je mnohem praktičtější než prostě říct:
 
 # Co si z kapitoly odnést
 
-1. **Prompt je pouze jedna část contextu.**
+1. **Prompt je pouze jedna část kontextu.**
 2. **Model může být jen tak dobrý, jak dobré informace mu systém ve správný okamžik dodá.**
-3. **Více contextu není automaticky lépe.**
+3. **Více kontextu není automaticky lépe.**
 4. **Staré, konfliktní nebo nerelevantní informace vytvářejí context pollution.**
 5. **Dlouhou historii je potřeba shrnovat, komprimovat nebo znovu načítat podle potřeby.**
 6. **Working memory a long-term memory jsou dvě různé vrstvy.**
 7. **Agent musí aktivně řídit svůj context, jinak jeho workflow postupně degraduje.**
-8. **AI-ready firma potřebuje metadata, verze, ownership, permissions a vazby mezi daty.**
+8. **AI-ready firma potřebuje metadata, verze, ownership, oprávnění a vazby mezi daty.**
 
 V další části se dostáváme k jednomu z nejčastějších praktických problémů:
 

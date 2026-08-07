@@ -1,9 +1,9 @@
 # Proof PDF audit
 
 - PDF: `AI-book-proof-v0.4.pdf`
-- Pages: **570**
+- Pages: **573**
 - Page size: **[(481.9, 680.3)] pt** (target ~481.9 × 680.3 pt / 170 × 240 mm)
-- Extracted word tokens: **72094**
+- Extracted word tokens: **72507**
 - Minimum text span: **7.18 pt**
 - Completely empty pages: **0**
 - Blocks outside page: **0**

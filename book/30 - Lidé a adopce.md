@@ -1,7 +1,7 @@
 ---
 title: "30. Lidé a adopce"
 part: "XI — Jak zavádět AI do firmy"
-status: draft
+status: final-draft
 version: "0.2"
 updated: 2026-08-07
 ---

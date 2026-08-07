@@ -1,7 +1,7 @@
 ---
 title: "33. Kam se AI posouvá"
 part: "XIII — Co přijde dál"
-status: draft
+status: final-draft
 version: "0.2"
 updated: 2026-08-07
 snapshot: "2026-08-07"
@@ -70,7 +70,7 @@ Silnější reasoning ale pravděpodobně neodstraní potřebu evidence.
 Čím složitější problém, tím důležitější bude:
 
 - tool use,
-- external verification,
+- external verifikace,
 - source grounding.
 
 ---
@@ -167,9 +167,9 @@ více tokenů
 
 A hlavně:
 
-> Mít informaci někde v contextu není totéž jako ji správně použít.
+> Mít informaci někde v kontextu není totéž jako ji správně použít.
 
-Proto očekávám, že dlouhý context a RAG budou spolupracovat.
+Proto očekávám, že dlouhý kontext a RAG budou spolupracovat.
 
 RAG vybere relevantní data.
 
@@ -311,7 +311,7 @@ To znamená:
 - jasná API,
 - machine-readable state,
 - audit,
-- scoped permissions,
+- scoped oprávnění,
 - event streams,
 - agent-friendly documentation.
 
@@ -389,7 +389,7 @@ Toto je jedna z oblastí, které považuji za zvlášť zajímavé.
 
 AI je pravděpodobnostní.
 
-Simulator je deterministický model reality.
+Simulátor poskytuje externě ověřitelný výsledek podle definovaného modelu a jeho předpokladů.
 
 Kombinace vytváří loop:
 
@@ -466,7 +466,7 @@ Bude znát:
 
 Ale právě zde je kritická privacy.
 
-Čím užitečnější personal AI je, tím více citlivého contextu může mít.
+Čím užitečnější personal AI je, tím více citlivého kontextu může mít.
 
 Proto budou důležité architektury:
 
@@ -579,7 +579,7 @@ Autonomie bude růst tam, kde:
 - je úloha digitální,
 - výsledek je ověřitelný,
 - cena chyby je zvládnutelná,
-- máme dobré tools a permissions.
+- máme dobré tools a oprávnění.
 
 Pomaleji poroste tam, kde je:
 

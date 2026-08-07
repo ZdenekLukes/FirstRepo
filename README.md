@@ -3,8 +3,8 @@
 Pracovní repozitář knihy.
 
 - Jazyk: čeština
-- Stav: **finální redakční draft před sazbou**
-- Aktuální pracovní verze knihy: **0.4 final-editorial-draft**
+- Stav: **release candidate po redakční a proof kontrole**
+- Aktuální pracovní verze knihy: **0.4 release-candidate**
 - Snapshot: **2026-08-07**
 - Formát: Markdown / Obsidian
 

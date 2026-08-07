@@ -1,7 +1,7 @@
 ---
 title: "31. Evaluace"
 part: "XII — Jak poznat, že AI opravdu funguje"
-status: draft
+status: final-draft
 version: "0.2"
 updated: 2026-08-07
 ---
@@ -60,7 +60,7 @@ To nic neříká o:
 - starých revizích,
 - špatném OCR,
 - tool failure,
-- dlouhém contextu,
+- dlouhém kontextu,
 - konfliktních zdrojích.
 
 Potřebujeme testovat distribuované reálné případy.

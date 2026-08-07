@@ -1,7 +1,7 @@
 ---
 title: "20. Orchestrace agentních systémů"
 part: "VIII — Agentní AI"
-status: draft
+status: final-draft
 version: "0.2"
 updated: 2026-08-07
 ---
@@ -96,7 +96,7 @@ Nejlepší architektura často kombinuje obojí.
 
 ## 20.2 Deterministický workflow
 
-Příklad pevného verification workflow:
+Příklad pevného verifikace workflow:
 
 ```text
 1. validate inputs

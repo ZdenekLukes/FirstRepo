@@ -1,7 +1,7 @@
 ---
 title: "4. Co LLM umí — a co neumí"
 part: "II — Co vlastně dnešní AI je"
-status: draft
+status: final-draft
 version: "0.2"
 updated: 2026-08-07
 ---
@@ -739,9 +739,9 @@ Proto moderní AI aplikace často používají web search nebo specializované d
 
 ---
 
-## 4.14 Proč dlouhý context neznamená dokonalou paměť
+## 4.14 Proč dlouhý kontext neznamená dokonalou paměť
 
-Moderní modely mohou mít velmi dlouhý context window.
+Moderní modely mohou mít velmi dlouhý kontext window.
 
 Může být lákavé předpokládat:
 

@@ -1,7 +1,7 @@
 ---
 title: "8. Jak provozovat LLM lokálně"
 part: "IV — Cloud, lokální AI a hardware"
-status: draft
+status: final-draft
 version: "0.2"
 updated: 2026-08-07
 ---
@@ -255,7 +255,7 @@ Reálný soubor nebo inference bude potřebovat trochu více kvůli:
 - quantization metadata,
 - runtime strukturám,
 - KV cache,
-- contextu.
+- kontextu.
 
 Ale jako mentální model je výpočet velmi užitečný.
 
@@ -339,7 +339,7 @@ Záleží na:
 
 - quant formátu,
 - architektuře modelu,
-- délce contextu,
+- délce kontextu,
 - velikosti KV cache,
 - runtime.
 
@@ -349,7 +349,7 @@ Při generování si model uchovává informace o předchozích tokenech.
 
 Čím delší context, tím více paměti může KV cache spotřebovat.
 
-Proto model, který se krásně vejde při 4K contextu, může narazit na limit při 128K.
+Proto model, který se krásně vejde při 4K kontextu, může narazit na limit při 128K.
 
 Toto je častá chyba při sizingu.
 
@@ -370,7 +370,7 @@ Rozumně zde poběží například:
 
 Problém nastane u:
 
-- velkého contextu,
+- velkého kontextu,
 - multimodálních modelů,
 - 14B a větších modelů.
 
@@ -440,7 +440,7 @@ Dostáváme se k pohodlnému provozu:
 
 - 20B–32B modelů v kvalitních kvantizacích,
 - větších multimodálních modelů,
-- delšího contextu,
+- delšího kontextu,
 - více současných workloadů.
 
 Některé větší modely lze provozovat kombinací VRAM a RAM.
@@ -595,7 +595,7 @@ llama.cpp umožňuje jemnější kontrolu nad:
 
 - kvantizací,
 - offloadem vrstev,
-- contextem,
+- kontextem,
 - výkonem.
 
 Pokud Ollama představuje pohodlnou vrstvu pro uživatele, llama.cpp je často blíže samotnému inference motoru.

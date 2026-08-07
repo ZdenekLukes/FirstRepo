@@ -1,7 +1,7 @@
 ---
 title: "35. Co mě ještě čeká"
 part: "XIII — Co přijde dál"
-status: roadmap-draft
+status: final-draft
 version: "0.2"
 updated: 2026-08-07
 ---
@@ -189,7 +189,7 @@ Cílem je pochopit:
 - function calling,
 - schema design,
 - error handling,
-- permissions.
+- oprávnění.
 
 **Výstup:** agent, který dokáže kombinovat minimálně tři tools v jednom workflow.
 
@@ -355,7 +355,7 @@ Ověřit:
 
 - isolation,
 - secrets,
-- permissions,
+- oprávnění,
 - logs,
 - prompt injection behavior.
 
@@ -406,7 +406,7 @@ Ideální první pilot má nízké riziko a snadno měřitelný výsledek.
 Například:
 
 - document search,
-- verification triage,
+- verifikace triage,
 - report generation.
 
 **Výstup:** krátký evidence report pro management: co fungovalo, co ne, kolik to ušetřilo a co doporučujeme dál.

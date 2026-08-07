@@ -1,7 +1,7 @@
 ---
 title: "12. RAG — Retrieval-Augmented Generation"
 part: "VI — Data, RAG a druhý mozek"
-status: draft
+status: final-draft
 version: "0.2"
 updated: 2026-08-07
 ---
@@ -21,7 +21,7 @@ Zkratka znamená **Retrieval-Augmented Generation**.
 
 Název zní složitěji než samotná myšlenka.
 
-> **Než se LLM zeptáme na odpověď, nejdříve mu najdeme relevantní informace a přidáme je do contextu.**
+> **Než se LLM zeptáme na odpověď, nejdříve mu najdeme relevantní informace a přidáme je do kontextu.**
 
 To je celé jádro RAG.
 
@@ -241,7 +241,7 @@ Výhoda:
 Nevýhoda:
 
 - retrieval je méně přesný,
-- do contextu posíláme mnoho zbytečného textu.
+- do kontextu posíláme mnoho zbytečného textu.
 
 Dobrý chunking často respektuje strukturu dokumentu:
 

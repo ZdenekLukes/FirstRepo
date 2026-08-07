@@ -1,7 +1,7 @@
 ---
 title: "26. Proč nestačí „máme ChatGPT“"
 part: "X — Bezpečnost, důvěra a firemní provoz"
-status: draft
+status: final-draft
 version: "0.2"
 updated: 2026-08-07
 ---
@@ -276,7 +276,7 @@ Potřebujeme:
 - API,
 - MCP/connectors,
 - identity,
-- permissions,
+- oprávnění,
 - eventy.
 
 ---
@@ -487,7 +487,7 @@ Ale měla by vědět, že Level 1 není konečný stav.
 1. **Přístup k chatbotu je užitečný, ale není to firemní AI strategie.**
 2. **AI se stává novým interface nad existujícími daty a nástroji.**
 3. **Skutečná adopce začíná porozuměním procesům a místům, kde vzniká hodnota nebo ztráta času.**
-4. **AI-ready data potřebují identitu, verzi, status, metadata a permissions.**
+4. **AI-ready data potřebují identitu, verzi, status, metadata a oprávnění.**
 5. **Integrace a tool access jsou klíčem k přechodu od poradce k pracovnímu systému.**
 6. **Governance má být pokud možno technicky vynutitelná.**
 7. **Lidé potřebují AI literacy a doménoví experti musí zůstat součástí návrhu use-cases.**

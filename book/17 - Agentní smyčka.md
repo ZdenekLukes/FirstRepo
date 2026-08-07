@@ -1,7 +1,7 @@
 ---
 title: "17. Agentní smyčka"
 part: "VIII — Agentní AI"
-status: draft
+status: final-draft
 version: "0.2"
 updated: 2026-08-07
 ---
@@ -276,7 +276,7 @@ Například:
 
 ## 17.6 Repeat
 
-Pokud verification ukáže problém, smyčka pokračuje.
+Pokud verifikace ukáže problém, smyčka pokračuje.
 
 ```text
 FAIL
@@ -550,7 +550,7 @@ U jiných systémů si podobnou vrstvu musíme vytvořit sami.
 
 # Celá smyčka v praxi
 
-Příklad verification agenta:
+Příklad verifikace agenta:
 
 ```text
 GOAL

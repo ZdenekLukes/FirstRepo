@@ -42,7 +42,7 @@
 | 34 - Co jsem se zatím naučil.md | ano | NE | NE | 0 |
 | 35 - Co mě ještě čeká.md | ano | ano | NE | 1 |
 | 36 - Můj minimální AI stack.md | ano | ano | NE | 1 |
-| 37 - Deset praktických projektů od začátečníka k agentnímu systému.md | NE | NE | NE | 1 |
+| 37 - Deset praktických projektů od začátečníka k agentnímu systému.md | ano | ano | NE | 1 |
 
 ## Terminologické varianty
 
@@ -50,17 +50,17 @@ Počty jsou orientační a zahrnují i kódové příklady. Ukazují, kde je pot
 
 | Koncept | anglická forma | česká forma |
 |---|---:|---:|
-| context | 118 | 65 |
-| tool | 203 | 196 |
-| workflow | 105 | 1 |
-| use-case | 92 | 0 |
-| local | 33 | 75 |
-| memory | 71 | 27 |
-| knowledge base | 22 | 2 |
-| reasoning | 79 | 1 |
-| permissions | 54 | 28 |
-| verification | 64 | 23 |
-| simulation | 57 | 60 |
+| context | 116 | 100 |
+| tool | 214 | 202 |
+| workflow | 112 | 1 |
+| use-case | 98 | 0 |
+| local | 34 | 81 |
+| memory | 72 | 28 |
+| knowledge base | 24 | 4 |
+| reasoning | 81 | 1 |
+| permissions | 29 | 61 |
+| verification | 51 | 39 |
+| simulation | 57 | 63 |
 
 ## Vizuální jazyk
 

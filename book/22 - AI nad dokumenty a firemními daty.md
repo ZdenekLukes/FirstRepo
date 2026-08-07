@@ -1,7 +1,7 @@
 ---
 title: "22. AI nad dokumenty a firemními daty"
 part: "IX — AI jako pracovní systém"
-status: draft
+status: final-draft
 version: "0.2"
 updated: 2026-08-07
 ---
@@ -280,7 +280,7 @@ ACTION ITEMS
 
 Důležité je zachovat odkaz na originální message IDs.
 
-A také permissions.
+A také oprávnění.
 
 Osobní mailbox není automaticky firemní veřejná knowledge base.
 

@@ -522,7 +522,7 @@ human approval
 Potřebujeme:
 
 - identity,
-- data permissions,
+- data oprávnění,
 - retrieval,
 - tool use,
 - agentní loop,
