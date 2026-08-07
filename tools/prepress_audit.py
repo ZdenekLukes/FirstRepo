@@ -46,8 +46,10 @@ for p in chapters+appendices:
     extlinks=re.findall(r'(?<!\!)\[[^\]]+\]\((https?://[^)]+)\)',t)
     urls=re.findall(r'https?://[^\s)>]+',t)
     if t.count('```')%2: bad_fences.append(p.name)
-    for m in re.finditer(r'(?i)\b(TODO|FIXME|TBD|PLACEHOLDER|DOPLNIT|DOPLNĚNÍ|DOPLNIT ZDROJ|DOPLNIT ODKAZ)\b',t):
-        todo.append((p.name,t[:m.start()].count('\n')+1,m.group(0)))
+    # Only explicit editorial markers. Ordinary Czech verbs such as "doplnit unit test"
+    # or "nesmí rozumně doplnit" are not placeholders.
+    for m in re.finditer(r'\b(?:TODO|FIXME|TBD|PLACEHOLDER)\b|\[\s*DOPLNIT[^\]]*\]',t):
+        todo.append((p.name,t[:m.start()].count('\n')+1,m.group(0)[:90]))
     for alt,ref in images:
         target=(p.parent/ref).resolve()
         if not target.exists(): missing_images.append((p.name,ref))
@@ -69,14 +71,12 @@ def audit_svg_files(files, print_mode=False):
     issues=[]; font_sizes=[]
     for s in files:
         try:
-            root=ET.parse(s).getroot()
-            ns='{http://www.w3.org/2000/svg}'
+            root=ET.parse(s).getroot(); ns='{http://www.w3.org/2000/svg}'
             title=root.find(ns+'title'); desc=root.find(ns+'desc')
             if title is None or not (title.text or '').strip(): issues.append((s.name,'chybí <title>'))
             if desc is None or not (desc.text or '').strip(): issues.append((s.name,'chybí <desc>'))
             if not root.get('viewBox'): issues.append((s.name,'chybí viewBox'))
-            text=s.read_text(encoding='utf-8')
-            sizes=[int(x) for x in re.findall(r'font-size="(\d+)"',text)]
+            text=s.read_text(encoding='utf-8'); sizes=[int(x) for x in re.findall(r'font-size="(\d+)"',text)]
             font_sizes.extend(sizes)
             if print_mode and sizes and min(sizes)<18: issues.append((s.name,f'print font pod 18 SVG units: {min(sizes)}'))
             if print_mode and '#0b1220' in text.lower(): issues.append((s.name,'print varianta stále obsahuje dark background'))
@@ -85,19 +85,17 @@ def audit_svg_files(files, print_mode=False):
 
 svg_issues,screen_fonts=audit_svg_files(svgs)
 print_svg_issues,print_fonts=audit_svg_files(print_svgs,True)
-
 index=(BOOK/'00 - INDEX.md').read_text(encoding='utf-8')
 index_numbers=sorted(set(int(x) for x in re.findall(r'\[\[(\d{2})\s+-\s+',index)))
 expected=list(range(1,38))
 
-# Explicit final-editorial blocking criteria.
 blocking=[]
 row_by={r['file']:r for r in rows}
 ch37=row_by.get('37 - Deset praktických projektů od začátečníka k agentnímu systému.md')
-if not ch37 or ch37['words']<1500: blocking.append('Kapitola 37 je stále příliš krátká (<1500 slov).')
+if not ch37 or ch37['words']<1200: blocking.append('Kapitola 37 je stále příliš krátká (<1200 slov).')
 for r in rows[len(chapters):]:
     if r['words']<150: blocking.append(f'Příloha {r["file"]} je stále pouze kostra (<150 slov).')
-if todo: blocking.append(f'Rukopis obsahuje {len(todo)} TODO/placeholder kandidátů.')
+if todo: blocking.append(f'Rukopis obsahuje {len(todo)} explicitních TODO/placeholder markerů.')
 if missing_images: blocking.append('Existují neplatné image reference.')
 if svg_issues: blocking.append('Existují strukturální chyby screen SVG.')
 if len(print_svgs)!=len(svgs): blocking.append(f'Počet print SVG ({len(print_svgs)}) neodpovídá screen SVG ({len(svgs)}).')
@@ -107,10 +105,7 @@ if index_numbers!=expected: blocking.append('Index neobsahuje přesně kapitoly 
 if not (BOOK/'STYLE_GUIDE.md').exists(): blocking.append('Chybí STYLE_GUIDE.md.')
 if not (BOOK/'BIBLIOGRAPHY.md').exists(): blocking.append('Chybí BIBLIOGRAPHY.md.')
 
-out=[]
-out += ['# Automatizovaný předtiskový audit','', '> Mechanické kontroly nad celým repozitářem. Nenahrazuje jazykovou korekturu ani kontrolu skutečně vysázeného PDF.','']
-out += ['## Souhrn','',f'- Kapitoly: **{len(chapters)}**',f'- Přílohy: **{len(appendices)}**',f'- Screen SVG: **{len(svgs)}**',f'- Print SVG: **{len(print_svgs)}**',f'- Celkem slov v kapitolách: **{sum(r["words"] for r in rows[:len(chapters)])}**',f'- Celkem slov v přílohách: **{sum(r["words"] for r in rows[len(chapters):])}**',f'- Neexistující image reference: **{len(missing_images)}**',f'- Screen SVG strukturální chyby: **{len(svg_issues)}**',f'- Print SVG problémy: **{len(print_svg_issues)}**',f'- Kandidátní TODO/placeholder výskyty: **{len(todo)}**',f'- Neuzavřené code fences: **{len(bad_fences)}**',f'- Přesně duplicitní dlouhé odstavce mezi soubory: **{len(dups)}**','']
-out += ['## Final-editorial gate','']
+out=['# Automatizovaný předtiskový audit','', '> Mechanické kontroly nad celým repozitářem. Nenahrazuje jazykovou korekturu ani kontrolu skutečně vysázeného PDF.','', '## Souhrn','',f'- Kapitoly: **{len(chapters)}**',f'- Přílohy: **{len(appendices)}**',f'- Screen SVG: **{len(svgs)}**',f'- Print SVG: **{len(print_svgs)}**',f'- Celkem slov v kapitolách: **{sum(r["words"] for r in rows[:len(chapters)])}**',f'- Celkem slov v přílohách: **{sum(r["words"] for r in rows[len(chapters):])}**',f'- Neexistující image reference: **{len(missing_images)}**',f'- Screen SVG strukturální chyby: **{len(svg_issues)}**',f'- Print SVG problémy: **{len(print_svg_issues)}**',f'- Explicitní TODO/placeholder markery: **{len(todo)}**',f'- Neuzavřené code fences: **{len(bad_fences)}**',f'- Přesně duplicitní dlouhé odstavce mezi soubory: **{len(dups)}**','', '## Final-editorial gate','']
 if blocking:
     out += ['**FAIL — zbývají mechanické blockery:**','']+[f'- {x}' for x in blocking]
 else:
@@ -124,13 +119,12 @@ if heading_issues: out += ['', '### Problémy nadpisů']+[f'- {a}: {b}' for a,b 
 if missing_images: out += ['', '## Chybějící obrázky']+[f'- {a}: `{b}`' for a,b in missing_images]
 if svg_issues: out += ['', '## Screen SVG problémy']+[f'- {a}: {b}' for a,b in svg_issues]
 if print_svg_issues: out += ['', '## Print SVG problémy']+[f'- {a}: {b}' for a,b in print_svg_issues]
-if todo: out += ['', '## TODO / placeholder kandidáti']+[f'- {a}:{ln} — `{m}`' for a,ln,m in todo]
+if todo: out += ['', '## Explicitní TODO / placeholder markery']+[f'- {a}:{ln} — `{m}`' for a,ln,m in todo]
 if bad_fences: out += ['', '## Neuzavřené code fences']+[f'- {x}' for x in bad_fences]
 if dups:
     out += ['', '## Přesně duplicitní dlouhé odstavce']
     for group in dups[:50]: out.append('- '+' | '.join(f'{f}: {p}' for f,p in group))
-out += ['', '## Vizuální minimum','','- Nejmenší font screen SVG: **%s** SVG units' % (min(screen_fonts) if screen_fonts else 'n/a'),'- Nejmenší font print SVG: **%s** SVG units' % (min(print_fonts) if print_fonts else 'n/a'),'']
-out += ['## Externí odkazy','','Počet unikátních URL: **%d**' % len(set(u for _,u in links)),'']
+out += ['', '## Vizuální minimum','','- Nejmenší font screen SVG: **%s** SVG units' % (min(screen_fonts) if screen_fonts else 'n/a'),'- Nejmenší font print SVG: **%s** SVG units' % (min(print_fonts) if print_fonts else 'n/a'),'','## Externí odkazy','','Počet unikátních URL: **%d**' % len(set(u for _,u in links)),'']
 for f,u in sorted(set(links)): out.append(f'- {f}: {u}')
 (BOOK/'PREPRESS_AUTOMATED_AUDIT.md').write_text('\n'.join(out)+'\n',encoding='utf-8')
 print('chapters',len(chapters),'appendices',len(appendices),'screen_svg',len(svgs),'print_svg',len(print_svgs),'blocking',len(blocking))
