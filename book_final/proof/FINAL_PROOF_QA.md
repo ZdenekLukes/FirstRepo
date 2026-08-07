@@ -1,7 +1,7 @@
 # Final proof QA
 
 - Pages: **543**
-- Minimum non-header/footer text span: **6.46 pt**
+- Minimum non-header/footer text span: **7.18 pt**
 - Suspicious sparse pages: **7**
 - Possible orphan headings: **0**
 - Text inside 7 mm safety margin: **0**

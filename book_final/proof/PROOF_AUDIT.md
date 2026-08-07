@@ -4,24 +4,14 @@
 - Pages: **543**
 - Page size: **[(481.9, 680.3)] pt** (target ~481.9 × 680.3 pt / 170 × 240 mm)
 - Extracted word tokens: **72321**
-- Minimum text span: **6.46 pt**
+- Minimum text span: **7.18 pt**
 - Completely empty pages: **0**
 - Blocks outside page: **0**
-- Text spans < 6.5 pt: **8**
+- Text spans < 6.5 pt: **0**
 
-## Automated proof gate: FAIL
+## Automated proof gate: PASS
 
-- Text spans below 6.5 pt: 8
-
-## Small-font samples
-- page 447: 6.46 pt — `Ne jeden „chytřejší model“, ale systém s více compute, modal`
-- page 447: 6.46 pt — `adaptivní compute`
-- page 447: 6.46 pt — `text · obraz · audio`
-- page 447: 6.46 pt — `nižší cost / task`
-- page 447: 6.46 pt — `data + akce`
-- page 447: 6.46 pt — `delší workflow`
-- page 447: 6.46 pt — `context + tools + policy + evals + observability`
-- page 447: 6.46 pt — `schopnost ≠spolehlivost`
+PDF prošlo mechanickou kontrolou. Stále je nutný vizuální proof: především tabulky, page breaks, captions, grayscale/CMYK a fyzická čitelnost na papíře.
 
 ## Visual sample
 
