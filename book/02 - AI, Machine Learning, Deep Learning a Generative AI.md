@@ -1,8 +1,18 @@
+---
+title: "2. AI, Machine Learning, Deep Learning a Generative AI"
+part: "II — Co vlastně dnešní AI je"
+status: draft
+version: "0.1"
+updated: 2026-08-07
+---
+
 # 2. AI, Machine Learning, Deep Learning a Generative AI
 
 Když se dnes řekne **AI**, často se tím myslí ChatGPT, Claude, Gemini nebo jiný velký jazykový model. To je ale jen malá část mnohem širšího oboru.
 
 Pojmy **Artificial Intelligence, Machine Learning, Neural Networks, Deep Learning, Generative AI, Foundation Model, LLM, Reasoning Model** a **Agentic AI** spolu souvisejí, ale nejsou zaměnitelné.
+
+> **Terminologie v této knize:** zavedené anglické technické pojmy budeme při prvním použití stručně vysvětlovat česky, ale dále je většinou ponecháme v podobě, ve které se s nimi čtenář setká v dokumentaci a nástrojích — například *training, inference, context window, reasoning* nebo *tool use*.
 
 Nejjednodušší mentální model je představit si je jako postupně užší nebo specializovanější vrstvy:
 
