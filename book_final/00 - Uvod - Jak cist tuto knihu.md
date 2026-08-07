@@ -26,19 +26,19 @@ Není to akademická učebnice ani katalog produktů. Je to praktický zápisní
 
 ## Dvanáct pravidel praktické AI
 
-Pokud chcete nejdřív mapu celé knihy, je v těchto dvanácti větách:
+Pokud chcete nejdřív mapu celé knihy, je v těchto dvanácti větách. **Pokud některý technický termín zatím neznáte, nevadí — každá z těchto vět dostane v dalších kapitolách konkrétní význam a příklad.**
 
 1. **Model není AI systém.** Schopnost vzniká až kombinací modelu, kontextu, dat, nástrojů a řízení.
 2. **Lepší kontext často pomůže víc než větší model.** Špatný vstup nezachrání ani frontier reasoning.
 3. **Aktuální a soukromá fakta musí přijít z externího zdroje.** Modelové váhy nejsou firemní databáze ani živý web.
 4. **Co lze spolehlivě spočítat nebo ověřit klasickým programem, nenechávejme pouze na LLM.**
-5. **U RAG měřme retrieval a generation odděleně.** Když jsme našli špatný zdroj, lepší formulace odpovědi problém neřeší.
-6. **Správná odpověď bez provenance není u kritické práce dost.** Potřebujeme vědět, odkud tvrzení pochází.
-7. **Úspěšný tool call není důkaz úspěšného úkolu.** Akci musí následovat verifikace skutečného výsledku.
-8. **Agent má mít minimální oprávnění a explicitní stop podmínky.** Autonomie bez hranic není pokročilost, ale riziko.
-9. **Nevratná nebo vysoce riziková akce potřebuje approval, dokud evidence neukáže bezpečnější režim.**
-10. **Evals patří před scaling, ne až po něm.** Nejprve zjistěme, zda systém funguje; potom jej zrychlujme a rozšiřujme.
-11. **Pokud jednodušší systém dosahuje stejného výsledku, vyhrává.** Multi-agent, memory ani nový framework nejsou cílem samy o sobě.
+5. **U RAG měřme zvlášť, zda systém našel správné zdroje (retrieval), a zda z nich vytvořil správnou odpověď (generation).** Když jsme našli špatný zdroj, lepší formulace odpovědi problém neřeší.
+6. **Správná odpověď bez doloženého původu zdroje (provenance) není u kritické práce dost.** Potřebujeme vědět, odkud tvrzení pochází.
+7. **Úspěšné zavolání nástroje (tool call) není důkaz úspěšného úkolu.** Akci musí následovat verifikace skutečného výsledku.
+8. **Agent má mít minimální oprávnění a explicitní podmínky ukončení (stop conditions).** Autonomie bez hranic není pokročilost, ale riziko.
+9. **Nevratná nebo vysoce riziková akce potřebuje schválení člověkem (approval), dokud evidence neukáže bezpečnější režim.**
+10. **Evaluace (evals) patří před škálování, ne až po něm.** Nejprve zjistěme, zda systém funguje; potom jej zrychlujme a rozšiřujme.
+11. **Pokud jednodušší systém dosahuje stejného výsledku, vyhrává.** Multi-agentní architektura, dlouhodobá memory ani nový framework nejsou cílem samy o sobě.
 12. **Model vybírejme podle vlastního use-case, ne podle hype, benchmarkového titulku nebo nejvyššího čísla v názvu.**
 
 Zbytek knihy tato pravidla postupně rozbalí, otestuje na konkrétních příkladech a ukáže jejich limity.
