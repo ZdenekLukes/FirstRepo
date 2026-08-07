@@ -91,6 +91,7 @@ status: release-candidate
 - [[BIBLIOGRAPHY|Zdroje a další čtení]]
 
 ## REDAKČNÍ PODKLADY
+- [[FINAL_EDITORIAL_AUDIT_V07|Finální redakční audit před tiskem — v0.7]]
 - [[STYLE_GUIDE|Style guide]]
 - [[PRINT_VISUAL_GUIDE|Print visual guide]]
 - [[FINAL_MERGE_REPORT|Final merge report v0.6]]
