@@ -786,5 +786,3 @@ Ale:
 
 Tomu se věnuje následující kapitola.
 
-
-*Primární zdroje pro tento snapshot jsou soustředěné v příloze B a v bibliografii.*

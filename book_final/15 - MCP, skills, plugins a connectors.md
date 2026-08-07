@@ -753,5 +753,3 @@ Další otázka je přirozená:
 
 > **Kdy z této kombinace skutečně vzniká AI agent?**
 
-
-*Primární MCP specifikace a dokumentace použitá pro snapshot 08/2026 jsou uvedené v bibliografii.*

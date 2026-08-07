@@ -431,4 +431,4 @@ To už není chatbot. Je to kontrolovaná uzavřená pracovní smyčka.
 8. **Human approval patří k rizikovým a nevratným akcím.**
 9. **Logging slouží debugování; audit trail prokazuje, kdo a co skutečně provedl.**
 
-V další kapitole v pořadí přejdeme od anatomie k receptu: **jak postavit prvního jednoduchého agenta tak, aby byl užitečný, měřitelný a bezpečný.**
+Teď můžeme přejít od anatomie k receptu: **jak postavit prvního jednoduchého agenta tak, aby byl užitečný, měřitelný a bezpečný.**

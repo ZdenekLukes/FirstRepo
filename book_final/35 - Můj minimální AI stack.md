@@ -621,5 +621,3 @@ Teď už nezbývá nic instalovat teoreticky.
 
 Poslední kapitola knihy převádí celý obsah do deseti projektů, které lze skutečně postavit jeden po druhém.
 
-
-*Aktuální odkazy na runtime, frameworky a observability nástroje jsou soustředěné v bibliografii a příloze C.*

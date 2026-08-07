@@ -1001,5 +1001,3 @@ Další kapitola se přesune z technické bezpečnosti na strategickou otázku:
 
 > **Proč firma nemá AI strategii jen proto, že zaměstnancům zpřístupnila ChatGPT nebo jiný chatbot?**
 
-
-*Primární bezpečnostní, regulatorní a OWASP zdroje jsou soustředěné v bibliografii.*

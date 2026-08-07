@@ -8,7 +8,7 @@ intro = BOOK / '00 - Uvod - Jak cist tuto knihu.md'
 appendices = sorted((BOOK/'appendices').glob('*.md'))
 
 SUSPICIOUS = [
-    r'průběžně doplň', r'prubezne dopln', r'\bTODO\b', r'\bFIXME\b', r'\bDOPLNIT\b',
+    r'průběžně doplň', r'prubezne dopln', r'\bTODO\b', r'\bFIXME\b',
     r'osobní kapitola', r'redakč', r'editorial', r'rough-draft', r'personal-draft', r'roadmap-draft',
     r'kapitola 37', r'kapitoly 37', r'kap\. 37', r'1–37', r'1-37',
     r'v další kapitole v pořadí', r'budu průběžně', r'budeme průběžně',

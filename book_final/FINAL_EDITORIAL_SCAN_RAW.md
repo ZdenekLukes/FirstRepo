@@ -5,9 +5,7 @@
 
 ## Suspicious editorial residues
 
-- `04 - Co LLM umí - a co neumí.md:210` — `doplnit“. U extrakce je proto velmi užitečná instrukce typu: ```text Pokud hodnotu ve zdroji nenajdeš, vrať null. Nevymýšlej chybějící údaje. ``` --- ## 4.4`
-- `04 - Co LLM umí - a co neumí.md:292` — `doplnit unit test, - refaktorovat program, - hledat chybu, - převést kód mezi jazyky, - napsat skript pro analýzu dat, - upravit více souborů v projektu. Samot`
-- `16 - Co je AI agent.md:434` — `V další kapitole v pořadí přejdeme od anatomie k receptu: **jak postavit prvního jednoduchého agenta tak, aby byl užitečný, měřitelný a bezpečný.**`
+- none
 
 ## Numeric cross-reference issues
 
@@ -16,9 +14,9 @@
 ## Snapshot mentions by file
 
 - `00 - Uvod - Jak cist tuto knihu.md` — 3
-- `05 - Mapa modelů.md` — 5
+- `05 - Mapa modelů.md` — 4
 - `08 - Jak provozovat LLM lokálně.md` — 2
-- `15 - MCP, skills, plugins a connectors.md` — 2
+- `15 - MCP, skills, plugins a connectors.md` — 1
 - `24 - Bezpečnost AI.md` — 2
 - `31 - Ekonomika AI.md` — 1
 - `32 - Kam se AI posouvá.md` — 1
@@ -67,7 +65,7 @@
 
 **Last H2:** Co si z kapitoly odnést
 
-**Ending:** *Primární zdroje pro tento snapshot jsou soustředěné v příloze B a v bibliografii.*
+**Ending:** > **Jak modely objektivně porovnávat pro vlastní use-case?**
 
 ### 6. Jak modely porovnávat
 
@@ -147,7 +145,7 @@
 
 **Last H2:** Co si z kapitoly odnést
 
-**Ending:** *Primární MCP specifikace a dokumentace použitá pro snapshot 08/2026 jsou uvedené v bibliografii.*
+**Ending:** > **Kdy z této kombinace skutečně vzniká AI agent?**
 
 ### 16. Anatomie a smyčka AI agenta
 
@@ -155,7 +153,7 @@
 
 **Last H2:** Co si z kapitoly odnést
 
-**Ending:** V další kapitole v pořadí přejdeme od anatomie k receptu: **jak postavit prvního jednoduchého agenta tak, aby byl užitečný, měřitelný a bezpečný.**
+**Ending:** Teď můžeme přejít od anatomie k receptu: **jak postavit prvního jednoduchého agenta tak, aby byl užitečný, měřitelný a bezpečný.**
 
 ### 17. Jak postavit jednoduchého agenta
 
@@ -219,7 +217,7 @@
 
 **Last H2:** Co si z kapitoly odnést
 
-**Ending:** *Primární bezpečnostní, regulatorní a OWASP zdroje jsou soustředěné v bibliografii.*
+**Ending:** > **Proč firma nemá AI strategii jen proto, že zaměstnancům zpřístupnila ChatGPT nebo jiný chatbot?**
 
 ### 25. Proč nestačí „máme ChatGPT“
 
@@ -307,7 +305,7 @@
 
 **Last H2:** Co si z kapitoly odnést
 
-**Ending:** *Aktuální odkazy na runtime, frameworky a observability nástroje jsou soustředěné v bibliografii a příloze C.*
+**Ending:** Poslední kapitola knihy převádí celý obsah do deseti projektů, které lze skutečně postavit jeden po druhém.
 
 ### 36. Deset praktických projektů od začátečníka k agentnímu systému
 
