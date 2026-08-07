@@ -26,7 +26,7 @@ Nebyl nalezen mechanický layout blocker.
 |---:|---|---:|
 | 9.5 | DejaVu-Sans | 11233 |
 | 7.18 | DejaVu-Sans-Mono | 4936 |
-| 9.5 | DejaVu-Sans-Bold | 1174 |
+| 9.5 | DejaVu-Sans-Bold | 1180 |
 | 14.5 | DejaVu-Sans-Bold | 654 |
 | 7.7 | DejaVu-Sans | 581 |
 | 7.4 | DejaVu-Sans | 547 |

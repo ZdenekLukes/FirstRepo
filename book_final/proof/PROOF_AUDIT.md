@@ -3,7 +3,7 @@
 - PDF: `AI-book-proof-v0.7.pdf`
 - Pages: **548**
 - Page size: **[(481.9, 680.3)] pt** (target ~481.9 × 680.3 pt / 170 × 240 mm)
-- Extracted word tokens: **73435**
+- Extracted word tokens: **73478**
 - Minimum text span: **7.18 pt**
 - Completely empty pages: **0**
 - Blocks outside page: **0**

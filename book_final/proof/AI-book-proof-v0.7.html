@@ -61,19 +61,19 @@ h1 + p, h2 + p, h3 + p { page-break-before: avoid; }
 <p><img alt="Od modelu k hodnotě" src="assets/diagrams-print/00-ai-system-stack.svg" /></p>
 <p><em>Obrázek: Model je jen jedna vrstva. Reálnou hodnotu určuje celý řetězec od dat přes nástroje a kontrolu až po verifikovaný výsledek.</em></p>
 <h2 id="dvanact-pravidel-prakticke-ai">Dvanáct pravidel praktické AI</h2>
-<p>Pokud chcete nejdřív mapu celé knihy, je v těchto dvanácti větách:</p>
+<p>Pokud chcete nejdřív mapu celé knihy, je v těchto dvanácti větách. <strong>Pokud některý technický termín zatím neznáte, nevadí — každá z těchto vět dostane v dalších kapitolách konkrétní význam a příklad.</strong></p>
 <ol>
 <li><strong>Model není AI systém.</strong> Schopnost vzniká až kombinací modelu, kontextu, dat, nástrojů a řízení.</li>
 <li><strong>Lepší kontext často pomůže víc než větší model.</strong> Špatný vstup nezachrání ani frontier reasoning.</li>
 <li><strong>Aktuální a soukromá fakta musí přijít z externího zdroje.</strong> Modelové váhy nejsou firemní databáze ani živý web.</li>
 <li><strong>Co lze spolehlivě spočítat nebo ověřit klasickým programem, nenechávejme pouze na LLM.</strong></li>
-<li><strong>U RAG měřme retrieval a generation odděleně.</strong> Když jsme našli špatný zdroj, lepší formulace odpovědi problém neřeší.</li>
-<li><strong>Správná odpověď bez provenance není u kritické práce dost.</strong> Potřebujeme vědět, odkud tvrzení pochází.</li>
-<li><strong>Úspěšný tool call není důkaz úspěšného úkolu.</strong> Akci musí následovat verifikace skutečného výsledku.</li>
-<li><strong>Agent má mít minimální oprávnění a explicitní stop podmínky.</strong> Autonomie bez hranic není pokročilost, ale riziko.</li>
-<li><strong>Nevratná nebo vysoce riziková akce potřebuje approval, dokud evidence neukáže bezpečnější režim.</strong></li>
-<li><strong>Evals patří před scaling, ne až po něm.</strong> Nejprve zjistěme, zda systém funguje; potom jej zrychlujme a rozšiřujme.</li>
-<li><strong>Pokud jednodušší systém dosahuje stejného výsledku, vyhrává.</strong> Multi-agent, memory ani nový framework nejsou cílem samy o sobě.</li>
+<li><strong>U RAG měřme zvlášť, zda systém našel správné zdroje (retrieval), a zda z nich vytvořil správnou odpověď (generation).</strong> Když jsme našli špatný zdroj, lepší formulace odpovědi problém neřeší.</li>
+<li><strong>Správná odpověď bez doloženého původu zdroje (provenance) není u kritické práce dost.</strong> Potřebujeme vědět, odkud tvrzení pochází.</li>
+<li><strong>Úspěšné zavolání nástroje (tool call) není důkaz úspěšného úkolu.</strong> Akci musí následovat verifikace skutečného výsledku.</li>
+<li><strong>Agent má mít minimální oprávnění a explicitní podmínky ukončení (stop conditions).</strong> Autonomie bez hranic není pokročilost, ale riziko.</li>
+<li><strong>Nevratná nebo vysoce riziková akce potřebuje schválení člověkem (approval), dokud evidence neukáže bezpečnější režim.</strong></li>
+<li><strong>Evaluace (evals) patří před škálování, ne až po něm.</strong> Nejprve zjistěme, zda systém funguje; potom jej zrychlujme a rozšiřujme.</li>
+<li><strong>Pokud jednodušší systém dosahuje stejného výsledku, vyhrává.</strong> Multi-agentní architektura, dlouhodobá memory ani nový framework nejsou cílem samy o sobě.</li>
 <li><strong>Model vybírejme podle vlastního use-case, ne podle hype, benchmarkového titulku nebo nejvyššího čísla v názvu.</strong></li>
 </ol>
 <p>Zbytek knihy tato pravidla postupně rozbalí, otestuje na konkrétních příkladech a ukáže jejich limity.</p>
