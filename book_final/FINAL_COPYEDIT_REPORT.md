@@ -14,7 +14,7 @@
 | `v contextu` | `v kontextu` | 0 |
 | `do contextu` | `do kontextu` | 0 |
 | `z contextu` | `z kontextu` | 0 |
-| `dlouhý context` | `dlouhý kontext` | 3 |
+| `dlouhý context` | `dlouhý kontext` | 0 |
 | `velký context` | `velký kontext` | 0 |
 | `celý context` | `celý kontext` | 0 |
 | `contextem` | `kontextem` | 0 |
@@ -28,7 +28,7 @@
 | `permissions model` | `model oprávnění` | 0 |
 | `permissions rules` | `pravidla oprávnění` | 0 |
 | `permissions` | `oprávnění` | 0 |
-| `verification` | `verifikace` | 1 |
+| `verification` | `verifikace` | 0 |
 | `simulation results` | `výsledky simulace` | 0 |
 
 > Deliberately retained English technical terms follow `STYLE_GUIDE.md`; this pass does not blindly translate APIs, code examples or standard names.

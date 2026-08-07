@@ -21,7 +21,7 @@
 | 13 - Druhý mozek.md | ano | NE | NE | 1 |
 | 14 - Tool Use.md | ano | NE | NE | 1 |
 | 15 - MCP, skills, plugins a connectors.md | ano | NE | NE | 1 |
-| 16 - Co je AI agent.md | ano | NE | ano | 2 |
+| 16 - Co je AI agent.md | ano | NE | NE | 2 |
 | 17 - Jak postavit jednoduchého agenta.md | ano | NE | NE | 1 |
 | 18 - Multi-agentní systémy.md | ano | NE | NE | 1 |
 | 19 - Orchestrace agentních systémů.md | ano | NE | NE | 1 |
@@ -38,10 +38,10 @@
 | 30 - Evaluace.md | ano | ano | NE | 1 |
 | 31 - Ekonomika AI.md | ano | ano | NE | 1 |
 | 32 - Kam se AI posouvá.md | ano | NE | NE | 1 |
-| 33 - Co jsem se zatím naučil.md | ano | NE | NE | 0 |
+| 33 - Co jsem se zatím naučil.md | ano | NE | NE | 1 |
 | 34 - Co mě ještě čeká.md | ano | NE | NE | 1 |
 | 35 - Můj minimální AI stack.md | ano | NE | NE | 1 |
-| 36 - Deset praktických projektů od začátečníka k agentnímu systému.md | ano | NE | NE | 1 |
+| 36 - Deset praktických projektů od začátečníka k agentnímu systému.md | ano | NE | NE | 2 |
 
 ## Terminologické varianty
 
@@ -49,17 +49,17 @@ Počty jsou orientační a zahrnují i kódové příklady. Ukazují, kde je pot
 
 | Koncept | anglická forma | česká forma |
 |---|---:|---:|
-| context | 114 | 111 |
-| tool | 217 | 197 |
-| workflow | 104 | 1 |
+| context | 116 | 113 |
+| tool | 217 | 204 |
+| workflow | 105 | 1 |
 | use-case | 98 | 0 |
-| local | 32 | 81 |
-| memory | 64 | 28 |
+| local | 30 | 83 |
+| memory | 64 | 30 |
 | knowledge base | 25 | 4 |
-| reasoning | 81 | 2 |
-| permissions | 30 | 58 |
-| verification | 47 | 41 |
-| simulation | 56 | 60 |
+| reasoning | 83 | 2 |
+| permissions | 30 | 61 |
+| verification | 49 | 42 |
+| simulation | 55 | 63 |
 
 ## Vizuální jazyk
 
@@ -97,7 +97,7 @@ Počty jsou orientační a zahrnují i kódové příklady. Ukazují, kde je pot
 | 30 - Evaluace.md | 1 |
 | 31 - Ekonomika AI.md | 1 |
 | 32 - Kam se AI posouvá.md | 1 |
-| 33 - Co jsem se zatím naučil.md | 0 |
+| 33 - Co jsem se zatím naučil.md | 1 |
 | 34 - Co mě ještě čeká.md | 1 |
 | 35 - Můj minimální AI stack.md | 1 |
-| 36 - Deset praktických projektů od začátečníka k agentnímu systému.md | 1 |
+| 36 - Deset praktických projektů od začátečníka k agentnímu systému.md | 2 |
