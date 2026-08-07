@@ -1,0 +1,40 @@
+name: Build book_gemini review variant
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'tools/build_book_gemini.py'
+      - '.github/workflows/build-book-gemini.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Build review variant
+        run: python tools/build_book_gemini.py
+
+      - name: Commit book_gemini
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add book_gemini
+          if git diff --cached --quiet; then
+            echo "No manuscript changes"
+          else
+            git commit -m "book: add Gemini review variant"
+            git push
+          fi
