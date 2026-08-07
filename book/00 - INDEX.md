@@ -1,15 +1,15 @@
 ---
 title: "AI od základů k agentním systémům"
 subtitle: "Co jsem se zatím naučil, jak AI chápu v srpnu 2026 a co mě ještě čeká"
-version: "0.3"
+version: "0.4"
 date: 2026-08-07
-status: rough-draft
+status: final-editorial-draft
 ---
 
 # AI od základů k agentním systémům
 
-> **Obsidian master index — v0.3**  
-> Každá kapitola je samostatný Markdown soubor. Verze 0.3 je záměrně hrubá: cílem je mít celý obsah knihy před očima, mazat, přesouvat a teprve potom jednotlivé části detailně rozepisovat.
+> **Obsidian master index — v0.4**  
+> Každá kapitola je samostatný Markdown soubor. Verze 0.4 je finální redakční draft před sazbou: hlavní kapitoly i přílohy jsou rozepsané, proběhl content/visual audit a další kontrola se má dělat nad vysázeným proof PDF.
 
 ## ČÁST I — Jak jsme se sem dostali
 - [[01 - Sto let vývoje AI na několika stránkách|1. Sto let vývoje AI na několika stránkách]]
@@ -84,3 +84,10 @@ status: rough-draft
 - [[appendices/E - Bezpecnostni checklist|E. Bezpečnostní checklist]]
 - [[appendices/F - Checklist pro navrh agenta|F. Checklist pro návrh agenta]]
 - [[appendices/G - Vlastni experimenty|G. Vlastní experimenty]]
+
+
+## REDAKČNÍ PODKLADY
+- [[STYLE_GUIDE|Style guide]]
+- [[BIBLIOGRAPHY|Bibliografie a další čtení]]
+- [[PRINT_VISUAL_GUIDE|Print visual guide]]
+- [[FINAL_EDITORIAL_AUDIT_2026-08-07|Finální redakční audit]]

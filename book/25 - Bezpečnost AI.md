@@ -2,7 +2,7 @@
 title: "25. Bezpečnost AI"
 part: "X — Bezpečnost, důvěra a firemní provoz"
 status: draft
-version: "0.2"
+version: "0.4"
 updated: 2026-08-07
 snapshot: "2026-08-07"
 ---
@@ -799,6 +799,130 @@ Každá další úroveň přichází až po evaluaci a zkušenosti.
 Bezpečnost tak nemusí být brzda adopce.
 
 Může být mechanismus, který umožní bezpečně přidávat další schopnosti.
+
+---
+
+## 25.20 EU AI Act, GDPR a firemní governance
+
+Technická bezpečnost není totéž co compliance.
+
+V evropské firmě potřebujeme vedle threat modelu řešit také dvě další vrstvy:
+
+```text
+SECURITY
+→ kdo může systém zneužít a jak omezíme škodu
+
+PRIVACY / GDPR
+→ zda a proč smíme zpracovávat osobní údaje
+
+AI GOVERNANCE / AI ACT
+→ jakou roli a povinnosti má firma pro konkrétní AI use-case
+```
+
+Tyto oblasti se překrývají, ale jedna nenahrazuje druhou.
+
+### GDPR: začíná u účelu a dat
+
+Pokud AI workflow zpracovává osobní údaje, platí stejné základní principy jako u jiné IT aplikace.
+
+Prakticky se ptejme:
+
+- proč data zpracováváme,
+- jaký je právní základ,
+- zda neposíláme více dat, než úloha potřebuje,
+- jak dlouho je ukládáme,
+- komu je zpřístupňujeme,
+- zda se osobní data nekopírují do debug logů nebo long-term memory.
+
+Pro AI je zvlášť důležitá **data minimisation**.
+
+Pokud model potřebuje pro odpověď tři odstavce z dokumentu, není dobrý default posílat mu celý personální archiv.
+
+### EU AI Act: posuzujeme use-case, ne pouze model
+
+AI Act pracuje s rolemi a rizikem konkrétního systému.
+
+Firma může být podle situace například:
+
+- **provider** — systém uvádí na trh nebo do provozu pod svým jménem,
+- **deployer** — AI systém používá ve vlastní činnosti.
+
+To znamená, že otázka:
+
+> „Používáme GPT, Claude nebo lokální model?“
+
+sama o sobě neurčuje regulatorní povinnosti.
+
+Důležitější je:
+
+```text
+K ČEMU systém používáme?
+KDO jej poskytuje?
+KDO jej provozuje?
+KOHO výsledek ovlivňuje?
+JAKÁ rozhodnutí nebo obsah vytváří?
+```
+
+### Co je aktuální k 7. 8. 2026
+
+Část pravidel AI Act se používá postupně. Pro tuto knihu je prakticky důležitý zejména fakt, že **transparentnostní povinnosti podle článku 50 se používají od 2. srpna 2026**.
+
+Týkají se mimo jiné situací, kdy lidé přímo interagují s AI a vybraných případů AI-generated nebo manipulated content. Přesný rozsah závisí na roli provider/deployer a konkrétním use-case.
+
+Proto má produkční AI checklist obsahovat alespoň:
+
+```text
+use-case owner
+role: provider / deployer
+risk classification
+AI literacy
+transparency requirement
+human oversight
+logging / evidence
+change management
+```
+
+### AI literacy není jednorázové školení
+
+Bezpečný provoz vyžaduje, aby uživatelé chápali alespoň:
+
+- že model může halucinovat,
+- rozdíl mezi modelem a nástrojem,
+- jak zacházet s citlivými daty,
+- kdy výsledek vyžaduje ověření,
+- co agent smí a nesmí udělat.
+
+To není obecná „AI osvěta“.
+
+Je to provozní schopnost podobná security awareness.
+
+### Praktické pravidlo pro firmu
+
+Nechci z AI týmu dělat právní oddělení.
+
+Chci ale, aby před produkčním nasazením vznikla malá karta systému:
+
+| Položka | Otázka |
+|---|---|
+| Owner | Kdo za systém odpovídá? |
+| Purpose | K čemu přesně slouží? |
+| Data | Jaké datové třídy a osobní údaje zpracovává? |
+| Provider / deployer | Jakou roli v use-case máme? |
+| Risk | Jaký je dopad chyby? |
+| Transparency | Musí uživatel vědět, že komunikuje s AI nebo že obsah vytvořila AI? |
+| Human oversight | Které kroky člověk schvaluje? |
+| Evidence | Jak prokážeme, co systém udělal? |
+| Change control | Co se stane při změně modelu nebo workflow? |
+
+Pokud firma tuto kartu neumí vyplnit, AI systém ještě není provozně dospělý.
+
+### Primární zdroje k datu snapshotu
+
+- European Commission — Guidelines on transparency obligations for providers and deployers of AI systems: https://digital-strategy.ec.europa.eu/en/library/guidelines-transparency-obligations-providers-and-deployers-ai-systems
+- European Commission — Transparency obligations under Article 50 of the AI Act: https://digital-strategy.ec.europa.eu/en/faqs/transparency-obligations-under-article-50-ai-act
+- European Commission — GDPR principles: https://commission.europa.eu/law/law-topic/data-protection/rules-business-and-organisations/principles-gdpr_en
+
+> **Tato část je praktický technicko-provozní přehled, ne právní stanovisko. Pro konkrétní nasazení musí firma použít aktuální právní a compliance posouzení.**
 
 ---
 

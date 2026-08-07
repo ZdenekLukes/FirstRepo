@@ -1,8 +1,8 @@
 ---
 title: "34. Co jsem se zatím naučil"
 part: "XIII — Co přijde dál"
-status: personal-draft
-version: "0.2"
+status: final-draft
+version: "0.4"
 updated: 2026-08-07
 ---
 
@@ -90,7 +90,20 @@ workflow
 verification
 ```
 
-[DOPLNIT: vlastní konkrétní moment nebo experiment, kdy tento rozdíl začal být zřejmý.]
+Konkrétně se mi tento rozdíl začal skládat při práci s coding agenty a Git repository. Samotný model uměl navrhnout kus kódu už dříve. Mnohem zajímavější bylo, když agent dokázal přečíst existující projekt, najít správné soubory, změnit pouze potřebnou část, spustit kontroly a ponechat výsledek jako diff, který lze zkontrolovat.
+
+Najednou nebylo hlavní, zda model zná další syntaktický trik. Hodnota vznikla z kombinace:
+
+```text
+model
++ repository context
++ filesystem
++ Git
++ tests
++ human review
+```
+
+Stejný princip jsem pak začal přenášet na technické workflow: pokud má AI pracovat nad návrhem obvodu, nestačí jí o elektronice dobře mluvit. Potřebuje skutečná data, simulátor a možnost výsledek ověřit.
 
 ---
 
@@ -184,7 +197,11 @@ Nemusí zvládat všechno.
 
 Stačí, když velmi dobře zvládnou právě svou roli.
 
-[DOPLNIT: konkrétní lokální model / coding / dokumentový experiment, který překvapil nejvíce.]
+Dobrou lekcí byly lokální modely. Na notebooku s 8 GB VRAM šlo rozumně experimentovat s menšími textovými modely, ale u náročnějších úloh se rychle ukázal paměťový limit a offload do systémové RAM výrazně zhoršoval interaktivnost.
+
+Přechod na kartu s 32 GB VRAM otevřel praktické experimenty s modely přibližně 30B–40B třídy. Vedle textového LLM jsem si mohl spojit lokální stack s Open WebUI, speech-to-text přes Whisper a text-to-speech. Nejdůležitější zjištění pro mě ale nebylo, že větší model "běží". Bylo to zjištění, že jednotlivé části stacku lze skládat a měřit odděleně.
+
+Malý model může být dostatečný pro jednu roli, zatímco těžší reasoning pošlu jinam. To je praktičtější než hledat jeden model, který musí umět všechno.
 
 ---
 
@@ -314,7 +331,11 @@ To není kompromis.
 
 Je to routing problém.
 
-[DOPLNIT: vlastní zkušenosti s konkrétním hardware a modely — rychlost, VRAM, co už bylo překvapivě použitelné a co ne.]
+Moje vlastní experimenty mi tento pohled ještě posílily. Osm gigabajtů VRAM je dost na to, aby si člověk lokální AI skutečně osahal, ale zároveň velmi rychle ukáže rozdíl mezi "model lze spustit" a "model je příjemné používat". Jakmile část modelu nebo cache přeteče do pomalejší paměti, papírově funkční konfigurace může přestat být praktická.
+
+S 32 GB VRAM se otevře úplně jiná třída experimentů, včetně větších kvantizovaných modelů. Ani tam ale nedává smysl automaticky vybírat největší model, který se vejde. Pro mnoho úzkých úloh je menší model rychlejší a dostatečně kvalitní.
+
+Proto dnes hardware neberu jako soutěž o maximální počet parametrů. Je to další routing constraint: která úloha má běžet lokálně, která na silnějším interním serveru a která si opravdu zaslouží frontier cloud.
 
 ---
 

@@ -3,8 +3,8 @@
 Pracovní repozitář knihy.
 
 - Jazyk: čeština
-- Stav: **kompletní první pracovní draft kapitol 1–37**
-- Aktuální pracovní verze kapitol: **0.2 draft**
+- Stav: **finální redakční draft před sazbou**
+- Aktuální pracovní verze knihy: **0.4 final-editorial-draft**
 - Snapshot: **2026-08-07**
 - Formát: Markdown / Obsidian
 
@@ -12,7 +12,7 @@ Hlavní rozcestník: [`book/00 - INDEX.md`](book/00%20-%20INDEX.md)
 
 ## Aktuální stav
 
-Všech **37 hlavních kapitol** je nyní rozepsaných z původních koster do souvislého prvního draftu ve společném stylu knihy:
+Všech **37 hlavních kapitol** je nyní rozepsaných; kapitola 37 byla doplněna do plné praktické kuchařky a přílohy A–G jsou použitelné referenční materiály. Proběhl předtiskový content a visual audit:
 
 - technicky správně, ale bez zbytečné matematiky,
 - jednoduchý mentální model → praktický příklad → důsledky,
@@ -29,7 +29,10 @@ Osobní kapitola 34 záměrně neobsahuje vymyšlené zkušenosti; místa pro bu
 
 - `book/00 - INDEX.md` — hlavní obsah knihy
 - `book/01 ... 37 ... .md` — 37 rozepsaných kapitol
-- `book/appendices/` — přílohy A–G; zatím pracovní kostry pro další rozpracování
+- `book/appendices/` — rozpracované přílohy A–G
+- `book/STYLE_GUIDE.md` — redakční terminologie a styl
+- `book/BIBLIOGRAPHY.md` — společné primární zdroje
+- `book/assets/diagrams-print/` — světlé SVG varianty pro sazbu
 - `source/` — původní pracovní kostra
 
 ## Další fáze
