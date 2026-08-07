@@ -7,16 +7,11 @@
 
 - `04 - Co LLM umí - a co neumí.md:210` — `doplnit“. U extrakce je proto velmi užitečná instrukce typu: ```text Pokud hodnotu ve zdroji nenajdeš, vrať null. Nevymýšlej chybějící údaje. ``` --- ## 4.4`
 - `04 - Co LLM umí - a co neumí.md:292` — `doplnit unit test, - refaktorovat program, - hledat chybu, - převést kód mezi jazyky, - napsat skript pro analýzu dat, - upravit více souborů v projektu. Samot`
-- `05 - Mapa modelů.md:111` — `redakční oprava: **„Opus 5“ není k datu tohoto snapshotu správný veřejný název modelu.** Číslo generace a produktová třída už nejsou vždy jedna jednoduchá osa.`
 - `16 - Co je AI agent.md:434` — `V další kapitole v pořadí přejdeme od anatomie k receptu: **jak postavit prvního jednoduchého agenta tak, aby byl užitečný, měřitelný a bezpečný.**`
-- `33 - Co jsem se zatím naučil.md:11` — `průběžně doplňovat konkrétními experimenty, chybami a změnami názoru. Když jsem se do AI začal ponořovat hlouběji, první přirozenou otázkou bylo: > **Který mo`
-- `33 - Co jsem se zatím naučil.md:11` — `Osobní kapitola — průběžně doplňovat konkrétními experimenty, chybami a změnami názoru. Když jsem se do AI začal ponořovat hlouběji, první přirozenou otázkou b`
-- `34 - Co mě ještě čeká.md:83` — `průběžně doplňovat do přílohy G. Poslední část knihy už není teorie. Je to kuchařka: > **Jaký minimální stack potřebuji (kapitola 35) a jaké projekty mám skut`
-- `34 - Co mě ještě čeká.md:83` — `budu průběžně doplňovat do přílohy G. Poslední část knihy už není teorie. Je to kuchařka: > **Jaký minimální stack potřebuji (kapitola 35) a jaké projekty mám`
 
 ## Numeric cross-reference issues
 
-- `33 - Co jsem se zatím naučil.md` — **section 34.10** — missing section
+- none
 
 ## Snapshot mentions by file
 
@@ -24,11 +19,11 @@
 - `05 - Mapa modelů.md` — 5
 - `08 - Jak provozovat LLM lokálně.md` — 2
 - `15 - MCP, skills, plugins a connectors.md` — 2
-- `24 - Bezpečnost AI.md` — 3
+- `24 - Bezpečnost AI.md` — 2
 - `31 - Ekonomika AI.md` — 1
 - `32 - Kam se AI posouvá.md` — 1
 - `33 - Co jsem se zatím naučil.md` — 1
-- `35 - Můj minimální AI stack.md` — 2
+- `35 - Můj minimální AI stack.md` — 1
 - `B - Prehled modelu - snapshot 08-2026.md` — 8
 - `C - Prehled nastroju - snapshot 08-2026.md` — 4
 
@@ -70,9 +65,9 @@
 
 **Opening:** *Obrázek: Model vybíráme podle konkrétního use-case, ne podle jediné univerzální tabulky.*
 
-**Last H2:** Zdroje pro snapshot 08/2026
+**Last H2:** Co si z kapitoly odnést
 
-**Ending:** OpenAI Model Release Notes — - Anthropic: Claude Sonnet 5 — - Anthropic: aktuální přehled modelů Claude — - Google DeepMind Models — - xAI: Grok 4.5 — - DeepSeek V4 — - Qwen official repositories — - Google Gemma releases — - Mistral Small 4 — - Cohere Command A+ —
+**Ending:** *Primární zdroje pro tento snapshot jsou soustředěné v příloze B a v bibliografii.*
 
 ### 6. Jak modely porovnávat
 
@@ -150,9 +145,9 @@
 
 **Opening:** *Obrázek: Standardizované propojení AI aplikace s nástroji a zdroji.*
 
-**Last H2:** Zdroje pro snapshot 08/2026
+**Last H2:** Co si z kapitoly odnést
 
-**Ending:** MCP Introduction — - MCP Architecture — - Understanding MCP Servers — - MCP 2026-07-28 Specification release — - Agent Skills for MCP development —
+**Ending:** *Primární MCP specifikace a dokumentace použitá pro snapshot 08/2026 jsou uvedené v bibliografii.*
 
 ### 16. Anatomie a smyčka AI agenta
 
@@ -222,9 +217,9 @@
 
 **Opening:** *Obrázek: Data, LLM a nástroje musí oddělovat oprávnění a kontroly.*
 
-**Last H2:** Zdroje pro snapshot 08/2026
+**Last H2:** Co si z kapitoly odnést
 
-**Ending:** OWASP Gen AI Security Project — - State of Agentic AI Security and Governance 2.01 — - OWASP GenAI Data Security Risks & Mitigations 2026 — - Agentic AI — Threats and Mitigations —
+**Ending:** *Primární bezpečnostní, regulatorní a OWASP zdroje jsou soustředěné v bibliografii.*
 
 ### 25. Proč nestačí „máme ChatGPT“
 
@@ -292,17 +287,17 @@
 
 ### 33. Co jsem se zatím naučil
 
-**Opening:** > Osobní kapitola — průběžně doplňovat konkrétními experimenty, chybami a změnami názoru.
+**Opening:** *Obrázek: Největší posun v mém chápání AI nebyl k větším modelům, ale od modelu k systému kolem něj.*
 
-**Last H2:** Pracovní závěr
+**Last H2:** 33.12 Sedm věcí, které bych si dnes napsal na první stránku
 
-**Ending:** A právě proto má smysl tuto kapitolu průběžně aktualizovat.
+**Ending:** Jakmile na ně umíme odpovědět, AI přestává být kouzelná skříňka a začíná být inženýrský materiál.
 
 ### 34. Co mě ještě čeká
 
 **Opening:** *Obrázek: Lokální stack → RAG → tools → agent → production.*
 
-**Last H2:** 34.2 Jak poznám, že jsem se skutečně něco naučil
+**Last H2:** Co si z kapitoly odnést
 
 **Ending:** > **Jaký minimální stack potřebuji (kapitola 35) a jaké projekty mám skutečně postavit (kapitola 36)?**
 
@@ -310,9 +305,9 @@
 
 **Opening:** *Obrázek: Modely, data, nástroje, Git, automatizace a monitoring.*
 
-**Last H2:** Zdroje a projekty pro snapshot 08/2026
+**Last H2:** Co si z kapitoly odnést
 
-**Ending:** Ollama — - llama.cpp — - vLLM — - Open WebUI — - Obsidian — - OpenAI Agents SDK — - Pydantic AI — - LangGraph — - Langfuse —
+**Ending:** *Aktuální odkazy na runtime, frameworky a observability nástroje jsou soustředěné v bibliografii a příloze C.*
 
 ### 36. Deset praktických projektů od začátečníka k agentnímu systému
 
@@ -320,22 +315,23 @@
 
 **Last H2:** Co si z kapitoly odnést
 
-**Ending:** Končíme systémem, který dokážeme postavit, změřit, omezit, ověřit a postupně zlepšovat.
+**Ending:** V těchto otázkách podle mě leží rozdíl mezi AI, která umí udělat dojem, a AI, na které lze stavět skutečnou práci.
 
 
 ## Exact long paragraphs repeated across files
 
-- none
+- **2 files:** 00 - Uvod - Jak cist tuto knihu.md, 33 - Co jsem se zatím naučil.md
+  - > **Nejdůležitější není mít nejchytřejší model, ale umět mu ve správný okamžik dodat správný kontext a nástroje — a jeho výsledek spolehlivě ověřit.**
 
 ## Recurrent language habits
 
-- model: **995**
-- AI: **516**
+- model: **1017**
+- AI: **527**
 - Například: **373**
-- systém: **336**
-- Není: **266**
-- důležité: **193**
-- To je: **145**
+- systém: **345**
+- Není: **278**
+- důležité: **192**
+- To je: **147**
 - Prakticky: **27**
 - Ne.: **2**
 
@@ -344,7 +340,6 @@
 - `01 - Sto let vývoje AI na několika stránkách.md`
 - `02 - AI, Machine Learning, Deep Learning a Generative AI.md`
 - `33 - Co jsem se zatím naučil.md`
-- `34 - Co mě ještě čeká.md`
 
 ## Image counts by chapter
 
@@ -380,10 +375,10 @@
 - `30 - Evaluace.md` — 1
 - `31 - Ekonomika AI.md` — 1
 - `32 - Kam se AI posouvá.md` — 1
-- `33 - Co jsem se zatím naučil.md` — 0
+- `33 - Co jsem se zatím naučil.md` — 1
 - `34 - Co mě ještě čeká.md` — 1
 - `35 - Můj minimální AI stack.md` — 1
-- `36 - Deset praktických projektů od začátečníka k agentnímu systému.md` — 1
+- `36 - Deset praktických projektů od začátečníka k agentnímu systému.md` — 2
 
 ## H2 map
 
@@ -468,7 +463,6 @@
 - 5.12 Rerankery
 - 5.13 Malé specializované modely
 - Co si z kapitoly odnést
-- Zdroje pro snapshot 08/2026
 
 ### 06 - Jak modely porovnávat.md
 - 6.1 Inteligence není jedno číslo
@@ -646,7 +640,6 @@
 - 15.12 Proč standardizované rozhraní mění možnosti agentů
 - Praktický příklad — AI-assisted analog design
 - Co si z kapitoly odnést
-- Zdroje pro snapshot 08/2026
 
 ### 16 - Co je AI agent.md
 - 16.1 Anatomie agenta
@@ -812,7 +805,6 @@
 - Defense in depth
 - System prompt není security boundary
 - Co si z kapitoly odnést
-- Zdroje pro snapshot 08/2026
 
 ### 25 - Proč nestačí „máme ChatGPT“.md
 - 25.1 Chatbot není AI strategie
@@ -948,11 +940,12 @@
 - 33.9 Proč nestačí nejlepší model
 - 33.10 Proč je důležitější celý systém
 - 33.11 Co bych dnes udělal jinak
-- Pracovní závěr
+- 33.12 Sedm věcí, které bych si dnes napsal na první stránku
 
 ### 34 - Co mě ještě čeká.md
 - 34.1 Moje pořadí
 - 34.2 Jak poznám, že jsem se skutečně něco naučil
+- Co si z kapitoly odnést
 
 ### 35 - Můj minimální AI stack.md
 - 35.1 Chat / frontier model
@@ -969,7 +962,6 @@
 - Stack pro malý on-prem pilot
 - Co do stacku záměrně nedávám hned
 - Co si z kapitoly odnést
-- Zdroje a projekty pro snapshot 08/2026
 
 ### 36 - Deset praktických projektů od začátečníka k agentnímu systému.md
 - Projekt 1 — Chat nad jedním dokumentem
@@ -984,6 +976,7 @@
 - Projekt 10 — Multi-agentní systém s human approval
 - Jak projekty dokumentovat
 - Doporučená obtížnost
+- Když AI selže: kde hledat chybu
 - Kdy přejít na další projekt
 - Co si z kapitoly odnést
 

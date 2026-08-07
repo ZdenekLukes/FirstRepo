@@ -2,7 +2,7 @@
 title: "34. Co mě ještě čeká"
 part: "XIII — Co přijde dál"
 status: final-draft
-version: "0.6"
+version: "0.7"
 updated: 2026-08-07
 ---
 
@@ -80,7 +80,15 @@ multi-agent zvýšil cost 3×
 a quality jen o 1 %
 ```
 
-To jsou zkušenosti, které se z tutorialu získávají těžko — a přesně ty budu průběžně doplňovat do přílohy G.
+To jsou zkušenosti, které se z tutorialu získávají těžko. Příloha G proto používá stejný experimentální formát: konfigurace, metriky, selhání, evidence a to, co se po výsledku změnilo.
+
+
+## Co si z kapitoly odnést
+
+1. **Další učení má končit artefaktem nebo měřením, ne pouze další poznámkou.**
+2. **Nejdřív stavím jednoduchý systém, který umím změřit; teprve potom přidávám memory, multi-agent nebo větší autonomii.**
+3. **Důkaz porozumění není počet přečtených článků, ale schopnost vysvětlit konkrétní failure mode z evidence.**
+4. **Experiment log je součást znalosti — bez konfigurace, metrik a selhání se zkušenost těžko reprodukuje.**
 
 Poslední část knihy už není teorie. Je to kuchařka:
 

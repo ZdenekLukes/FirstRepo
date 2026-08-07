@@ -1,6 +1,6 @@
-# book_final — v0.6
+# book_final — v0.7
 
-Finální hybridní review varianta knihy **AI od základů k agentním systémům**.
+Finální redakční print-candidate varianta knihy **AI od základů k agentním systémům**.
 
 - základ: `book_claude` (úvod, deduplikace, heading hierarchy, trace),
 - technické doplňky: `book_gemini` (reasoning, VRAM, RAG, MCP, agent failure modes, enterprise data, security, evals, TCO),

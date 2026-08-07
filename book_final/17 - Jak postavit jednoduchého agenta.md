@@ -2,7 +2,7 @@
 title: "17. Jak postavit jednoduchého agenta"
 part: "VIII — Agentní AI"
 status: final-draft
-version: "0.6"
+version: "0.7"
 updated: 2026-08-07
 ---
 

@@ -1,15 +1,15 @@
 ---
 title: "AI od základů k agentním systémům"
-subtitle: "Co jsem se zatím naučil, jak AI chápu v srpnu 2026 a co mě ještě čeká"
-version: "0.6"
+subtitle: "Jak AI skutečně funguje, jak ji používat a jak z modelů stavět spolehlivé systémy"
+version: "0.7"
 date: 2026-08-07
 status: release-candidate
 ---
 
 # AI od základů k agentním systémům
 
-> **Obsidian master index — v0.6 final hybrid**  
-> Claude redakční vrstva + Gemini technické doplňky + fact-check primárních zdrojů.
+> **Obsidian master index — v0.7 print candidate**  
+> Finální redakční pass: technická hloubka, autorský hlas, podpisové diagramy a centralizované zdroje.
 
 ## ÚVOD
 - [[00 - Uvod - Jak cist tuto knihu|Úvod — Pro koho je tato kniha a jak ji číst]]

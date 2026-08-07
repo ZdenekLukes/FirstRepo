@@ -2,7 +2,7 @@
 title: "A. Slovník AI pojmů"
 part: "PŘÍLOHY"
 status: final-draft
-version: "0.6"
+version: "0.7"
 updated: 2026-08-07
 ---
 

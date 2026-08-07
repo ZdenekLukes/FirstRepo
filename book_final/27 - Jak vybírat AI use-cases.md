@@ -2,7 +2,7 @@
 title: "27. Jak vybírat AI use-cases"
 part: "XI — Jak zavádět AI do firmy"
 status: final-draft
-version: "0.6"
+version: "0.7"
 updated: 2026-08-07
 ---
 

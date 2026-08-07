@@ -2,7 +2,7 @@
 title: "18. Multi-agentní systémy"
 part: "VIII — Agentní AI"
 status: final-draft
-version: "0.6"
+version: "0.7"
 updated: 2026-08-07
 ---
 

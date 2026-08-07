@@ -2,7 +2,7 @@
 title: "35. Můj minimální AI stack"
 part: "XIV — Praktická kuchařka"
 status: final-draft
-version: "0.6"
+version: "0.7"
 updated: 2026-08-07
 snapshot: "2026-08-07"
 ---
@@ -621,16 +621,5 @@ Teď už nezbývá nic instalovat teoreticky.
 
 Poslední kapitola knihy převádí celý obsah do deseti projektů, které lze skutečně postavit jeden po druhém.
 
----
 
-## Zdroje a projekty pro snapshot 08/2026
-
-- Ollama — https://ollama.com/
-- llama.cpp — https://github.com/ggml-org/llama.cpp
-- vLLM — https://vllm.ai/
-- Open WebUI — https://openwebui.com/
-- Obsidian — https://obsidian.md/
-- OpenAI Agents SDK — https://openai.github.io/openai-agents-python/
-- Pydantic AI — https://ai.pydantic.dev/
-- LangGraph — https://docs.langchain.com/oss/python/langgraph/overview
-- Langfuse — https://langfuse.com/docs
+*Aktuální odkazy na runtime, frameworky a observability nástroje jsou soustředěné v bibliografii a příloze C.*

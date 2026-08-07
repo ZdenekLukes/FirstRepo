@@ -2,7 +2,7 @@
 title: "5. Mapa modelů"
 part: "III — Svět AI modelů v srpnu 2026"
 status: final-draft
-version: "0.6"
+version: "0.7"
 updated: 2026-08-07
 snapshot: "2026-08-07"
 ---
@@ -108,7 +108,7 @@ Pro jednoduché přepsání textu nedává smysl použít stejný výpočetní r
 - **Claude Sonnet 5** — workhorse třída s velmi silným codingem, tool use a agentními workflow,
 - **Claude Opus 4.8** — stále významný komplexní model; Anthropic jej používá i jako fallback pro část požadavků, které Fable 5 kvůli safeguardům nepřebírá.
 
-Důležitá redakční oprava: **„Opus 5“ není k datu tohoto snapshotu správný veřejný název modelu.** Číslo generace a produktová třída už nejsou vždy jedna jednoduchá osa.
+Pozor na názvosloví: **„Opus 5“ není k datu tohoto snapshotu veřejný název modelu Anthropic.** Generace a produktové třídy už netvoří jednu jednoduchou číselnou řadu, takže názvy je lepší ověřovat než odvozovat.
 
 Pro návrh systému z toho plyne stejné pravidlo jako u ostatních providerů: model vybíráme podle vlastních evalů, ceny, latence, dostupných nástrojů a bezpečnostního profilu — ne podle názvu.
 
@@ -786,19 +786,5 @@ Ale:
 
 Tomu se věnuje následující kapitola.
 
----
 
-## Zdroje pro snapshot 08/2026
-
-Tato kapitola používá veřejné informace dostupné k 7. 8. 2026. Pro další aktualizace je vhodné kontrolovat především primární zdroje výrobců:
-
-- OpenAI Model Release Notes — https://help.openai.com/en/articles/9624314-model-release-notes
-- Anthropic: Claude Sonnet 5 — https://www.anthropic.com/news/claude-sonnet-5
-- Anthropic: aktuální přehled modelů Claude — https://www.anthropic.com/claude
-- Google DeepMind Models — https://deepmind.google/models/
-- xAI: Grok 4.5 — https://x.ai/news/grok-4-5
-- DeepSeek V4 — https://api-docs.deepseek.com/news/news260424/
-- Qwen official repositories — https://github.com/QwenLM
-- Google Gemma releases — https://ai.google.dev/gemma/docs/releases
-- Mistral Small 4 — https://mistral.ai/news/mistral-small-4/
-- Cohere Command A+ — https://cohere.com/blog/command-a-plus
+*Primární zdroje pro tento snapshot jsou soustředěné v příloze B a v bibliografii.*

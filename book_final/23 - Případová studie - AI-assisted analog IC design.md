@@ -2,7 +2,7 @@
 title: "23. Případová studie — AI-assisted analog IC design"
 part: "IX — AI jako pracovní systém"
 status: final-draft
-version: "0.6"
+version: "0.7"
 updated: 2026-08-07
 ---
 

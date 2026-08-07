@@ -2,7 +2,7 @@
 title: "25. Proč nestačí „máme ChatGPT“"
 part: "X — Bezpečnost, důvěra a firemní provoz"
 status: final-draft
-version: "0.6"
+version: "0.7"
 updated: 2026-08-07
 ---
 

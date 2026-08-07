@@ -2,7 +2,7 @@
 title: "13. Druhý mozek"
 part: "VI — Data, RAG a druhý mozek"
 status: final-draft
-version: "0.6"
+version: "0.7"
 updated: 2026-08-07
 ---
 

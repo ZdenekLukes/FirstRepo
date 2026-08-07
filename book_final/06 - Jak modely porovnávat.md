@@ -2,7 +2,7 @@
 title: "6. Jak modely porovnávat"
 part: "III — Svět AI modelů v srpnu 2026"
 status: final-draft
-version: "0.6"
+version: "0.7"
 updated: 2026-08-07
 ---
 

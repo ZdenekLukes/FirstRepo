@@ -2,7 +2,7 @@
 title: "24. Bezpečnost AI"
 part: "X — Bezpečnost, důvěra a firemní provoz"
 status: final-draft
-version: "0.6"
+version: "0.7"
 updated: 2026-08-07
 snapshot: "2026-08-07"
 ---
@@ -1001,11 +1001,5 @@ Další kapitola se přesune z technické bezpečnosti na strategickou otázku:
 
 > **Proč firma nemá AI strategii jen proto, že zaměstnancům zpřístupnila ChatGPT nebo jiný chatbot?**
 
----
 
-## Zdroje pro snapshot 08/2026
-
-- OWASP Gen AI Security Project — https://genai.owasp.org/
-- State of Agentic AI Security and Governance 2.01 — https://genai.owasp.org/resource/state-of-agentic-ai-security-and-governance/
-- OWASP GenAI Data Security Risks & Mitigations 2026 — https://genai.owasp.org/resource/owasp-genai-data-security-risks-mitigations-2026/
-- Agentic AI — Threats and Mitigations — https://genai.owasp.org/resource/agentic-ai-threats-and-mitigations/
+*Primární bezpečnostní, regulatorní a OWASP zdroje jsou soustředěné v bibliografii.*

@@ -2,7 +2,7 @@
 title: "36. Deset praktických projektů od začátečníka k agentnímu systému"
 part: "XIV — Praktická kuchařka"
 status: final-draft
-version: "0.6"
+version: "0.7"
 updated: 2026-08-07
 ---
 
@@ -669,6 +669,33 @@ Uvidíme totiž:
 
 ---
 
+
+## Když AI selže: kde hledat chybu
+
+Jedna z nejdražších reakcí na špatný AI výsledek je automaticky říct: **potřebujeme chytřejší model**. Někdy je to pravda. Často ale selhala jiná vrstva.
+
+<!-- visual:36-debug-ai-system.svg -->
+
+![Diagnostika AI systému](assets/diagrams/36-debug-ai-system.svg)
+
+*Obrázek: Výměna modelu je až jedna z možných oprav. Produkční chyba často vzniká v datech, retrievalu, nástroji, oprávněních nebo verifikaci.*
+
+Při debuggingu bych šel v tomto pořadí:
+
+| Vrstva | První otázka | Typická oprava |
+|---|---|---|
+| **Data / provenance** | Pracujeme se správnou revizí a autoritativním zdrojem? | metadata, ownership, versioning |
+| **Retrieval / context** | Dostal model právě ty informace, které potřeboval? | filtering, hybrid search, reranking, menší context |
+| **Tools** | Zavolal správný nástroj se správnými argumenty a četl správný výstup? | užší schema, validace, lepší error contract |
+| **Permissions / policy** | Směl udělat správnou akci — a nebyl action space zbytečně široký? | least privilege, policy gate, approval |
+| **State / orchestration** | Neztratil stav, neopakuje krok nebo nepracuje se starým výsledkem? | explicitní state, checkpoint, idempotence |
+| **Verification / evals** | Umíme vůbec poznat, že odpověď nebo akce je chybná? | test, rule, simulator, judge, human rubric |
+| **Model** | Teprve teď: chybí skutečně schopnost reasoning, codingu nebo modality? | jiný model, reasoning budget, specializace |
+
+> **Nejprve oprav vrstvu, která selhala. Větší model není univerzální náplast na špatně navržený systém.**
+
+Tento diagnostický postup je možná nejpraktičtější zkratka celé knihy.
+
 ## Kdy přejít na další projekt
 
 Ne podle pocitu:
@@ -728,6 +755,14 @@ zůstane užitečná mnohem déle.
 
 Tím se kruh knihy uzavírá.
 
-Začali jsme otázkou, co vlastně AI je.
+Začali jsme otázkou, co vlastně AI je. Končíme systémem, který dokážeme postavit, změřit, omezit, ověřit a postupně zlepšovat.
 
-Končíme systémem, který dokážeme postavit, změřit, omezit, ověřit a postupně zlepšovat.
+Až příště uvidíte působivé AI demo, zkuste se nezeptat pouze:
+
+> „Jaký model to je?“
+
+Položte ještě pět otázek:
+
+> **Odkud má data? Co skutečně vidí? Jaké má nástroje? Co smí udělat? A jak víme, že výsledek je správně?**
+
+V těchto otázkách podle mě leží rozdíl mezi AI, která umí udělat dojem, a AI, na které lze stavět skutečnou práci.

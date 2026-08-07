@@ -2,7 +2,7 @@
 title: "30. Evaluace"
 part: "XII — Jak poznat, že AI opravdu funguje"
 status: final-draft
-version: "0.6"
+version: "0.7"
 updated: 2026-08-07
 ---
 

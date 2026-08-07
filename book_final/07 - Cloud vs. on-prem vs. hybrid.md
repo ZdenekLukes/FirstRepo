@@ -2,7 +2,7 @@
 title: "7. Cloud vs. on-prem vs. hybrid"
 part: "IV — Cloud, lokální AI a hardware"
 status: final-draft
-version: "0.6"
+version: "0.7"
 updated: 2026-08-07
 ---
 

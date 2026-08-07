@@ -2,13 +2,18 @@
 title: "33. Co jsem se zatím naučil"
 part: "XIII — Co přijde dál"
 status: final-draft
-version: "0.6"
+version: "0.7"
 updated: 2026-08-07
 ---
 
 # 33. Co jsem se zatím naučil
 
-> Osobní kapitola — průběžně doplňovat konkrétními experimenty, chybami a změnami názoru.
+<!-- visual:33-model-to-system.svg -->
+
+![Od model-centric k system-centric pohledu](assets/diagrams/33-model-to-system.svg)
+
+*Obrázek: Největší posun v mém chápání AI nebyl k větším modelům, ale od modelu k systému kolem něj.*
+
 
 Když jsem se do AI začal ponořovat hlouběji, první přirozenou otázkou bylo:
 
@@ -67,7 +72,7 @@ Model bez tools může pouze radit, ale nemůže ověřit výsledek.
 
 A model bez dobře definovaného use-case může být jen velmi drahá hračka.
 
-První mentální posun tedy je: **AI ≠ model** — AI systém je model plus context, data, nástroje, workflow a verifikace (celý obrázek v sekci 34.10).
+První mentální posun tedy je: **AI ≠ model** — AI systém je model plus context, data, nástroje, workflow a verifikace (celý obrázek v sekci 33.10).
 
 Konkrétně se mi tento rozdíl začal skládat při práci s coding agenty a Git repository. Samotný model uměl navrhnout kus kódu už dříve. Mnohem zajímavější bylo, když agent dokázal přečíst existující projekt, najít správné soubory, změnit pouze potřebnou část, spustit kontroly a ponechat výsledek jako diff, který lze zkontrolovat.
 
@@ -106,7 +111,7 @@ Prakticky tím můžeme zvýšit cenu a zároveň zhoršit relevanci.
 
 Ne.
 
-RAG je search pipeline a její kvalita závisí na parsing, chunking, metadata, oprávnění a reranking.
+RAG není kouzelná „paměť modelu“. Jeho kvalitu zásadně určuje retrieval pipeline: parsing, chunking, metadata, oprávnění, vyhledávání a případný reranking.
 
 ### „Agent je LLM, který má delší prompt.“
 
@@ -156,7 +161,7 @@ tests
 
 a vznikne coding agent.
 
-Přidáme simulator:
+Přidáme simulátor:
 
 ```text
 LLM
@@ -166,7 +171,7 @@ SPICE
 measurement extraction
 ```
 
-a vznikne základ engineering loopu.
+a vznikne základ inženýrské closed-loop smyčky.
 
 To mi připadá důležitější než další drobný nárůst skóre benchmarku.
 
@@ -277,11 +282,11 @@ Hype je hlavně **přeskakování mezikroků mezi schopností modelu a reálným
 
 ## 33.6 Cloud vs. local — jak se změnil můj pohled
 
-Cloud a local je snadné chápat jako souboj dvou táborů.
+Cloud a lokální AI je snadné chápat jako souboj dvou táborů.
 
 Dnes mi dává větší smysl přemýšlet po úlohách.
 
-### Local
+### Lokální provoz
 
 Je velmi zajímavý pro:
 
@@ -314,7 +319,7 @@ Moje vlastní experimenty mi tento pohled ještě posílily. Osm gigabajtů VRAM
 
 S 32 GB VRAM se otevře úplně jiná třída experimentů, včetně větších kvantizovaných modelů. Ani tam ale nedává smysl automaticky vybírat největší model, který se vejde. Pro mnoho úzkých úloh je menší model rychlejší a dostatečně kvalitní.
 
-Proto dnes hardware neberu jako soutěž o maximální počet parametrů. Je to další routing constraint: která úloha má běžet lokálně, která na silnějším interním serveru a která si opravdu zaslouží frontier cloud.
+Proto dnes hardware neberu jako soutěž o maximální počet parametrů. Je to další omezení pro routing: která úloha má běžet lokálně, která na silnějším interním serveru a která si opravdu zaslouží frontier cloud.
 
 ---
 
@@ -363,13 +368,13 @@ Je to nový způsob, jak skládat software kolem LLM.
 
 Když model neví, co jsme rozhodli včera, není řešením nutně větší model.
 
-Potřebuje memory nebo access k našim notes.
+Potřebuje paměť nebo přístup k našim poznámkám.
 
-Když nezná dnešní data, potřebuje search.
+Když nezná dnešní data, potřebuje search nebo jiný živý zdroj.
 
 Když má spočítat přesnou statistiku, potřebuje Python.
 
-Když má ověřit obvod, potřebuje simulator.
+Když má ověřit obvod, potřebuje simulátor.
 
 Proto dnes často přemýšlím:
 
@@ -381,8 +386,8 @@ aby mohl úlohu správně dokončit?
 Možné odpovědi:
 
 - informace,
-- tool,
-- permission,
+- nástroj,
+- oprávnění,
 - verifier.
 
 Až potom:
@@ -528,16 +533,24 @@ Tam podle mě začíná nejzajímavější část celé technologie.
 
 ---
 
-## Pracovní závěr
+## 33.12 Sedm věcí, které bych si dnes napsal na první stránku
 
-Kdybych měl svůj dnešní pohled zkrátit do jedné věty:
+Kdybych začínal znovu, chtěl bych mít před sebou těchto sedm vět:
 
-> **Nejdůležitější není mít nejchytřejší model, ale umět mu ve správný okamžik dodat správný kontext a nástroje a jeho výsledek spolehlivě ověřit.**
+1. **Nehledej nejdřív nejlepší model. Nejdřív přesně definuj úlohu.**
+2. **Když výsledek není dobrý, zjisti, zda selhal model, data, kontext, nástroj nebo verifier.**
+3. **Co můžeš ověřit externím systémem, ověř externím systémem.** Test, simulátor a databáze jsou silnější evidence než sebejistý text.
+4. **Stav malé end-to-end experimenty.** Jedna funkční uzavřená smyčka naučí víc než deset demonstračních chatbotů.
+5. **Menší model v dobře navrženém workflow může být hodnotnější než frontier model bez kontextu a nástrojů.**
+6. **Autonomii přidávej až tam, kde máš evals, limity a možnost zastavit systém.**
+7. **Investuj do dat, integrací a evalů tak, aby model šel zítra vyměnit.** To je trvalejší aktivum než dnešní jméno vítěze benchmarku.
 
-Tato věta se možná za několik let změní.
+Kdybych měl svůj dnešní pohled zkrátit do jedné věty, zůstává tato:
 
-A právě proto má smysl tuto kapitolu průběžně aktualizovat.
+> **Nejdůležitější není mít nejchytřejší model, ale umět mu ve správný okamžik dodat správný kontext a nástroje — a jeho výsledek spolehlivě ověřit.**
 
-Ne jako historii technologií.
+To pro mě není závěr debaty o AI. Je to pracovní kompas.
 
-Ale jako historii vlastního porozumění.
+Modely se budou měnit. Stejně tak ceny, frameworky i rozhraní. Ale pokaždé se můžeme vrátit k několika stabilním otázkám: **Co je cíl? Jaká evidence je potřeba? Co má rozhodnout model? Co má udělat nástroj? Jaké jsou hranice oprávnění? A jak poznáme, že výsledek je správně?**
+
+Jakmile na ně umíme odpovědět, AI přestává být kouzelná skříňka a začíná být inženýrský materiál.

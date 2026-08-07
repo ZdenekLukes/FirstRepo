@@ -2,7 +2,7 @@
 title: "32. Kam se AI posouvá"
 part: "XIII — Co přijde dál"
 status: final-draft
-version: "0.6"
+version: "0.7"
 updated: 2026-08-07
 snapshot: "2026-08-07"
 ---

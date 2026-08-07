@@ -158,3 +158,34 @@ roadmap-draft
 ```
 
 Výjimkou je `example.com` uvnitř explicitně označeného demonstračního kódu.
+
+
+## 12. Final-print pravidla
+
+Ve čtenářském textu nesmí zůstat interní redakční proces:
+
+- „budu doplňovat“, „průběžně aktualizovat“, „pracovní závěr“, „redakční oprava“ apod.;
+- poznámky určené autorovi nebo reviewerovi;
+- odkazy na neexistující / přejmenované sekce;
+- verze kapitol, které odporují master indexu.
+
+Tištěná verze je **časově označený snapshot**, ne otevřený TODO seznam. Budoucí aktualizace patří do další edice.
+
+## 13. Jak kapitola končí
+
+Kapitola má pokud možno skončit jednou z těchto věcí:
+
+1. praktickým takeaway,
+2. silnou syntézou,
+3. otázkou, která přirozeně otevírá další kapitolu.
+
+Samostatný seznam URL nemá být posledním dojmem z kapitoly. Primární URL soustřeďujeme do `BIBLIOGRAPHY.md` a snapshotových příloh.
+
+## 14. WOW bez lacinosti
+
+„WOW“ v této knize nevytváří dekorace, ale **komprese složité myšlenky do obrazu nebo věty**.
+
+- žádní generičtí roboti, mozky, neonové AI motivy ani stocková ikonografie;
+- podpisové diagramy mají být použitelné i samostatně a vysvětlit princip do 20 sekund;
+- textový callout musí být pravdivý i bez typografického efektu;
+- méně výrazných vizuálů, ale každý musí nést vlastní myšlenku.

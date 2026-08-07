@@ -2,7 +2,7 @@
 title: "G. Vlastní experimenty"
 part: "PŘÍLOHY"
 status: final-draft
-version: "0.6"
+version: "0.7"
 updated: 2026-08-07
 ---
 

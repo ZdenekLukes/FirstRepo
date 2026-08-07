@@ -2,7 +2,7 @@
 title: "28. Pilot → důkaz → škálování"
 part: "XI — Jak zavádět AI do firmy"
 status: final-draft
-version: "0.6"
+version: "0.7"
 updated: 2026-08-07
 ---
 

@@ -2,7 +2,7 @@
 title: "15. MCP, skills, plugins a connectors"
 part: "VII — Nástroje: když LLM přestane jen psát"
 status: final-draft
-version: "0.6"
+version: "0.7"
 updated: 2026-08-07
 snapshot: "2026-08-07"
 ---
@@ -753,12 +753,5 @@ Další otázka je přirozená:
 
 > **Kdy z této kombinace skutečně vzniká AI agent?**
 
----
 
-## Zdroje pro snapshot 08/2026
-
-- MCP Introduction — https://modelcontextprotocol.io/docs/2026-07-28/getting-started/intro
-- MCP Architecture — https://modelcontextprotocol.io/docs/learn/architecture
-- Understanding MCP Servers — https://modelcontextprotocol.io/docs/learn/server-concepts
-- MCP 2026-07-28 Specification release — https://blog.modelcontextprotocol.io/posts/2026-07-28/
-- Agent Skills for MCP development — https://modelcontextprotocol.io/docs/2026-07-28/develop/build-with-agent-skills
+*Primární MCP specifikace a dokumentace použitá pro snapshot 08/2026 jsou uvedené v bibliografii.*

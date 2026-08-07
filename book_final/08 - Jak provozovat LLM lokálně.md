@@ -2,7 +2,7 @@
 title: "8. Jak provozovat LLM lokálně"
 part: "IV — Cloud, lokální AI a hardware"
 status: final-draft
-version: "0.6"
+version: "0.7"
 updated: 2026-08-07
 snapshot: "2026-08-07"
 ---
