@@ -1,0 +1,41 @@
+name: Add book visuals v2
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/add-book-visuals-v2.yml'
+      - 'tools/add_book_visuals_v2.py'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  render-and-insert:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Generate and insert visuals
+        working-directory: tools
+        run: python add_book_visuals_v2.py
+
+      - name: Commit generated visuals
+        shell: bash
+        run: |
+          if git diff --quiet && [ -z "$(git status --porcelain)" ]; then
+            echo "No changes to commit"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add book
+          git commit -m "Complete visual pass across AI book"
+          git push
