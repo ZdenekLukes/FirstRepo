@@ -1,0 +1,32 @@
+name: Prepress audit
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/prepress-audit.yml'
+      - 'tools/prepress_audit.py'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Run mechanical audit
+        run: python tools/prepress_audit.py
+      - name: Commit audit report
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add book/PREPRESS_AUTOMATED_AUDIT.md
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "Add automated prepress audit report"
+          git push
