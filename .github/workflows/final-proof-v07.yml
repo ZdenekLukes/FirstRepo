@@ -28,7 +28,6 @@ jobs:
           python - <<'PY'
           from pathlib import Path
 
-          # Adapt source prepress gate: 36 numbered chapters + separate 00 intro.
           p=Path('tools/prepress_audit.py')
           s=p.read_text(encoding='utf-8')
           s=s.replace("chapters=sorted([p for p in BOOK.glob('[0-9][0-9] - *.md') if p.name!='00 - INDEX.md'])", "chapters=sorted([p for p in BOOK.glob('[0-9][0-9] - *.md') if not p.name.startswith('00 -')])")
@@ -39,7 +38,6 @@ jobs:
           s=s.replace('Index neobsahuje přesně kapitoly 1–37.', 'Index neobsahuje přesně kapitoly 1–36.')
           p.write_text(s,encoding='utf-8')
 
-          # Build a true v0.7 proof and use the final reader-facing subtitle.
           files=['tools/build_book_proof.py','tools/add_bibliography_to_proof.py','tools/refine_book_proof.py','tools/audit_book_proof.py','tools/final_proof_qa.py','tools/inspect_proof_small_fonts.py']
           for fn in files:
               p=Path(fn); s=p.read_text(encoding='utf-8').replace('v0.4','v0.7')
@@ -58,9 +56,9 @@ jobs:
           python tools/final_copyedit_pass.py
           python tools/prepress_audit.py
           python tools/editorial_style_audit.py
-          grep -q 'PASS — mechanické blockery' book/PREPRESS_AUTOMATED_AUDIT.md
-          grep -q 'Screen SVG: **43**' book/PREPRESS_AUTOMATED_AUDIT.md
-          grep -q 'Print SVG: **43**' book/PREPRESS_AUTOMATED_AUDIT.md
+          grep -Fq 'PASS — mechanické blockery' book/PREPRESS_AUTOMATED_AUDIT.md
+          grep -Fq 'Screen SVG: **43**' book/PREPRESS_AUTOMATED_AUDIT.md
+          grep -Fq 'Print SVG: **43**' book/PREPRESS_AUTOMATED_AUDIT.md
 
       - name: Build and audit proof
         run: |
@@ -70,8 +68,8 @@ jobs:
           python tools/audit_book_proof.py
           python tools/final_proof_qa.py
           python tools/inspect_proof_small_fonts.py
-          grep -q 'Automated proof gate: PASS' book/proof/PROOF_AUDIT.md
-          grep -q 'Automated layout gate: PASS' book/proof/FINAL_PROOF_QA.md
+          grep -Fq 'Automated proof gate: PASS' book/proof/PROOF_AUDIT.md
+          grep -Fq 'Automated layout gate: PASS' book/proof/FINAL_PROOF_QA.md
 
       - name: Restore historical book and preserve v0.7 outputs
         run: |
