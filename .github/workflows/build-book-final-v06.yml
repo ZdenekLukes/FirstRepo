@@ -61,16 +61,31 @@ jobs:
           rm -rf /tmp/book_original_v06
           mv book /tmp/book_original_v06
           cp -a book_final book
+
           python - <<'PY'
           from pathlib import Path
+
+          # Adapt the historical prepress gate from 37 numbered chapters to
+          # 36 numbered chapters + a separate 00 reader intro.
           p = Path('tools/prepress_audit.py')
           s = p.read_text(encoding='utf-8')
           s = s.replace("chapters=sorted([p for p in BOOK.glob('[0-9][0-9] - *.md') if p.name!='00 - INDEX.md'])", "chapters=sorted([p for p in BOOK.glob('[0-9][0-9] - *.md') if not p.name.startswith('00 -')])")
+          s = s.replace("index_numbers=sorted(set(int(x) for x in re.findall(r'\\[\\[(\\d{2})\\s+-\\s+',index)))", "index_numbers=sorted({int(x) for x in re.findall(r'\\[\\[(\\d{2})\\s+-\\s+',index) if int(x) > 0})")
           s = s.replace("expected=list(range(1,38))", "expected=list(range(1,37))")
           s = s.replace("ch37=row_by.get('37 - Deset praktických projektů od začátečníka k agentnímu systému.md')", "ch37=row_by.get('36 - Deset praktických projektů od začátečníka k agentnímu systému.md')")
           s = s.replace('Kapitola 37 je stále příliš krátká', 'Kapitola 36 je stále příliš krátká')
+          s = s.replace('Index neobsahuje přesně kapitoly 1–37.', 'Index neobsahuje přesně kapitoly 1–36.')
+          p.write_text(s, encoding='utf-8')
+
+          # The new trends diagram passed the SVG-unit rule at 18, but in the
+          # 170×240 mm proof those labels rendered at 6.46 pt. Raise only the
+          # print variant to 20 SVG units; screen design is unchanged.
+          p = Path('book/assets/diagrams-print/32-ai-trends.svg')
+          s = p.read_text(encoding='utf-8')
+          s = s.replace('font-size="18"', 'font-size="20"')
           p.write_text(s, encoding='utf-8')
           PY
+
           for f in tools/build_book_proof.py tools/add_bibliography_to_proof.py tools/refine_book_proof.py tools/audit_book_proof.py tools/final_proof_qa.py tools/inspect_proof_small_fonts.py; do
             sed -i 's/v0\.4/v0.6/g' "$f"
           done
@@ -83,6 +98,7 @@ jobs:
           python tools/final_copyedit_pass.py
           python tools/prepress_audit.py
           python tools/editorial_style_audit.py
+          grep -q 'PASS — mechanické blockery' book/PREPRESS_AUTOMATED_AUDIT.md
 
       - name: Build and audit proof v0.6
         run: |
@@ -92,6 +108,7 @@ jobs:
           python tools/audit_book_proof.py
           python tools/final_proof_qa.py
           python tools/inspect_proof_small_fonts.py
+          grep -q 'Automated proof gate: PASS' book/proof/PROOF_AUDIT.md
 
       - name: Restore original book and finalize book_final
         run: |
@@ -110,6 +127,6 @@ jobs:
           if git diff --cached --quiet; then
             echo "No book_final changes"
           else
-            git commit -m "book: create final hybrid v0.6"
+            git commit -m "book: finalize hybrid v0.6 proof gates"
             git push
           fi
