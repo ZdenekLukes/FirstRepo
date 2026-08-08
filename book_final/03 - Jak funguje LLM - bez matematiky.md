@@ -1,9 +1,9 @@
 ---
 title: "3. Jak funguje LLM — bez matematiky"
 part: "II — Co vlastně dnešní AI je"
-status: final-draft
+status: release-candidate
 version: "0.7"
-updated: 2026-08-07
+updated: 2026-08-08
 ---
 
 # 3. Jak funguje LLM — bez matematiky

@@ -1,7 +1,7 @@
 ---
 title: "25. Why ‘We Have ChatGPT’ Is Not an AI Strategy"
 part: "X — Security, Trust, and Enterprise Operations"
-status: international-draft
+status: release-candidate
 version: "0.8-eng"
 updated: 2026-08-08
 ---
@@ -360,6 +360,4 @@ Organizations do not need to jump directly to Level 3. They do need to understan
 8. **Measure business results, not the attractiveness of the demo.**
 9. **The durable advantage is an organizational capability to integrate new AI safely and repeatedly.**
 
-The next question is therefore foundational:
-
-> **Is the organization — and its data — ready for AI at all?**
+The next question is therefore foundational: **Is the organization — and its data — ready for AI at all?**

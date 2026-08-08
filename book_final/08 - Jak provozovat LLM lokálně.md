@@ -1,15 +1,15 @@
 ---
 title: "8. Jak provozovat LLM lokálně"
 part: "IV — Cloud, lokální AI a hardware"
-status: final-draft
+status: release-candidate
 version: "0.7"
-updated: 2026-08-07
-snapshot: "2026-08-07"
+updated: 2026-08-08
+snapshot: "2026-08-08"
 ---
 
 # 8. Jak provozovat LLM lokálně
 
-> **Snapshot k 7. 8. 2026.** Konkrétní nástroje (Ollama, llama.cpp, vLLM, Open WebUI) a hardwarové třídy odpovídají stavu k tomuto datu. Principy — vztah velikosti modelu, kvantizace, paměti a KV cache — stárnou výrazně pomaleji.
+> **Snapshot k 8. 8. 2026.** Konkrétní nástroje (Ollama, llama.cpp, vLLM, Open WebUI) a hardwarové třídy odpovídají stavu k tomuto datu. Principy — vztah velikosti modelu, kvantizace, paměti a KV cache — stárnou výrazně pomaleji.
 
 <!-- visual:08-local-memory-stack.svg -->
 
@@ -854,6 +854,4 @@ samotné 4-bit váhy ≈ desítky GB
 
 Teď už víme, co model je, jak jej vybírat a kde jej provozovat.
 
-Další část knihy se přesune od infrastruktury k člověku:
-
-> **Jak vlastně modelu zadat práci tak, aby dostal správný cíl, kontext a omezení?**
+Další část knihy se přesune od infrastruktury k člověku: **Jak vlastně modelu zadat práci tak, aby dostal správný cíl, kontext a omezení?**

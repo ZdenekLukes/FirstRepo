@@ -1,10 +1,10 @@
 ---
 title: "15. MCP, skills, plugins a connectors"
 part: "VII — Nástroje: když LLM přestane jen psát"
-status: final-draft
+status: release-candidate
 version: "0.7"
-updated: 2026-08-07
-snapshot: "2026-08-07"
+updated: 2026-08-08
+snapshot: "2026-08-08"
 ---
 
 # 15. MCP, skills, plugins a connectors
@@ -207,7 +207,7 @@ GitHub API
 nebo:
 
 ```text
-interní simulation service
+interní simulační služba
 ```
 
 Příklad serveru pro interní simulátor může nabídnout:
@@ -229,7 +229,7 @@ AI klient to nemusí vědět.
 
 Vidí pouze standardizované rozhraní.
 
-### Local vs. remote server
+### Lokální vs. vzdálený server
 
 MCP server může běžet lokálně:
 

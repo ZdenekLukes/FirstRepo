@@ -1,10 +1,10 @@
 ---
 title: "5. Mapa modelů"
 part: "III — Svět AI modelů v srpnu 2026"
-status: final-draft
+status: release-candidate
 version: "0.7"
-updated: 2026-08-07
-snapshot: "2026-08-07"
+updated: 2026-08-08
+snapshot: "2026-08-08"
 ---
 
 # 5. Mapa modelů
@@ -16,7 +16,7 @@ snapshot: "2026-08-07"
 *Obrázek: Model vybíráme podle konkrétního use-case, ne podle jediné univerzální tabulky.*
 
 
-> **Snapshot k 7. 8. 2026.** Tato kapitola bude stárnout rychleji než většina knihy. Názvy konkrétních modelů proto berme jako mapu současného trhu, ne jako seznam, který má platit několik let.
+> **Snapshot k 8. 8. 2026.** Tato kapitola bude stárnout rychleji než většina knihy. Názvy konkrétních modelů proto berme jako mapu současného trhu, ne jako seznam, který má platit několik let.
 
 Ještě před několika lety bylo možné o trhu velkých jazykových modelů mluvit téměř jako o seznamu několika jmen. Dnes je situace mnohem složitější.
 

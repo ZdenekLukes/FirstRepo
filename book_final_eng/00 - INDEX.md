@@ -3,14 +3,14 @@ title: "AI: From First Principles to Agentic Systems"
 subtitle: "How AI Actually Works — From LLMs and RAG to Tools, Agents, Evals, and Reliable Systems"
 version: "0.8-eng"
 date: 2026-08-08
-status: international-draft
+status: release-candidate
 ---
 
 # AI: From First Principles to Agentic Systems
 
 > **How AI Actually Works — From LLMs and RAG to Tools, Agents, Evals, and Reliable Systems**
 >
-> **International English edition — v0.8-eng**  
+> **International English release candidate — v0.8-eng**  
 > Re-authored from the Czech master for an international technical audience; not a sentence-by-sentence translation.
 
 ## INTRODUCTION

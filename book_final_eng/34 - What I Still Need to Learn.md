@@ -1,7 +1,7 @@
 ---
 title: "34. What I Still Need to Learn"
 part: "XIII — What Comes Next"
-status: international-draft
+status: release-candidate
 version: "0.8-eng"
 updated: 2026-08-08
 ---

@@ -1,7 +1,7 @@
 ---
 title: "Introduction — How to Read This Book"
 part: "INTRODUCTION"
-status: international-draft
+status: release-candidate
 version: "0.8-eng"
 updated: 2026-08-08
 ---
@@ -121,7 +121,7 @@ Read Chapters 2–4, then Parts X–XII: security, readiness, use-case selection
 AI moves too quickly for a printed book to pretend that every product fact is permanent. This edition therefore separates two layers.
 
 - **Principles** — how LLMs work, how RAG fails, how tools and agents should be designed, how permissions and evaluation fit into the architecture. These are the durable core of the book.
-- **Snapshots** — specific models, tools, hardware, pricing examples, and regulation as of **August 7, 2026**. Fast-moving material is explicitly dated, with primary sources collected in the bibliography and the model/tool appendices.
+- **Snapshots** — specific models, tools, hardware, pricing examples, and regulation as of **August 8, 2026**. Fast-moving material is explicitly dated, with primary sources collected in the bibliography and the model/tool appendices.
 
 If you are reading this book later, treat the snapshots as a map of the terrain at that moment. The architecture, decision rules, and failure modes are what I expect to survive the longest.
 

@@ -1,9 +1,9 @@
 ---
 title: "6. Jak modely porovnávat"
 part: "III — Svět AI modelů v srpnu 2026"
-status: final-draft
+status: release-candidate
 version: "0.7"
-updated: 2026-08-07
+updated: 2026-08-08
 ---
 
 # 6. Jak modely porovnávat
@@ -568,7 +568,7 @@ Nemusí mít tisíce otázek.
 
 ### Krok 1 — vybrat skutečné úlohy
 
-Například pro engineering knowledge assistant:
+Například pro asistenta nad inženýrskými znalostmi:
 
 1. najdi parametr v datasheetu,
 2. porovnej dvě revize specifikace,

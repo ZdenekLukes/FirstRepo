@@ -77,7 +77,7 @@ Piš bez kvalifikace pouze tehdy, když je tvrzení stabilní nebo podložené z
 Rychle se měnící fakta označ datem:
 
 ```text
-Snapshot k 7. 8. 2026
+Snapshot k 8. 8. 2026
 ```
 
 ### Odhad / budoucnost

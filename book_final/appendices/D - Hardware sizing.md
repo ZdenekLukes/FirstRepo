@@ -1,9 +1,9 @@
 ---
 title: "D. Hardware sizing"
 part: "PŘÍLOHY"
-status: final-draft
+status: release-candidate
 version: "0.7"
-updated: 2026-08-07
+updated: 2026-08-08
 ---
 
 # D. Hardware sizing
@@ -362,7 +362,7 @@ Hardware navrhujeme pro **celý pipeline**, ne pro modelový soubor.
 Chci se učit / experimentovat?
 → použij hardware, který už máš
 
-Potřebuji interaktivní local AI?
+Potřebuji interaktivní lokální AI?
 → preferuj model, který se vejde do akcelerované paměti
 
 Citlivá firemní data + stabilní workload?

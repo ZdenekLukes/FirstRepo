@@ -1,7 +1,7 @@
 ---
 title: "19. Orchestrating Agentic Systems"
 part: "VIII — Agentic AI"
-status: international-draft
+status: release-candidate
 version: "0.8-eng"
 updated: 2026-08-08
 ---

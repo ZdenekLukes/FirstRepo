@@ -1,7 +1,7 @@
 ---
 title: "20. Coding Agents"
 part: "IX — AI as a Work System"
-status: international-draft
+status: release-candidate
 version: "0.8-eng"
 updated: 2026-08-08
 ---

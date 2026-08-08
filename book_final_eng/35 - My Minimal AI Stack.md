@@ -1,10 +1,10 @@
 ---
 title: "35. My Minimal AI Stack"
 part: "XIV — Practical Build Guide"
-status: international-draft
+status: release-candidate
 version: "0.8-eng"
 updated: 2026-08-08
-snapshot: "2026-08-07"
+snapshot: "2026-08-08"
 ---
 
 # 35. My Minimal AI Stack

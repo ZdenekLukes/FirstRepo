@@ -1,9 +1,9 @@
 ---
 title: "11. Proč model nezná moje data"
 part: "VI — Data, RAG a druhý mozek"
-status: final-draft
+status: release-candidate
 version: "0.7"
-updated: 2026-08-07
+updated: 2026-08-08
 ---
 
 # 11. Proč model nezná moje data

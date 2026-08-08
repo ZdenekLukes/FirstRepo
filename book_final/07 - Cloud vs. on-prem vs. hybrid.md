@@ -1,9 +1,9 @@
 ---
 title: "7. Cloud vs. on-prem vs. hybrid"
 part: "IV — Cloud, lokální AI a hardware"
-status: final-draft
+status: release-candidate
 version: "0.7"
-updated: 2026-08-07
+updated: 2026-08-08
 ---
 
 # 7. Cloud vs. on-prem vs. hybrid
@@ -141,7 +141,7 @@ Pokud lokální agent dostane administrátorský přístup ke všem systémům, 
 
 Hybrid kombinuje lokální a cloudové komponenty.
 
-To není kompromis ve smyslu „trochu horší cloud a trochu horší local“.
+To není kompromis ve smyslu „trochu horší cloud a trochu horší lokální provoz“.
 
 Naopak může spojit nejlepší vlastnosti obou světů.
 
@@ -413,7 +413,7 @@ Pro technickou firmu mohou být vysoce citlivá například:
 - PDK data,
 - interní modely,
 - RTL,
-- customer specifications,
+- zákaznické specifikace,
 - root-cause analýzy,
 - informace o zranitelnostech.
 
@@ -445,7 +445,7 @@ AI ji nemůže vymyslet za security a legal tým.
 
 ## 7.9 Jak rozhodnout, která úloha poběží kde
 
-Místo ideologického sporu cloud versus local můžeme každou úlohu ohodnotit.
+Místo ideologického sporu cloud versus lokální provoz můžeme každou úlohu ohodnotit.
 
 ### 1. Citlivost dat
 
@@ -629,7 +629,7 @@ retrieval
    ↓
 model router
    ↓
-local nebo cloud
+lokální model nebo cloud
    ↓
 verifikace
 ```

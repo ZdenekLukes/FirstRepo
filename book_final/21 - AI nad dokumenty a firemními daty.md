@@ -1,9 +1,9 @@
 ---
 title: "21. AI nad dokumenty a firemními daty"
 part: "IX — AI jako pracovní systém"
-status: final-draft
+status: release-candidate
 version: "0.7"
-updated: 2026-08-07
+updated: 2026-08-08
 ---
 
 # 21. AI nad dokumenty a firemními daty

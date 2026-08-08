@@ -1,16 +1,16 @@
 ---
 title: "B. Přehled modelů — snapshot 08/2026"
 part: "PŘÍLOHY"
-status: final-draft
+status: release-candidate
 version: "0.7"
-updated: 2026-08-07
+updated: 2026-08-08
 ---
 
 # B. Přehled modelů — snapshot 08/2026
 
 **[Snapshot 08/2026]**
 
-> **Snapshot k 7. 8. 2026.** Jde o mapu trhu, ne žebříček. Názvy, ceny, dostupnost i licence se mění rychle; před nasazením ověř primární zdroj výrobce.
+> **Snapshot k 8. 8. 2026.** Jde o mapu trhu, ne žebříček. Názvy, ceny, dostupnost i licence se mění rychle; před nasazením ověř primární zdroj výrobce.
 
 ## B.1 Frontier a cloudové rodiny
 

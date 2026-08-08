@@ -1,7 +1,7 @@
 ---
 title: "14. Tool Use"
 part: "VII — Tools: When the LLM Stops Only Writing"
-status: international-draft
+status: release-candidate
 version: "0.8-eng"
 updated: 2026-08-08
 ---

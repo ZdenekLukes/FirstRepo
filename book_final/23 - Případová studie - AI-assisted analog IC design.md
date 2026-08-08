@@ -1,9 +1,9 @@
 ---
 title: "23. Případová studie — AI-assisted analog IC design"
 part: "IX — AI jako pracovní systém"
-status: final-draft
+status: release-candidate
 version: "0.7"
-updated: 2026-08-07
+updated: 2026-08-08
 ---
 
 # 23. Případová studie — AI-assisted analog IC design
@@ -297,13 +297,13 @@ odhadni sizing
 simuluj kandidáta
 ```
 
-Agent má engineering language, ve kterém může pracovat.
+Agent má inženýrský jazyk, ve kterém může pracovat.
 
-> **gm/ID zde není náhradou designera. Je to strukturované rozhraní mezi design knowledge, daty technologie a automatizací.**
+> **gm/ID zde není náhradou designera. Je to strukturované rozhraní mezi návrhovými znalostmi, daty technologie a automatizací.**
 
 ---
 
-## 23.6 Characterization data
+## 23.6 Charakterizační data
 
 gm/ID metoda potřebuje charakterizaci tranzistorů pro danou technologii.
 
@@ -340,7 +340,7 @@ cgg_w
 ...
 ```
 
-Pak agent může udělat query:
+Pak agent může položit dotaz:
 
 ```text
 find operating points where:
@@ -382,12 +382,12 @@ company PDK
 +
 Spectre / Virtuoso
 +
-interní knowledge
+interní znalosti
 ```
 
 Stejný agentní princip zůstává.
 
-Změní se tools a data source.
+Změní se nástroje a zdroj dat.
 
 To je bezpečný způsob vývoje.
 
@@ -402,16 +402,16 @@ specification
 +
 topology
 +
-characterization data
+charakterizační data
 ```
 
-můžeme vytvořit první candidate sizing.
+můžeme vytvořit první kandidátní sizing.
 
 Důležité je rozdělit dvě otázky.
 
-### Topology selection
+### Volba topologie
 
-To je vysoká úroveň engineering rozhodnutí.
+To je inženýrské rozhodnutí na vysoké úrovni.
 
 Například:
 
@@ -420,14 +420,14 @@ Například:
 - two-stage?
 - current mirror OTA?
 
-### Device sizing
+### Sizing tranzistorů
 
 Jak nastavit konkrétní:
 
-- currents,
+- proudy,
 - gm/ID,
 - W/L,
-- compensation.
+- kompenzace.
 
 Pro první pilot je rozumné **topologii fixovat člověkem**.
 
@@ -445,7 +445,7 @@ Později lze přidat několik povolených topologií a nechat agenta porovnat ka
 
 ---
 
-## 23.8 SPICE / Spectre simulation
+## 23.8 SPICE / Spectre simulace
 
 Kandidátní sizing není výsledek.
 
@@ -455,7 +455,7 @@ Následuje simulace.
 
 Agent nepotřebuje plný shell.
 
-Může mít tools:
+Může mít nástroje:
 
 ```text
 create_candidate(parameters)
@@ -465,16 +465,16 @@ run_transient(candidate_id, corner)
 get_run_status(run_id)
 ```
 
-Uvnitř tool layer může být:
+Uvnitř vrstvy nástrojů může být:
 
-- netlist generator,
+- generátor netlistu,
 - ngspice,
 - Spectre,
-- Virtuoso automation.
+- automatizace Virtuoso.
 
-Model nemusí znát všechny příkazové nuance simulatoru.
+Model nemusí znát všechny příkazové nuance simulátoru.
 
-MCP/API wrapper vytvoří stabilní interface.
+MCP/API wrapper vytvoří stabilní rozhraní.
 
 To je přesně princip z kapitoly o tool use.
 
@@ -484,9 +484,9 @@ To je přesně princip z kapitoly o tool use.
 
 Simulátor může vyprodukovat:
 
-- raw waveforms,
-- logs,
-- measurements.
+- nezpracované průběhy,
+- logy,
+- měření.
 
 LLM nemá ručně číst megabajty waveform dat.
 
@@ -655,7 +655,7 @@ Pak můžeme později analyzovat:
 
 ---
 
-### LLM není jediný optimizer
+### LLM není jediný optimalizátor
 
 Agent nemusí sám vybírat každý bod.
 
@@ -668,7 +668,7 @@ Tento problém vypadá jako numerická optimalizace.
 A zavolat:
 
 ```text
-Bayesian optimizer
+bayesovský optimalizátor
 ```
 
 nebo:
@@ -683,17 +683,17 @@ Tím se systém stává meta-orchestrátorem vhodných metod.
 
 ---
 
-## 23.13 Human designer jako decision maker
+## 23.13 Designer jako ten, kdo rozhoduje
 
 Nejdůležitější role člověka zůstává tam, kde je problém otevřený.
 
 Například:
 
 - volba topologie,
-- trade-off mezi area a robustness,
-- rozhodnutí, zda změnit architecture,
-- interpretace neobvyklého failure,
-- risk acceptance.
+- trade-off mezi plochou a robustností,
+- rozhodnutí, zda změnit architekturu,
+- interpretace neobvyklého selhání,
+- přijetí rizika.
 
 Agent může připravit rozhodnutí:
 
@@ -713,9 +713,9 @@ OPTION C
 
 Designer rozhodne.
 
-To je kvalitativně lepší využití lidského času než ruční otevírání 200 simulation runs.
+To je kvalitativně lepší využití lidského času než ruční otevírání 200 simulačních běhů.
 
-> **Cílem není odstranit designera ze smyčky. Cílem je posunout jej z mechanické obsluhy nástrojů k rozhodování nad kvalitně připravenými evidence.**
+> **Cílem není odstranit designera ze smyčky. Cílem je posunout jej z mechanické obsluhy nástrojů k rozhodování nad kvalitně připravenými podklady.**
 
 ---
 
@@ -723,7 +723,7 @@ To je kvalitativně lepší využití lidského času než ruční otevírání 
 
 V roce 2026 lze velmi realisticky automatizovat nebo výrazně podpořit například:
 
-### Knowledge retrieval
+### Vyhledání znalostí
 
 ```text
 najdi relevantní previous design note
@@ -733,23 +733,23 @@ najdi relevantní previous design note
 
 S lidskou validací.
 
-### Characterization queries
+### Dotazy nad charakterizačními daty
 
 Deterministicky nad připravenými daty.
 
-### Sizing calculations
+### Výpočty sizingu
 
 Podle definované metodiky a povolené topologie.
 
-### Netlist / testbench generation
+### Generování netlistu / testbenche
 
 S kontrolou.
 
-### Simulation execution
+### Spouštění simulací
 
 Velmi dobře automatizovatelné.
 
-### Measurement extraction
+### Extrakce měření
 
 Ideální deterministická úloha.
 
@@ -757,11 +757,11 @@ Ideální deterministická úloha.
 
 Pokud jsou limits strukturované.
 
-### Report generation
+### Generování reportu
 
 Z evidence.
 
-### Iterace v omezeném design space
+### Iterace v omezeném návrhovém prostoru
 
 S guardrails.
 
@@ -775,9 +775,9 @@ Ne všechno, co technicky lze, je vhodné pustit autonomně.
 
 Pro první systémy bych byl velmi opatrný u:
 
-### Neomezené topology generation
+### Neomezené generování topologií
 
-Search space je obrovský a validace drahá.
+Prostor možností je obrovský a validace drahá.
 
 ### Neauditované změny schematic/layout
 
@@ -785,7 +785,7 @@ Potřebujeme diff a review.
 
 ### Automatické přijetí trade-offu
 
-Například změna area vs. noise může mít system-level dopad.
+Například změna area vs. noise může mít dopad na úrovni systému.
 
 ### Přenos čísel mezi technologiemi bez nové charakterizace
 
@@ -793,9 +793,9 @@ Stejná topologie neznamená stejné sizing.
 
 ### Závěr bez simulace
 
-AI intuition není sign-off.
+Intuice AI není podklad pro sign-off.
 
-### Production write bez approval
+### Zápis do produkce bez schválení
 
 Zejména u firemního PDK a hlavních projektů.
 
@@ -890,13 +890,13 @@ Agent:
 - simuluje,
 - analyzuje.
 
-Nemění released design.
+Nemění schválený návrh.
 
-### Fáze 3 — sandbox design changes
+### Fáze 3 — změny návrhu v sandboxu
 
-Agent může generovat candidates na vlastní branch/workspace.
+Agent může generovat kandidátní změny ve vlastní branch/workspace.
 
-### Fáze 4 — designer-approved optimization
+### Fáze 4 — optimalizace schvalovaná designerem
 
 Každá významná změna prochází review.
 
@@ -907,14 +907,14 @@ Tento postup je mnohem bezpečnější než pokus o „autonomního analog desig
 ## Co si z kapitoly odnést
 
 1. **Analog IC design je výborný agentní use-case, protože kombinuje znalosti, heuristiku a silný fyzikální verifier.**
-2. **Specifikaci je vhodné převést do strukturovaných a validovaných requirements.**
-3. **Knowledge base má dodávat prior knowledge, ne nekriticky kopírovat staré sizing.**
-4. **gm/ID vytváří užitečnou strukturovanou mezivrstvu mezi design intent a device sizing.**
-5. **Characterization data musí pocházet ze skutečného PDK modelu a simulatoru.**
-6. **Pro první pilot je rozumné fixovat topologii a automatizovat sizing, simulation a verifikace.**
+2. **Specifikaci je vhodné převést do strukturovaných a validovaných požadavků.**
+3. **Knowledge base má dodávat předchozí znalosti, ne nekriticky kopírovat starý sizing.**
+4. **gm/ID vytváří užitečnou strukturovanou mezivrstvu mezi návrhovým záměrem a sizingem tranzistorů.**
+5. **Charakterizační data musí pocházet ze skutečného PDK modelu a simulátoru.**
+6. **Pro první pilot je rozumné fixovat topologii a automatizovat sizing, simulaci a verifikaci.**
 7. **PASS/FAIL má počítat deterministický comparator; LLM interpretuje výsledek.**
 8. **Optimalizační smyčka může kombinovat LLM s klasickými optimalizačními algoritmy.**
-9. **Human designer zůstává decision makerem pro topologii a zásadní trade-offy.**
+9. **Designer zůstává tím, kdo rozhoduje o topologii a zásadních trade-offech.**
 10. **Praktická cesta vede od veřejného sandboxu přes interní read-only pilot k řízené automatizaci.**
 
 Tato případová studie také velmi dobře ukazuje další zásadní téma.

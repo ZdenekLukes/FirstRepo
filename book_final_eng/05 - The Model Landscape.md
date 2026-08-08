@@ -1,10 +1,10 @@
 ---
 title: "5. The Model Landscape"
 part: "III — The AI Model Landscape in August 2026"
-status: international-draft
+status: release-candidate
 version: "0.8-eng"
 updated: 2026-08-08
-snapshot: "2026-08-07"
+snapshot: "2026-08-08"
 ---
 
 # 5. The Model Landscape
@@ -15,7 +15,7 @@ snapshot: "2026-08-07"
 
 *Figure: Choose a model for the workload, not from one universal ranking.*
 
-> **Snapshot: August 7, 2026.** This chapter will age faster than most of the book. Treat product names as a map of the market at this date, not as a list that should remain current for years.
+> **Snapshot: August 8, 2026.** This chapter will age faster than most of the book. Treat product names as a map of the market at this date, not as a list that should remain current for years.
 
 A few years ago, the LLM market could almost be described as a short list of model names. In 2026, that view is no longer useful.
 

@@ -1,9 +1,9 @@
 ---
 title: "2. AI, Machine Learning, Deep Learning a Generative AI"
 part: "II — Co vlastně dnešní AI je"
-status: final-draft
+status: release-candidate
 version: "0.7"
-updated: 2026-08-07
+updated: 2026-08-08
 ---
 
 # 2. AI, Machine Learning, Deep Learning a Generative AI
@@ -532,7 +532,7 @@ A právě tímto směrem se bude ubírat zbytek knihy: od pochopení samotného 
 
 ## Shrnutí kapitoly
 
-Pokud si z této kapitoly odnést jen několik věcí, pak tyto:
+Pokud si z této kapitoly odnesete jen několik věcí, pak tyto:
 
 1. **AI je nejširší pojem.** Ne každá AI používá Machine Learning.
 2. **Machine Learning** umožňuje systému učit se vzory z dat místo ručního programování všech pravidel.

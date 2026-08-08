@@ -1,10 +1,10 @@
 ---
 title: "15. MCP, Skills, Plugins, and Connectors"
 part: "VII — Tools: When the LLM Stops Only Writing"
-status: international-draft
+status: release-candidate
 version: "0.8-eng"
 updated: 2026-08-08
-snapshot: "2026-08-07"
+snapshot: "2026-08-08"
 ---
 
 # 15. MCP, Skills, Plugins, and Connectors

@@ -1,9 +1,9 @@
 ---
 title: "4. Co LLM umí — a co neumí"
 part: "II — Co vlastně dnešní AI je"
-status: final-draft
+status: release-candidate
 version: "0.7"
-updated: 2026-08-07
+updated: 2026-08-08
 ---
 
 # 4. Co LLM umí — a co neumí

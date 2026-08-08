@@ -1,16 +1,16 @@
 ---
 title: "C. Přehled nástrojů — snapshot 08/2026"
 part: "PŘÍLOHY"
-status: final-draft
+status: release-candidate
 version: "0.7"
-updated: 2026-08-07
+updated: 2026-08-08
 ---
 
 # C. Přehled nástrojů — snapshot 08/2026
 
 **[Snapshot 08/2026]**
 
-> **Snapshot k 7. 8. 2026.** Smyslem není doporučit jeden „správný stack“, ale ukázat typy nástrojů, které řeší jednotlivé vrstvy AI systému. Před použitím ověř aktuální licenci, podporované modely a security model.
+> **Snapshot k 8. 8. 2026.** Smyslem není doporučit jeden „správný stack“, ale ukázat typy nástrojů, které řeší jednotlivé vrstvy AI systému. Před použitím ověř aktuální licenci, podporované modely a security model.
 
 ## C.1 Cloud AI
 

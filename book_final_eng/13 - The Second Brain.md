@@ -1,7 +1,7 @@
 ---
 title: "13. The Second Brain"
 part: "VI — Data, RAG, and the Second Brain"
-status: international-draft
+status: release-candidate
 version: "0.8-eng"
 updated: 2026-08-08
 ---
@@ -533,6 +533,4 @@ That is the right power relationship:
 9. **RAG is one capability inside a larger agentic workflow.**
 10. **The best second brain makes it easier to continue real work, not merely to collect information.**
 
-The next step is what makes this knowledge operational. A model can read and write text. But what happens when we give it a calculator, a database, a simulator, a shell, or an API?
-
-That is **tool use**.
+The next step is what makes this knowledge operational. A model can read and write text. But what happens when we give it a calculator, a database, a simulator, a shell, or an API? **That is tool use.**

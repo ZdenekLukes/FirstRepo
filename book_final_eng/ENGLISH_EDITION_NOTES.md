@@ -28,19 +28,19 @@ The book should never become shallow in order to become accessible.
 
 ## International Positioning
 
-Working title:
+Final title:
 
 > **AI: From First Principles to Agentic Systems**
 
-Working subtitle:
+Final subtitle:
 
-> **How AI Actually Works — and How to Build Reliable Systems with Models, Data, Tools, and Verification**
+> **How AI Actually Works — From LLMs and RAG to Tools, Agents, Evals, and Reliable Systems**
 
 The positioning deliberately avoids “100 prompts,” “AI hacks,” or a vendor/product catalog. The durable subject is the system around the model.
 
 ## Snapshot Policy
 
-The English edition inherits the Czech master’s factual snapshot date of **August 7, 2026** for fast-moving model, tool, hardware, and regulatory material.
+The English edition uses a factual snapshot date of **August 8, 2026** for fast-moving model, tool, hardware, and regulatory material.
 
 Before an actual international publication, perform a fresh primary-source check of all snapshot sections and update the edition date consistently rather than patching individual product names ad hoc.
 

@@ -1,9 +1,9 @@
 ---
 title: "36. Deset praktických projektů od začátečníka k agentnímu systému"
 part: "XIV — Praktická kuchařka"
-status: final-draft
+status: release-candidate
 version: "0.7"
-updated: 2026-08-07
+updated: 2026-08-08
 ---
 
 # 36. Deset praktických projektů od začátečníka k agentnímu systému
@@ -27,7 +27,7 @@ dokumenty
 ↓
 knowledge base
 ↓
-local model
+lokální model
 ↓
 RAG
 ↓
@@ -659,7 +659,7 @@ Uvidíme totiž:
 | 1 | context | halucinace mimo zdroj |
 | 2 | provenance | záměna dokumentů/revizí |
 | 3 | knowledge management | zastaralá informace |
-| 4 | local inference | výkon a falešná očekávání |
+| 4 | lokální inference | výkon a falešná očekávání |
 | 5 | retrieval | špatný chunk / injection |
 | 6 | tool use | chybný tool call |
 | 7 | agentní loop | příliš široká oprávnění |

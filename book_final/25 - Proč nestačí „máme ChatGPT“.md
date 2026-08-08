@@ -1,9 +1,9 @@
 ---
 title: "25. Proč nestačí „máme ChatGPT“"
 part: "X — Bezpečnost, důvěra a firemní provoz"
-status: final-draft
+status: release-candidate
 version: "0.7"
-updated: 2026-08-07
+updated: 2026-08-08
 ---
 
 # 25. Proč nestačí „máme ChatGPT“
@@ -357,7 +357,7 @@ central platform + rules
 s
 
 ```text
-local domain expertise
+lokální doménová expertiza
 ```
 
 ---

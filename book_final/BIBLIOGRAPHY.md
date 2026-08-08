@@ -61,7 +61,7 @@ U rychle se měnících produktových faktů platí jednoduché pravidlo: **aktu
 35. European Commission — Transparency obligations under Article 50 — https://digital-strategy.ec.europa.eu/en/faqs/transparency-obligations-under-article-50-ai-act
 36. European Commission — GDPR principles — https://commission.europa.eu/law/law-topic/data-protection/rules-business-and-organisations/principles-gdpr_en
 
-## Snapshot modelů — 7. 8. 2026
+## Snapshot modelů — 8. 8. 2026
 
 37. OpenAI — GPT-5.6 — https://openai.com/index/gpt-5-6/
 38. OpenAI — Model Release Notes — https://help.openai.com/en/articles/9624314-model-release-notes

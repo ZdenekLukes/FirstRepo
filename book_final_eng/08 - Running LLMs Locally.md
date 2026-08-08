@@ -1,15 +1,15 @@
 ---
 title: "8. Running LLMs Locally"
 part: "IV — Cloud, Local AI, and Hardware"
-status: international-draft
+status: release-candidate
 version: "0.8-eng"
 updated: 2026-08-08
-snapshot: "2026-08-07"
+snapshot: "2026-08-08"
 ---
 
 # 8. Running LLMs Locally
 
-> **Snapshot: August 7, 2026.** The specific tools in this chapter — Ollama, llama.cpp, vLLM, Open WebUI — will evolve. The underlying relationships among model size, quantization, memory, KV cache, and inference hardware will age much more slowly.
+> **Snapshot: August 8, 2026.** The specific tools in this chapter — Ollama, llama.cpp, vLLM, Open WebUI — will evolve. The underlying relationships among model size, quantization, memory, KV cache, and inference hardware will age much more slowly.
 
 <!-- visual:08-local-memory-stack.svg -->
 

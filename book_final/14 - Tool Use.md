@@ -1,9 +1,9 @@
 ---
 title: "14. Tool Use"
 part: "VII — Nástroje: když LLM přestane jen psát"
-status: final-draft
+status: release-candidate
 version: "0.7"
-updated: 2026-08-07
+updated: 2026-08-08
 ---
 
 # 14. Tool Use
@@ -496,7 +496,7 @@ PLM
 
 Agent nemusí tyto nástroje nahrazovat.
 
-Může je **orchestravat**.
+Může je **orchestrovat**.
 
 Příklad:
 

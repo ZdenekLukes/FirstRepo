@@ -1,9 +1,9 @@
 ---
 title: "22. AI pro technické a inženýrské úlohy"
 part: "IX — AI jako pracovní systém"
-status: final-draft
+status: release-candidate
 version: "0.7"
-updated: 2026-08-07
+updated: 2026-08-08
 ---
 
 # 22. AI pro technické a inženýrské úlohy
@@ -147,7 +147,7 @@ Například:
 
 LLM z toho vytvoří vysvětlení.
 
-Nesmí si číslo sám odhadnout ze screenshotu, pokud máme k dispozici přesný measurement output.
+Nesmí si číslo sám odhadnout ze screenshotu, pokud máme k dispozici přesný výstup měření.
 
 ---
 
@@ -430,7 +430,7 @@ LLM
 → interpretuje evidence
 ```
 
-To je obecný pattern použitelný daleko za electronics.
+To je obecný vzor použitelný daleko za elektronikou.
 
 ---
 
@@ -442,21 +442,21 @@ Může například říct:
 
 > „Zvětšení tranzistoru pravděpodobně sníží mismatch.“
 
-To je obecně rozumná engineering knowledge.
+To je obecně rozumný inženýrský princip.
 
 Ale skutečný návrh závisí na:
 
 - technologii,
-- bias point,
-- parasitics,
-- topology,
-- corners.
+- pracovním bodu,
+- parazitních prvcích,
+- topologii,
+- corner podmínkách.
 
 Model nemá být zdrojem finálního fyzikálního výsledku.
 
 Při otázce:
 
-> „Splní tento circuit stability přes všechny PVT?“
+> „Splní tento obvod požadavky na stabilitu přes všechny PVT?“
 
 správná cesta není:
 
@@ -474,15 +474,15 @@ LLM determines required verification
 → limits evaluated
 ```
 
-> **AI může navrhovat hypotézy. Simulator rozhoduje o tom, co daný model obvodu skutečně predikuje.**
+> **AI může navrhovat hypotézy. Simulátor rozhoduje o tom, co daný model obvodu skutečně predikuje.**
 
-A měření následně rozhoduje o skutečném siliconu.
+A měření následně rozhoduje o skutečném čipu.
 
 ---
 
 ## 22.11 Agent jako orchestrátor deterministických nástrojů
 
-Tím se dostáváme k nejpraktičtější definici engineering agenta.
+Tím se dostáváme k nejpraktičtější definici inženýrského agenta.
 
 Není to virtuální inženýr, který všechno ví.
 
@@ -512,10 +512,10 @@ Agent dokáže:
 3. vytvořit plán experimentu,
 4. použít nástroje,
 5. spojit výsledky,
-6. označit uncertainty,
+6. označit nejistotu,
 7. připravit rozhodnutí pro člověka.
 
-Člověk zůstává ownerem engineering rozhodnutí.
+Člověk nadále rozhoduje o zásadních inženýrských otázkách.
 
 To není slabší vize AI.
 
@@ -523,7 +523,7 @@ Naopak je to realistická cesta k velmi silnému systému.
 
 ---
 
-## Stupně engineering autonomie
+## Stupně inženýrské autonomie
 
 Jde o doménovou konkretizaci tool permission ladderu z kapitoly 14 — stejný princip, engineering nástroje:
 
@@ -532,16 +532,16 @@ LEVEL 1
 AI vysvětluje dokumenty
 
 LEVEL 2
-AI generuje scripts a analysis
+AI generuje skripty a analýzy
 
 LEVEL 3
-AI spouští read-only / sandbox simulations
+AI spouští read-only / sandbox simulace
 
 LEVEL 4
-AI navrhuje další experiments podle výsledků
+AI navrhuje další experimenty podle výsledků
 
 LEVEL 5
-AI optimalizuje v omezeném design space
+AI optimalizuje v omezeném návrhovém prostoru
 
 LEVEL 6
 AI navrhuje změnu a člověk ji schvaluje
@@ -555,15 +555,13 @@ Velká hodnota může vzniknout už na úrovních 2–4.
 
 ## Co si z kapitoly odnést
 
-1. **Engineering kombinuje nestrukturované znalosti s velmi kvalitními deterministickými nástroji.**
-2. **AI je silný technický asistent pro dokumenty, datasheety, specifications a scripting.**
+1. **Inženýrská práce kombinuje nestrukturované znalosti s velmi kvalitními deterministickými nástroji.**
+2. **AI je silný technický asistent pro dokumenty, datasheety, specifikace a skriptování.**
 3. **Numerická data má zpracovat vhodný výpočetní nástroj; LLM je interpretuje.**
-4. **Simulation je ideální zdroj zpětné vazby pro agentní smyčku.**
-5. **LLM nemusí být nejlepší numerický optimizer; může orchestravat specializovaný optimalizační algoritmus.**
+4. **Simulace je ideální zdroj zpětné vazby pro agentní smyčku.**
+5. **LLM nemusí být nejlepší numerický optimalizátor; může orchestrovat specializovaný optimalizační algoritmus.**
 6. **AI nemá nahrazovat fyzikální simulaci — má rozhodovat, co simulovat a jak výsledky použít.**
-7. **Engineering agent je nejlépe chápaný jako orchestrátor dokumentů, výpočtů, simulátorů a verifikace.**
-8. **Autonomii lze přidávat po stupních a člověk zůstává decision makerem pro zásadní trade-offy.**
+7. **Inženýrský agent je nejlépe chápaný jako orchestrátor dokumentů, výpočtů, simulátorů a verifikace.**
+8. **Autonomii lze přidávat po stupních a člověk zůstává tím, kdo rozhoduje o zásadních trade-offech.**
 
-V další kapitole tento obecný princip převedeme na konkrétní případovou studii:
-
-> **AI-assisted analog IC design.**
+V další kapitole tento obecný princip převedeme na konkrétní případovou studii: **AI-assisted analog IC design.**

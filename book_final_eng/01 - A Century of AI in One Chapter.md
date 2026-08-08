@@ -1,7 +1,7 @@
 ---
 title: "1. A Century of AI in One Chapter"
 part: "I — How We Got Here"
-status: international-draft
+status: release-candidate
 version: "0.8-eng"
 updated: 2026-08-08
 ---

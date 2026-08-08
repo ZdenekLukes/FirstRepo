@@ -1,7 +1,7 @@
 ---
 title: "6. How to Compare AI Models"
 part: "III — The AI Model Landscape in August 2026"
-status: international-draft
+status: release-candidate
 version: "0.8-eng"
 updated: 2026-08-08
 ---

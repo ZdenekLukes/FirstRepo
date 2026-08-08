@@ -1,7 +1,7 @@
 ---
 title: "C. Tooling Landscape — Snapshot 08/2026"
 part: "APPENDICES"
-status: international-draft
+status: release-candidate
 version: "0.8-eng"
 updated: 2026-08-08
 ---
@@ -10,7 +10,7 @@ updated: 2026-08-08
 
 **[Snapshot 08/2026]**
 
-> **Snapshot: August 7, 2026.** The point is not to recommend one correct stack, but to show the types of tools that solve different layers. Verify current licensing, supported models, and security assumptions before deployment.
+> **Snapshot: August 8, 2026.** The point is not to recommend one correct stack, but to show the types of tools that solve different layers. Verify current licensing, supported models, and security assumptions before deployment.
 
 ## Cloud AI
 

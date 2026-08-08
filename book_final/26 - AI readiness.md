@@ -1,9 +1,9 @@
 ---
 title: "26. AI readiness"
 part: "XI — Jak zavádět AI do firmy"
-status: final-draft
+status: release-candidate
 version: "0.7"
-updated: 2026-08-07
+updated: 2026-08-08
 ---
 
 # 26. AI readiness

@@ -1,7 +1,7 @@
 ---
 title: "B. Model Landscape — Snapshot 08/2026"
 part: "APPENDICES"
-status: international-draft
+status: release-candidate
 version: "0.8-eng"
 updated: 2026-08-08
 ---
@@ -10,7 +10,7 @@ updated: 2026-08-08
 
 **[Snapshot 08/2026]**
 
-> **Snapshot: August 7, 2026.** This is a market map, not a ranking. Names, prices, availability, and licenses change quickly; verify the provider’s primary source before deployment.
+> **Snapshot: August 8, 2026.** This is a market map, not a ranking. Names, prices, availability, and licenses change quickly; verify the provider’s primary source before deployment.
 
 ## Frontier and Cloud Families
 

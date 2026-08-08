@@ -1,9 +1,9 @@
 ---
 title: "1. Sto let vývoje AI na několika stránkách"
 part: "I — Jak jsme se sem dostali"
-status: final-draft
+status: release-candidate
 version: "0.7"
-updated: 2026-08-07
+updated: 2026-08-08
 ---
 
 # 1. Sto let vývoje AI na několika stránkách

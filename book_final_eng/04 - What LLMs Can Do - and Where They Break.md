@@ -1,7 +1,7 @@
 ---
 title: "4. What LLMs Can Do — and Where They Break"
 part: "II — What Modern AI Actually Is"
-status: international-draft
+status: release-candidate
 version: "0.8-eng"
 updated: 2026-08-08
 ---

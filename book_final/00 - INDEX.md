@@ -2,7 +2,7 @@
 title: "AI od základů k agentním systémům"
 subtitle: "Jak AI skutečně funguje, jak ji používat a jak z modelů stavět spolehlivé systémy"
 version: "0.7"
-date: 2026-08-07
+date: 2026-08-08
 status: release-candidate
 ---
 

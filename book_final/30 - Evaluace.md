@@ -1,9 +1,9 @@
 ---
 title: "30. Evaluace"
 part: "XII — Jak poznat, že AI opravdu funguje"
-status: final-draft
+status: release-candidate
 version: "0.7"
-updated: 2026-08-07
+updated: 2026-08-08
 ---
 
 # 30. Evaluace
@@ -100,7 +100,7 @@ Ground truth může vzniknout:
 - ručně expertem,
 - z databáze,
 - z test suite,
-- ze simulatoru,
+- ze simulátoru,
 - z historicky ověřeného výsledku.
 
 Někdy neexistuje jedna správná odpověď.

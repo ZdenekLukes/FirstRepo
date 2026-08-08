@@ -1,10 +1,10 @@
 ---
 title: "32. Kam se AI posouvá"
 part: "XIII — Co přijde dál"
-status: final-draft
+status: release-candidate
 version: "0.7"
-updated: 2026-08-07
-snapshot: "2026-08-07"
+updated: 2026-08-08
+snapshot: "2026-08-08"
 ---
 
 # 32. Kam se AI posouvá
@@ -114,10 +114,10 @@ Menší modely se rychle zlepšují.
 To podporuje několik trendů:
 
 ```text
-local AI
+lokální AI
 edge AI
-private AI
-specialized models
+privátní AI
+specializované modely
 ```
 
 Není pravděpodobné, že malý model na notebooku bude vždy stejně schopný jako nejdražší frontier systém.
@@ -126,25 +126,25 @@ Ale nemusí být.
 
 Pokud úloha je:
 
-- extraction,
-- classification,
-- function calling,
-- local coding,
-- routing,
+- extrakce,
+- klasifikace,
+- volání funkcí,
+- lokální coding,
+- směrování,
 
 může malý model stačit.
 
 Budoucí AI stack proto může připomínat hierarchii:
 
 ```text
-small local model
+malý lokální model
 → 80 % jednoduchých kroků
 
-large local/server model
-→ harder internal tasks
+větší lokální/serverový model
+→ náročnější interní úlohy
 
 frontier cloud
-→ exceptional reasoning
+→ výjimečně náročné reasoning úlohy
 ```
 
 To je zároveň výkonová, ekonomická i bezpečnostní architektura.
@@ -478,11 +478,11 @@ Ale právě zde je kritická privacy.
 Proto budou důležité architektury:
 
 ```text
-local memory
+lokální paměť
 +
-local processing
+lokální zpracování
 +
-selective cloud reasoning
+selektivní cloudové reasoning
 ```
 
 Personal AI může být velmi přirozeným příkladem hybridního systému.

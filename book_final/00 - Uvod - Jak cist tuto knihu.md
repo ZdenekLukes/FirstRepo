@@ -1,9 +1,9 @@
 ---
 title: "Úvod — Pro koho je tato kniha a jak ji číst"
 part: "ÚVOD"
-status: final-draft
+status: release-candidate
 version: "0.7"
-updated: 2026-08-07
+updated: 2026-08-08
 ---
 
 # Úvod — Pro koho je tato kniha a jak ji číst
@@ -117,7 +117,7 @@ Přečtěte kapitoly 2–4, potom části X–XII: bezpečnost, AI readiness, ad
 AI se mění rychle. Proto kniha odděluje dvě vrstvy:
 
 - **Principy** — jak LLM funguje, co je RAG, jak navrhovat nástroje, agenty, bezpečnost a evals. Ty stárnou pomaleji a tvoří většinu knihy.
-- **Snapshoty** — konkrétní modely, nástroje, hardware a regulace k 7. 8. 2026. Rychle se měnící fakta jsou označená datem a primární zdroje jsou soustředěné v bibliografii a přílohách B a C. Typickými snapshotovými částmi jsou zejména kapitoly 5, 8, 15, 24, 31, 32 a 35.
+- **Snapshoty** — konkrétní modely, nástroje, hardware a regulace k 8. 8. 2026. Rychle se měnící fakta jsou označená datem a primární zdroje jsou soustředěné v bibliografii a přílohách B a C. Typickými snapshotovými částmi jsou zejména kapitoly 5, 8, 15, 24, 31, 32 a 35.
 
 Pokud knihu čtete později, snapshoty berte jako mapu tehdejšího terénu. Architektonické principy, rozhodovací pravidla a failure modes jsou to, co má vydržet.
 

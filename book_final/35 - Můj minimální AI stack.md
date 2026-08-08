@@ -1,10 +1,10 @@
 ---
 title: "35. Můj minimální AI stack"
 part: "XIV — Praktická kuchařka"
-status: final-draft
+status: release-candidate
 version: "0.7"
-updated: 2026-08-07
-snapshot: "2026-08-07"
+updated: 2026-08-08
+snapshot: "2026-08-08"
 ---
 
 # 35. Můj minimální AI stack
@@ -580,7 +580,7 @@ Ne univerzální firemní AI platforma první den.
 
 ### Vector database cluster
 
-Dokud nemám problém, který obyčejný local index nebo Postgres nezvládne.
+Dokud nemám problém, který obyčejný lokální index nebo Postgres nezvládne.
 
 ### Multi-agent framework
 
@@ -608,7 +608,7 @@ Je to způsob, jak poznat, která komponenta skutečně přidala hodnotu.
 
 1. **Minimální AI stack má pokrýt potřeby, ne katalog módních frameworků.**
 2. **Jeden frontier model a jeden lokální runtime jsou pro začátek dost.**
-3. **Ollama je jednoduchá výchozí local vrstva; llama.cpp přidává kontrolu a vLLM serverový throughput.**
+3. **Ollama je jednoduchá výchozí lokální vrstva; llama.cpp přidává kontrolu a vLLM serverový throughput.**
 4. **Coding agent dramaticky zrychluje stavbu vlastních AI experimentů.**
 5. **Markdown + Obsidian + Git vytvářejí otevřenou a verzovatelnou knowledge layer.**
 6. **Začáteční automation může být obyčejný Python script a scheduler.**

@@ -1,9 +1,9 @@
 ---
 title: "17. Jak postavit jednoduchého agenta"
 part: "VIII — Agentní AI"
-status: final-draft
+status: release-candidate
 version: "0.7"
-updated: 2026-08-07
+updated: 2026-08-08
 ---
 
 # 17. Jak postavit jednoduchého agenta
@@ -26,7 +26,7 @@ long-term memory
 +
 autonomous planning
 +
-cloud i local models
+cloudové i lokální modely
 ```
 
 To je téměř jistý způsob, jak získat systém, u kterého nebudeme vědět, proč funguje nebo proč selhává.
@@ -487,7 +487,7 @@ v1
 analyzuje existující results
 
 v2
-sám spustí chybějící simulation
+sám spustí chybějící simulaci
 
 v3
 navrhne additional corner

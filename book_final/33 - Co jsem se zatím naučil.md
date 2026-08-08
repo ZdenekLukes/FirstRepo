@@ -1,9 +1,9 @@
 ---
 title: "33. Co jsem se zatím naučil"
 part: "XIII — Co přijde dál"
-status: final-draft
+status: release-candidate
 version: "0.7"
-updated: 2026-08-07
+updated: 2026-08-08
 ---
 
 # 33. Co jsem se zatím naučil
@@ -280,7 +280,7 @@ Hype je hlavně **přeskakování mezikroků mezi schopností modelu a reálným
 
 ---
 
-## 33.6 Cloud vs. local — jak se změnil můj pohled
+## 33.6 Cloud vs. lokální AI — jak se změnil můj pohled
 
 Cloud a lokální AI je snadné chápat jako souboj dvou táborů.
 
@@ -306,9 +306,9 @@ Je obtížné ignorovat tam, kde potřebujeme:
 Proto mi dnes nejlogičtější připadá hybrid:
 
 ```text
-local where it makes sense
-cloud where it adds real value
-policy decides what can go where
+lokálně tam, kde to dává smysl
+cloud tam, kde přidává skutečnou hodnotu
+policy rozhoduje, co smí kam
 ```
 
 To není kompromis.

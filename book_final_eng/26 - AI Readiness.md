@@ -1,7 +1,7 @@
 ---
 title: "26. AI Readiness"
 part: "XI — Adopting AI in an Organization"
-status: international-draft
+status: release-candidate
 version: "0.8-eng"
 updated: 2026-08-08
 ---

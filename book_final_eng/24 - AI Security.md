@@ -1,10 +1,10 @@
 ---
 title: "24. AI Security"
 part: "X — Security, Trust, and Enterprise Operations"
-status: international-draft
+status: release-candidate
 version: "0.8-eng"
 updated: 2026-08-08
-snapshot: "2026-08-07"
+snapshot: "2026-08-08"
 ---
 
 # 24. AI Security
@@ -501,7 +501,7 @@ Who is affected by the output?
 What decisions or content does it create?
 ```
 
-**Snapshot: August 7, 2026.** According to the European Commission sources used by the Czech master, selected Article 50 transparency obligations apply from August 2, 2026. The precise obligation depends on the use case and role. This book is not legal advice; production deployments require current legal/compliance review.
+**Snapshot: August 8, 2026.** According to the European Commission sources used by the Czech master, selected Article 50 transparency obligations apply from August 2, 2026. The precise obligation depends on the use case and role. This book is not legal advice; production deployments require current legal/compliance review.
 
 Other jurisdictions have different legal regimes. The transferable engineering principle is to keep **jurisdiction-specific policy outside model behavior**, so rules can be updated without pretending that the LLM itself is the compliance system.
 

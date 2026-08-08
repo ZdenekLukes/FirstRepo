@@ -1,9 +1,9 @@
 ---
 title: "9. Prompting"
 part: "V — Jak s modelem skutečně pracovat"
-status: final-draft
+status: release-candidate
 version: "0.7"
-updated: 2026-08-07
+updated: 2026-08-08
 ---
 
 # 9. Prompting

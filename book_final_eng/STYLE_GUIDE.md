@@ -3,7 +3,7 @@
 ## Editorial Positioning
 
 **Title:** *AI: From First Principles to Agentic Systems*  
-**Subtitle:** *How AI Actually Works — and How to Build Reliable Systems with Models, Data, Tools, and Verification*
+**Subtitle:** *How AI Actually Works — From LLMs and RAG to Tools, Agents, Evals, and Reliable Systems*
 
 The English edition is an **international adaptation**, not a sentence-by-sentence translation of the Czech master.
 
@@ -99,7 +99,7 @@ from:
 ENGINEERING INFERENCE
 ```
 
-For fast-moving product facts, use explicit snapshots such as `Snapshot: August 7, 2026.` Prefer primary sources.
+For fast-moving product facts, use explicit snapshots such as `Snapshot: August 8, 2026.` Prefer primary sources.
 
 ## Security Language
 

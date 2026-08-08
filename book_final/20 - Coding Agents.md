@@ -1,9 +1,9 @@
 ---
 title: "20. Coding Agents"
 part: "IX — AI jako pracovní systém"
-status: final-draft
+status: release-candidate
 version: "0.7"
-updated: 2026-08-07
+updated: 2026-08-08
 ---
 
 # 20. Coding Agents

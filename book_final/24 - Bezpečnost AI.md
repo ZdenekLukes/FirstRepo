@@ -1,10 +1,10 @@
 ---
 title: "24. Bezpečnost AI"
 part: "X — Bezpečnost, důvěra a firemní provoz"
-status: final-draft
+status: release-candidate
 version: "0.7"
-updated: 2026-08-07
-snapshot: "2026-08-07"
+updated: 2026-08-08
+snapshot: "2026-08-08"
 ---
 
 # 24. Bezpečnost AI
@@ -838,7 +838,7 @@ KOHO výsledek ovlivňuje?
 JAKÁ rozhodnutí nebo obsah vytváří?
 ```
 
-### Co je aktuální k 7. 8. 2026
+### Co je aktuální k 8. 8. 2026
 
 Část pravidel AI Act se používá postupně. Pro tuto knihu je prakticky důležitý zejména fakt, že **transparentnostní povinnosti podle článku 50 se používají od 2. srpna 2026**.
 

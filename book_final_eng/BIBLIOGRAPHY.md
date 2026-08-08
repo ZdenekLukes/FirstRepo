@@ -65,7 +65,7 @@ These sources are included because the European Union provides a concrete govern
 35. European Commission — Transparency obligations under Article 50 — https://digital-strategy.ec.europa.eu/en/faqs/transparency-obligations-under-article-50-ai-act
 36. European Commission — GDPR principles — https://commission.europa.eu/law/law-topic/data-protection/rules-business-and-organisations/principles-gdpr_en
 
-## Model Snapshot — August 7, 2026
+## Model Snapshot — August 8, 2026
 
 37. OpenAI — GPT-5.6 — https://openai.com/index/gpt-5-6/
 38. OpenAI — Model Release Notes — https://help.openai.com/en/articles/9624314-model-release-notes
