@@ -1,6 +1,6 @@
 ---
 title: "AI: From First Principles to Agentic Systems"
-subtitle: "How AI Actually Works — and How to Build Reliable Systems with Models, Data, Tools, and Verification"
+subtitle: "How AI Actually Works — From LLMs and RAG to Tools, Agents, Evals, and Reliable Systems"
 version: "0.8-eng"
 date: 2026-08-08
 status: international-draft
@@ -8,6 +8,8 @@ status: international-draft
 
 # AI: From First Principles to Agentic Systems
 
+> **How AI Actually Works — From LLMs and RAG to Tools, Agents, Evals, and Reliable Systems**
+>
 > **International English edition — v0.8-eng**  
 > Re-authored from the Czech master for an international technical audience; not a sentence-by-sentence translation.
 
@@ -93,6 +95,8 @@ status: international-draft
 ## EDITORIAL DOCUMENTS
 - [[STYLE_GUIDE|English Edition Style Guide]]
 - [[ENGLISH_EDITION_NOTES|English Edition Notes]]
+- [[INTERNATIONAL_POSITIONING|International Positioning]]
+- [[FACT_CHECK_2026-08-08|Snapshot Fact-Check]]
 - [[ENGLISH_EDITION_QA|English Edition QA]]
 
 ## Core Thesis
