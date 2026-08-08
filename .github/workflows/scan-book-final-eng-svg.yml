@@ -1,0 +1,49 @@
+name: Scan English SVG localization
+
+on:
+  push:
+    paths:
+      - '.github/workflows/scan-book-final-eng-svg.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Scan SVG text
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import re, html
+          roots=[Path('book_final_eng/assets/diagrams'),Path('book_final_eng/assets/diagrams-print')]
+          cz=re.compile(r'\b(a|ale|bez|co|do|je|jsou|jak|když|který|modelu|nástroj|nástroje|od|pro|proč|při|správn\w*|systém\w*|úloha|výsledek|vrstva|zdroj|žádn\w*)\b',re.I)
+          out=['# SVG localization scan','']
+          hits=[]
+          for root in roots:
+            for p in sorted(root.glob('*.svg')):
+              s=p.read_text(encoding='utf-8')
+              texts=re.findall(r'<(?:text|title|desc)(?:\s[^>]*)?>(.*?)</(?:text|title|desc)>',s,re.S)
+              texts=[html.unescape(re.sub(r'<[^>]+>','',x)).strip() for x in texts]
+              suspect=[x for x in texts if x and (re.search(r'[áčďéěíňóřšťúůýžÁČĎÉĚÍŇÓŘŠŤÚŮÝŽ]',x) or cz.search(x))]
+              if suspect:
+                hits.append((str(p), suspect))
+          out += [f'- Files with suspected Czech labels: **{len(hits)}**','']
+          for p,items in hits:
+            out += [f'## `{p}`','']
+            for x in items:
+              out.append(f'- `{x}`')
+            out.append('')
+          Path('book_final_eng/SVG_LOCALIZATION_SCAN.md').write_text('\n'.join(out)+'\n',encoding='utf-8')
+          print('suspect files',len(hits))
+          PY
+      - name: Commit report
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add book_final_eng/SVG_LOCALIZATION_SCAN.md
+          git commit -m "book: scan English SVG localization"
+          git push
