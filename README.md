@@ -11,7 +11,7 @@ Kniha existuje ve dvou samostatně redigovaných edicích:
 
 **Aktuální snapshot obou edic: 2026-08-08.**
 
-> **Stav projektu:** obsah obou edic je content-locked release candidate. Redakční, content-parity, mechanical PDF a digitální visual/prepress kontroly jsou dokončené. Posledním povinným produkčním gate před skutečným tiskem je printer-specific preflight + fyzický proof.
+> **Stav projektu:** obsah obou edic je content-locked release candidate. Redakční, content-parity, mechanical PDF a **finální SVG visual-fit QA** jsou dokončené. PDF odkazy níže jsou po posledním visual-sync buildu; posledním povinným produkčním gate před skutečným tiskem je printer-specific preflight + fyzický proof.
 
 ## O knize
 
