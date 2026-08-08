@@ -1,4 +1,4 @@
-name: Complete English manuscript QA
+name: Build and audit English proof
 
 on:
   push:
@@ -10,175 +10,122 @@ permissions:
   contents: write
 
 jobs:
-  qa:
+  proof:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - name: Audit actual English manuscript
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install proof dependencies
+        run: python -m pip install --upgrade markdown weasyprint pymupdf pillow
+      - name: Create English proof builder
         run: |
           python - <<'PY'
           from pathlib import Path
-          import re, subprocess, collections
+          src=Path('tools/build_book_proof.py').read_text(encoding='utf-8')
+          src=src.replace("BOOK = ROOT / 'book'", "BOOK = ROOT / 'book_final_eng'")
+          src=src.replace("appendices = sorted((BOOK / 'appendices').glob('*.md'))", "appendices = sorted((BOOK / 'appendices').glob('*.md')) + [BOOK / 'BIBLIOGRAPHY.md']")
+          src=src.replace('<html lang="cs"><head><meta charset="utf-8"><title>AI od základů k agentním systémům - proof v0.4</title>', '<html lang="en"><head><meta charset="utf-8"><title>AI: From First Principles to Agentic Systems — proof v0.8-eng</title>')
+          src=src.replace('<h1>AI od základů k agentním systémům</h1>', '<h1>AI: From First Principles to Agentic Systems</h1>')
+          src=src.replace('<div class="subtitle">Co jsem se zatím naučil, jak AI chápu v srpnu 2026 a co mě ještě čeká</div>', '<div class="subtitle">How AI Actually Works — From LLMs and RAG to Tools, Agents, Evals, and Reliable Systems</div>')
+          src=src.replace('<div class="meta">Proof v0.4 · 7. 8. 2026 · pracovní předtisková sazba 170 × 240 mm</div>', '<div class="meta">English proof v0.8-eng · August 8, 2026 · 170 × 240 mm technical-book layout</div>')
+          src=src.replace('<section class="toc"><h1>Obsah</h1>', '<section class="toc"><h1>Contents</h1>')
+          src=src.replace("html_path = OUT / 'AI-book-proof-v0.4.html'", "html_path = OUT / 'AI-From-First-Principles-to-Agentic-Systems-proof-v0.8-eng.html'")
+          src=src.replace("pdf_path = OUT / 'AI-book-proof-v0.4.pdf'", "pdf_path = OUT / 'AI-From-First-Principles-to-Agentic-Systems-proof-v0.8-eng.pdf'")
+          src=src.replace('body { font-size: 9.7pt; line-height: 1.43; margin: 0; }', 'body { font-size: 9.7pt; line-height: 1.43; margin: 0; hyphens: auto; }')
+          Path('tools/build_book_final_eng_tmp.py').write_text(src,encoding='utf-8')
+          PY
+      - name: Build English proof
+        run: python tools/build_book_final_eng_tmp.py
+      - name: Audit and render representative pages
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import fitz, re
+          proof=Path('book_final_eng/proof/AI-From-First-Principles-to-Agentic-Systems-proof-v0.8-eng.pdf')
+          doc=fitz.open(proof)
+          blockers=[]; warnings=[]
+          expected_w=170/25.4*72; expected_h=240/25.4*72
+          page_sizes=[]; blank=[]; min_font=999; out_blocks=[]
+          all_text=[]
+          starts={}
+          targets=['A Century of AI in One Chapter','RAG','Anatomy and Loop of an AI Agent','Case Study','The Economics of AI','Ten Projects from Beginner to Agentic Systems','Sources, Primary Documentation, and Further Reading']
+          for i,page in enumerate(doc):
+              r=page.rect
+              page_sizes.append((r.width,r.height))
+              if abs(r.width-expected_w)>1.5 or abs(r.height-expected_h)>1.5:
+                  blockers.append(f'Page {i+1}: unexpected size {r.width:.1f}×{r.height:.1f} pt')
+              text=page.get_text('text')
+              all_text.append(text)
+              if len(text.strip())<15 and not page.get_images(full=True): blank.append(i+1)
+              d=page.get_text('dict')
+              for b in d.get('blocks',[]):
+                  x0,y0,x1,y1=b.get('bbox',(0,0,0,0))
+                  if x0 < -1 or y0 < -1 or x1 > r.width+1 or y1 > r.height+1:
+                      out_blocks.append((i+1,(x0,y0,x1,y1)))
+                  for line in b.get('lines',[]):
+                      for span in line.get('spans',[]):
+                          size=span.get('size',999)
+                          if span.get('text','').strip(): min_font=min(min_font,size)
+              for t in targets:
+                  if t not in starts and t.lower() in text.lower(): starts[t]=i
+          joined='\n'.join(all_text)
+          if 'AI: From First Principles to Agentic Systems' not in all_text[0]: blockers.append('English title missing from first page.')
+          if 'How AI Actually Works' not in all_text[0]: blockers.append('English subtitle missing from first page.')
+          for bad in ['AI od základů k agentním systémům','Co jsem se zatím naučil','Processs']:
+              if bad in joined: blockers.append(f'Forbidden/stale text found in PDF: {bad}')
+          if blank: warnings.append(f'Possible blank pages: {blank[:30]}')
+          if out_blocks: blockers.append(f'Text/image blocks outside page bounds: {out_blocks[:20]}')
+          if min_font < 6.8: blockers.append(f'Minimum extracted font size {min_font:.2f} pt is below 6.8 pt gate.')
+          if len(doc)<250: warnings.append(f'Proof is shorter than expected for this layout: {len(doc)} pages.')
+          words=len(re.findall(r"\b[A-Za-z0-9][A-Za-z0-9'’\-]*\b",joined))
+          if words<45000: blockers.append(f'Extracted word count looks too low: {words:,}')
 
-          BOOK = Path('book_final_eng')
-          intro = BOOK / '00 - Introduction - How to Read This Book.md'
-          index = BOOK / '00 - INDEX.md'
-          chapters = sorted([p for p in BOOK.glob('[0-9][0-9] - *.md') if p.name not in {index.name, intro.name}])
-          appendices = sorted((BOOK / 'appendices').glob('*.md'))
-          manuscript = [intro] + chapters + appendices
-          blockers=[]
-          warnings=[]
-
-          def frontmatter(text):
-              if not text.startswith('---\n'):
-                  return {}
-              end=text.find('\n---\n',4)
-              if end < 0:
-                  return {}
-              fm={}
-              for line in text[4:end].splitlines():
-                  if ':' in line:
-                      k,v=line.split(':',1)
-                      fm[k.strip()]=v.strip().strip('"')
-              return fm
-
-          def prose(text):
-              if text.startswith('---\n'):
-                  end=text.find('\n---\n',4)
-                  if end>=0: text=text[end+5:]
-              text=re.sub(r'```.*?```',' ',text,flags=re.S)
-              text=re.sub(r'`[^`]*`',' ',text)
-              text=re.sub(r'<!--.*?-->',' ',text,flags=re.S)
-              text=re.sub(r'https?://\S+',' ',text)
-              return text
-
-          if not intro.exists(): blockers.append('Missing English introduction.')
-          nums=[]
-          for p in chapters:
-              try: nums.append(int(p.name[:2]))
-              except: blockers.append(f'Invalid chapter filename: {p.name}')
-          if nums != list(range(1,37)):
-              blockers.append(f'Chapter numbering is not exactly 01..36: {nums}')
-          if len(chapters)!=36: blockers.append(f'Expected 36 numbered chapters, found {len(chapters)}.')
-          if len(appendices)!=7: blockers.append(f'Expected 7 appendices, found {len(appendices)}.')
-
-          for p in manuscript:
-              text=p.read_text(encoding='utf-8')
-              fm=frontmatter(text)
-              if fm.get('version')!='0.8-eng': blockers.append(f'{p}: version={fm.get("version")!r}, expected 0.8-eng')
-              if fm.get('status') not in {'international-draft','release-candidate'}: warnings.append(f'{p}: unusual status {fm.get("status")!r}')
-
-          screen=sorted((BOOK/'assets/diagrams').glob('*.svg'))
-          printable=sorted((BOOK/'assets/diagrams-print').glob('*.svg'))
-          if len(screen)!=43: blockers.append(f'Expected 43 screen SVGs, found {len(screen)}.')
-          if len(printable)!=43: blockers.append(f'Expected 43 print SVGs, found {len(printable)}.')
-          screen_names={p.name for p in screen}; print_names={p.name for p in printable}
-          if screen_names != print_names:
-              blockers.append('Screen and print SVG filename sets differ.')
-
-          image_refs=[]
-          for p in manuscript:
-              text=p.read_text(encoding='utf-8')
-              for ref in re.findall(r'!\[[^\]]*\]\(([^)]+)\)',text):
-                  image_refs.append((p,ref))
-                  q=BOOK/ref if ref.startswith('assets/') else p.parent/ref
-                  if not q.exists(): blockers.append(f'Missing image: {p.name} -> {ref}')
-                  if ref.startswith('assets/diagrams/'):
-                      pr=BOOK/ref.replace('assets/diagrams/','assets/diagrams-print/')
-                      if not pr.exists(): blockers.append(f'Missing print image: {p.name} -> {pr}')
-
-          wiki=[]
-          itext=index.read_text(encoding='utf-8')
-          for target in re.findall(r'\[\[([^\]|]+)(?:\|[^\]]+)?\]\]',itext):
-              wiki.append(target)
-              q=BOOK/(target+'.md')
-              if target=='ENGLISH_EDITION_QA':
-                  continue
-              if not q.exists(): blockers.append(f'Broken index link: [[{target}]]')
-
-          placeholder_hits=[]
-          patterns=[r'\bTODO\b',r'\bFIXME\b',r'\[TBD\]',r'\[DOPLNIT\]',r'PLACEHOLDER']
-          for p in manuscript:
-              text=p.read_text(encoding='utf-8')
-              for pat in patterns:
-                  if re.search(pat,text,re.I): placeholder_hits.append((p.name,pat))
-          if placeholder_hits: blockers.append(f'Editorial placeholders found: {placeholder_hits[:20]}')
-
-          czech_hits=[]
-          cz_diac=re.compile(r'[áčďéěíňóřšťúůýžÁČĎÉĚÍŇÓŘŠŤÚŮÝŽ]')
-          cz_words=re.compile(r'\b(kapitola|kapitoly|nástroj|nástroje|výsledek|výsledky|správný|správně|uživatel|uživatelé|poznámky|dokumenty|simulace|měření|náklady|bezpečnost)\b',re.I)
-          for p in manuscript:
-              body=prose(p.read_text(encoding='utf-8'))
-              for n,line in enumerate(body.splitlines(),1):
-                  if cz_diac.search(line) or cz_words.search(line):
-                      czech_hits.append((p.name,n,' '.join(line.split())[:180]))
-          if czech_hits: blockers.append(f'Possible Czech prose remains in manuscript: {czech_hits[:20]}')
-
-          svg_bad=[]
-          for p in screen+printable:
-              s=p.read_text(encoding='utf-8')
-              labels=re.findall(r'<(?:text|title|desc)(?:\s[^>]*)?>(.*?)</(?:text|title|desc)>',s,re.S)
-              labels=[re.sub(r'<[^>]+>','',x) for x in labels]
-              bad=[x for x in labels if cz_diac.search(x) or cz_words.search(x)]
-              if bad: svg_bad.append((p.name,bad[:5]))
-          if svg_bad: blockers.append(f'Possible Czech SVG labels remain: {svg_bad[:20]}')
-
-          paragraphs=collections.defaultdict(list)
-          total_words=0
-          for p in manuscript:
-              body=prose(p.read_text(encoding='utf-8'))
-              total_words += len(re.findall(r"\b[A-Za-z0-9][A-Za-z0-9'’\-]*\b",body))
-              for para in re.split(r'\n\s*\n',body):
-                  key=' '.join(para.split())
-                  if len(key)>=180: paragraphs[key].append(p.name)
-          repeats=[(k,v) for k,v in paragraphs.items() if len(set(v))>1]
-          if repeats: warnings.append(f'{len(repeats)} exact long paragraphs repeat across files.')
-
-          title_text=index.read_text(encoding='utf-8')
-          required=[
-              'AI: From First Principles to Agentic Systems',
-              'How AI Actually Works — From LLMs and RAG to Tools, Agents, Evals, and Reliable Systems',
-              'MODEL ≠ AI APPLICATION ≠ AGENT ≠ AI SYSTEM'
-          ]
-          for phrase in required:
-              if phrase not in title_text: blockers.append(f'Index missing required positioning phrase: {phrase}')
-
-          baseline='9c87a445167d2c9e72adceabf9bac76330c87852'
-          old_tree=subprocess.check_output(['git','rev-parse',f'{baseline}:book_final'],text=True).strip()
-          new_tree=subprocess.check_output(['git','rev-parse','HEAD:book_final'],text=True).strip()
-          if old_tree != new_tree:
-              blockers.append(f'Czech book_final tree changed: baseline {old_tree}, current {new_tree}')
+          preview=Path('book_final_eng/proof/preview'); preview.mkdir(parents=True,exist_ok=True)
+          pages={0,1,max(0,len(doc)//2),len(doc)-1}
+          pages.update(starts.values())
+          rendered=[]
+          for i in sorted(x for x in pages if 0<=x<len(doc)):
+              pix=doc[i].get_pixmap(matrix=fitz.Matrix(1.7,1.7),alpha=False)
+              name=f'page-{i+1:04d}.png'
+              pix.save(preview/name)
+              rendered.append(i+1)
 
           report=[
-              '# English Edition QA — 2026-08-08','',
-              f'- Introduction: **{"present" if intro.exists() else "missing"}**',
-              f'- Numbered chapters: **{len(chapters)}**',
-              f'- Appendices: **{len(appendices)}**',
-              f'- Screen SVGs: **{len(screen)}**',
-              f'- Print SVGs: **{len(printable)}**',
-              f'- Markdown image references checked: **{len(image_refs)}**',
-              f'- Index wiki links checked: **{len(wiki)}**',
-              f'- Approximate manuscript words: **{total_words:,}**',
-              f'- Exact long-paragraph repeats: **{len(repeats)}**',
-              f'- Czech master tree unchanged: **{"YES" if old_tree==new_tree else "NO"}**','',
-              '## Blockers',''
+              '# English Proof QA — 2026-08-08','',
+              f'- PDF: `{proof.name}`',
+              f'- Pages: **{len(doc)}**',
+              f'- Extracted words: **{words:,}**',
+              f'- Minimum extracted font size: **{min_font:.2f} pt**',
+              f'- Possible blank pages: **{len(blank)}**',
+              f'- Out-of-bounds blocks: **{len(out_blocks)}**',
+              f'- Representative pages rendered: **{rendered}**','',
+              '## Chapter/page anchors',''
           ]
-          report += ['- none'] if not blockers else [f'- {x}' for x in blockers]
-          report += ['','## Warnings','']
-          report += ['- none'] if not warnings else [f'- {x}' for x in warnings]
-          report += ['','## Gate','']
-          report += ['**PASS — complete English manuscript is mechanically consistent.**' if not blockers else '**FAIL — fix blockers above before proof/release.**','']
-          (BOOK/'ENGLISH_EDITION_QA.md').write_text('\n'.join(report),encoding='utf-8')
+          report += [f'- {k}: page **{v+1}**' for k,v in starts.items()]
+          report += ['','## Blockers',''] + (['- none'] if not blockers else [f'- {x}' for x in blockers])
+          report += ['','## Warnings',''] + (['- none'] if not warnings else [f'- {x}' for x in warnings])
+          report += ['','## Gate','', '**PASS — automated English proof gates passed.**' if not blockers else '**FAIL — proof blockers remain.**','']
+          Path('book_final_eng/proof/ENGLISH_PROOF_QA.md').write_text('\n'.join(report),encoding='utf-8')
           print('\n'.join(report))
           PY
-      - name: Commit QA report
+      - name: Enforce automated proof gate
+        run: grep -Fq '**PASS — automated English proof gates passed.**' book_final_eng/proof/ENGLISH_PROOF_QA.md
+      - name: Commit English proof
         run: |
+          rm -f tools/build_book_final_eng_tmp.py
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add book_final_eng/ENGLISH_EDITION_QA.md
-          git commit -m "book: run complete English manuscript QA"
+          git add book_final_eng/proof
+          git commit -m "book: build English proof v0.8-eng"
           git push
-      - name: Enforce QA gate
-        run: grep -Fq '**PASS — complete English manuscript is mechanically consistent.**' book_final_eng/ENGLISH_EDITION_QA.md
+      - uses: actions/upload-artifact@v4
+        with:
+          name: English-book-proof-v0.8-eng
+          path: |
+            book_final_eng/proof/AI-From-First-Principles-to-Agentic-Systems-proof-v0.8-eng.pdf
+            book_final_eng/proof/ENGLISH_PROOF_QA.md
+            book_final_eng/proof/preview/*.png
