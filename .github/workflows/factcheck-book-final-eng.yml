@@ -1,4 +1,4 @@
-name: Finalize English editorial metadata
+name: Build and inspect English proof
 
 on:
   push:
@@ -7,135 +7,156 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
 
 jobs:
-  finalize:
+  proof:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Write fact-check and positioning
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install proof dependencies
+        run: python -m pip install --upgrade markdown weasyprint pymupdf
+      - name: Build English proof
         run: |
           python - <<'PY'
           from pathlib import Path
-          p = Path('book_final_eng/05 - The Model Landscape.md')
-          s = p.read_text(encoding='utf-8')
-          s = s.replace('- **Gemini 3.1 Pro** for complex general work,', '- **Gemini 3.1 Pro** for complex general work — the Gemini API endpoint is still labeled **Preview** in this snapshot,')
-          p.write_text(s, encoding='utf-8')
+          import html, re
+          import markdown
+          from weasyprint import HTML
 
-          fact = [
-              '# English Edition Snapshot Fact-Check — 2026-08-08',
-              '',
-              'Scope: fast-moving model names and release status in Chapter 5 and Appendix B. Durable architecture claims are reviewed separately by the editorial and QA pass.',
-              '',
-              '## Verified points',
-              '',
-              '- **OpenAI:** GPT-5.6 is generally available as **Sol / Terra / Luna** across ChatGPT, Codex, and API as of the snapshot.',
-              '- **Google:** **Gemini 3.1 Pro** is current, but the Gemini API endpoint remains **`gemini-3.1-pro-preview`**. Appendix B now says this explicitly.',
-              '- **Google:** **Gemini 3.6 Flash** and **Gemini 3.5 Flash-Lite** are current production API models in the snapshot.',
-              '- **Google Deep Think:** Gemini 3.1 Deep Think remains a specialized reasoning mode for science, research, and engineering.',
-              '- **Anthropic / xAI / open-weight families:** retained as dated snapshot entries; each release should be checked again immediately before publication.',
-              '',
-              '## Primary sources',
-              '',
-              '- https://openai.com/index/gpt-5-6/',
-              '- https://ai.google.dev/gemini-api/docs/models/gemini-3.1-pro-preview',
-              '- https://ai.google.dev/gemini-api/docs/deprecations',
-              '- https://ai.google.dev/gemini-api/docs/latest-model',
-              '- https://deepmind.google/models/gemini/deep-think/',
-              '- https://www.anthropic.com/claude/fable',
-              '- https://www.anthropic.com/news/claude-sonnet-5',
-              '- https://www.anthropic.com/news/claude-opus-4-8',
-              '- https://x.ai/news/grok-4-5',
-              '- https://qwen.ai/blog?id=qwen3.6-35b-a3b',
-              '- https://api-docs.deepseek.com/updates',
-              '- https://ai.google.dev/gemma/docs/core/model_card_4',
-              '- https://mistral.ai/news/mistral-small-4/',
-              '- https://ai.meta.com/blog/llama-4-multimodal-intelligence/',
-              '',
-              '## Editorial rule',
-              '',
-              "Product/model snapshots are explicitly dated and allowed to age openly. The book's durable value should come from the system model: context, data, tools, permissions, verification, evaluation, and economics.",
-          ]
-          Path('book_final_eng/FACT_CHECK_2026-08-08.md').write_text('\n'.join(fact) + '\n', encoding='utf-8')
+          BOOK=Path('book_final_eng')
+          OUT=BOOK/'proof_build'
+          OUT.mkdir(parents=True,exist_ok=True)
+          intro=BOOK/'00 - Introduction - How to Read This Book.md'
+          chapters=sorted([p for p in BOOK.glob('[0-9][0-9] - *.md') if p.name not in {'00 - INDEX.md', intro.name}])
+          appendices=sorted((BOOK/'appendices').glob('*.md'))
+          bibliography=BOOK/'BIBLIOGRAPHY.md'
+          files=[intro]+chapters+appendices+([bibliography] if bibliography.exists() else [])
 
-          pos = [
-              '# International Positioning — English Edition',
-              '',
-              '## Final title',
-              '',
-              '# **AI: From First Principles to Agentic Systems**',
-              '',
-              '## Final subtitle',
-              '',
-              '> **How AI Actually Works — From LLMs and RAG to Tools, Agents, Evals, and Reliable Systems**',
-              '',
-              '## One-line promise',
-              '',
-              '> **Understand the model. Engineer the context. Connect the tools. Verify the result.**',
-              '',
-              '## The category this book should own',
-              '',
-              'This is not a prompt book, a vendor catalog, or a framework cookbook. It is a practical systems book for people who want to understand the path from a language model to AI they can trust with real work.',
-              '',
-              '```text',
-              'MODEL → CONTEXT → DATA → RETRIEVAL → TOOLS → AGENT LOOP → PERMISSIONS → VERIFICATION → EVALS → ECONOMICS',
-              '```',
-              '',
-              'The book repeatedly asks the question most AI demos skip:',
-              '',
-              '> **How do we know the result is actually correct?**',
-              '',
-              '## Primary reader',
-              '',
-              'A technically curious professional who uses AI already, has seen what modern models can do, and now wants a coherent mental model for building something more reliable than chat.',
-              '',
-              '## What makes the book different',
-              '',
-              '1. **System-centric, not model-centric.** The unit of analysis is the complete AI system.',
-              '2. **Verification is a first-class layer.** Tests, simulators, databases, schemas, and human approval are part of AI engineering.',
-              '3. **Cloud, local, and hybrid are routing choices.** No ideological cloud-vs-local argument.',
-              '4. **Agent autonomy is bounded engineering, not anthropomorphism.** State, permissions, retries, budgets, and stop conditions are explicit.',
-              '5. **The analog IC case study gives the book a real technical signature.** It demonstrates AI working with physics, simulation, and engineering evidence.',
-              '6. **The book admits what ages.** Product/model snapshots are dated; durable principles are separated from them.',
-              '7. **The final projects force the reader to build evidence, not only consume concepts.**',
-              '',
-              '## Front-cover direction',
-              '',
-              'Restrained technical nonfiction. Show a system evolving from a single model node into layers of context, data, tools, verification, and a closed agent loop. High contrast, minimal geometry, no humanoid robot, no glowing brain.',
-              '',
-              '## Back-cover copy',
-              '',
-              'A powerful model is only the beginning.',
-              '',
-              'The systems that survive real work need the right context, trustworthy data, tools that can act on the world, permissions that limit what they may do, and a way to verify the result.',
-              '',
-              '**AI: From First Principles to Agentic Systems** builds that picture one layer at a time. Without unnecessary mathematics, it explains how modern language models work, how to compare cloud and local models, why RAG succeeds or fails, how tool use turns chat into action, what an AI agent actually is, and why multi-agent systems are often less useful than they look.',
-              '',
-              'Then it moves into the questions that matter in production: security, enterprise data, evaluation, economics, human approval, observability, and failure recovery.',
-              '',
-              'A detailed engineering case study applies the same architecture to analog integrated-circuit design, where AI must work with specifications, simulation, measurement, and physical constraints rather than simply generate plausible text.',
-              '',
-              'The book ends with a minimal AI stack and ten projects that progress from a single-document assistant to a measured agentic workflow.',
-              '',
-              'If an AI demo impresses you, this book will teach you to ask five more questions:',
-              '',
-              '**Where does it get its data? What does it actually see? Which tools can it use? What is it allowed to do? And how do we know the result is correct?**',
-              '',
-              '## Retailer short description',
-              '',
-              'A practical engineering guide to modern AI from LLM fundamentals to RAG, tools, local models, agents, security, evals, and production economics. Learn how to build AI systems whose outputs can be traced, constrained, measured, and verified — with hands-on projects and a real analog IC design case study.',
-              '',
-              '## Positioning boundary',
-              '',
-              '> **The strongest supportable promise is that the book teaches readers how to reason about the entire AI system — and how to verify whether that system deserves trust.**',
-          ]
-          Path('book_final_eng/INTERNATIONAL_POSITIONING.md').write_text('\n'.join(pos) + '\n', encoding='utf-8')
+          def strip_fm(s):
+              if s.startswith('---\n'):
+                  end=s.find('\n---\n',4)
+                  if end>=0: return s[end+5:]
+              return s
+          def title(s,fallback):
+              m=re.search(r'^#\s+(.+)$',s,re.M)
+              return m.group(1).strip() if m else fallback
+          def render_md(path,ident):
+              s=strip_fm(path.read_text(encoding='utf-8'))
+              t=title(s,path.stem)
+              s=s.replace('assets/diagrams/','assets/diagrams-print/')
+              s=re.sub(r'<!--\s*visual:[^>]+-->','',s)
+              body=markdown.markdown(s,extensions=['extra','tables','fenced_code','sane_lists'])
+              return t,f'<section class="chapter" id="{ident}">{body}</section>'
+
+          items=[]; sections=[]
+          for i,p in enumerate(files):
+              ident=f'sec-{i:02d}'
+              t,sec=render_md(p,ident)
+              items.append((t,ident))
+              sections.append(sec)
+
+          css=r'''
+          @page { size: 170mm 240mm; margin: 17mm 16mm 19mm 18mm;
+            @bottom-center { content: counter(page); font-size: 8pt; color: #596474; }
+            @top-center { content: string(chapter-title); font-size: 7.2pt; color: #6c7684; }
+          }
+          @page:first { @top-center { content: none; } @bottom-center { content: none; } }
+          html { font-family: "DejaVu Sans", "Liberation Sans", sans-serif; color:#17202b; }
+          body { font-size:9.65pt; line-height:1.44; margin:0; }
+          .title-page { page-break-after:always; min-height:195mm; display:flex; flex-direction:column; justify-content:center; }
+          .title-page h1 { font-size:27pt; line-height:1.08; margin:0 0 7mm; color:#10263b; }
+          .title-page .subtitle { font-size:13.2pt; line-height:1.38; color:#43566a; max-width:125mm; }
+          .title-page .promise { margin-top:9mm; font-size:11pt; font-weight:700; color:#173d5c; }
+          .title-page .meta { margin-top:20mm; font-size:8.6pt; color:#687386; }
+          .toc { page-break-after:always; }
+          .toc h1 { font-size:22pt; }
+          .toc ol { list-style:none; padding:0; margin:0; }
+          .toc li { border-bottom:.2mm solid #dfe4ea; padding:1.7mm 0; font-size:8.7pt; }
+          .toc a { color:#17202b; text-decoration:none; }
+          .chapter { page-break-before:always; }
+          h1 { string-set:chapter-title content(); font-size:20.5pt; line-height:1.15; margin:0 0 6.5mm; color:#0e2a43; page-break-after:avoid; }
+          h2 { font-size:14.1pt; line-height:1.22; margin:7.5mm 0 2.7mm; color:#173d5c; page-break-after:avoid; }
+          h3 { font-size:11.4pt; line-height:1.22; margin:5.5mm 0 2mm; color:#264f6b; page-break-after:avoid; }
+          h4 { font-size:10.1pt; margin:4mm 0 1.5mm; page-break-after:avoid; }
+          p { margin:0 0 3mm; orphans:3; widows:3; }
+          blockquote { border-left:1.1mm solid #3e759d; margin:4mm 0; padding:2.5mm 4mm; background:#f3f7fa; page-break-inside:avoid; }
+          blockquote p:last-child { margin-bottom:0; }
+          pre { font-family:"DejaVu Sans Mono",monospace; font-size:7.55pt; line-height:1.34; background:#f4f6f8; border:.2mm solid #d9dfe5; padding:2.8mm; white-space:pre-wrap; word-break:break-word; page-break-inside:avoid; }
+          code { font-family:"DejaVu Sans Mono",monospace; font-size:.91em; }
+          table { width:100%; border-collapse:collapse; font-size:7.45pt; line-height:1.27; margin:4mm 0 5mm; page-break-inside:auto; }
+          thead { display:table-header-group; }
+          tr { page-break-inside:avoid; }
+          th { background:#e9f0f5; color:#173d5c; font-weight:700; }
+          th,td { border:.2mm solid #cfd7df; padding:1.45mm 1.65mm; vertical-align:top; }
+          ul,ol { margin:1mm 0 3mm 5mm; padding-left:5mm; }
+          li { margin-bottom:.9mm; }
+          img { display:block; max-width:100%; max-height:150mm; height:auto; margin:4mm auto 2mm; page-break-inside:avoid; }
+          p:has(> img) { page-break-inside:avoid; margin-bottom:1mm; }
+          p:has(> img) + p em { font-size:8pt; color:#586174; }
+          hr { border:0; border-top:.2mm solid #d8dee5; margin:7mm 0; }
+          a { color:#245d84; text-decoration:none; overflow-wrap:anywhere; }
+          h1 + p, h2 + p, h3 + p { page-break-before:avoid; }
+          '''
+          toc=''.join(f'<li><a href="#{ident}">{html.escape(t)}</a></li>' for t,ident in items)
+          doc=f'''<!doctype html><html lang="en"><head><meta charset="utf-8"><title>AI: From First Principles to Agentic Systems - proof v0.8-eng</title><style>{css}</style></head><body>
+          <section class="title-page"><h1>AI: From First Principles to Agentic Systems</h1>
+          <div class="subtitle">How AI Actually Works - From LLMs and RAG to Tools, Agents, Evals, and Reliable Systems</div>
+          <div class="promise">Understand the model. Engineer the context. Connect the tools. Verify the result.</div>
+          <div class="meta">International English proof v0.8-eng - 8 August 2026 - 170 x 240 mm</div></section>
+          <section class="toc"><h1>Contents</h1><ol>{toc}</ol></section>
+          {''.join(sections)}</body></html>'''
+          html_path=OUT/'AI-From-First-Principles-to-Agentic-Systems-proof-v0.8-eng.html'
+          pdf_path=OUT/'AI-From-First-Principles-to-Agentic-Systems-proof-v0.8-eng.pdf'
+          html_path.write_text(doc,encoding='utf-8')
+          HTML(string=doc,base_url=str(BOOK.resolve())).write_pdf(str(pdf_path))
+          print(pdf_path)
           PY
-      - name: Commit editorial metadata
+      - name: Inspect proof and render sample pages
         run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add book_final_eng/05\ -\ The\ Model\ Landscape.md book_final_eng/FACT_CHECK_2026-08-08.md book_final_eng/INTERNATIONAL_POSITIONING.md
-          git commit -m "book: finalize English positioning and snapshot fact-check"
-          git push
+          python - <<'PY'
+          from pathlib import Path
+          import fitz, math
+          out=Path('book_final_eng/proof_build')
+          pdf=next(out.glob('*.pdf'))
+          doc=fitz.open(pdf)
+          pages=len(doc)
+          sizes=[(round(p.rect.width,2),round(p.rect.height,2)) for p in doc]
+          common=max(set(sizes),key=sizes.count)
+          expected=(round(170/25.4*72,2),round(240/25.4*72,2))
+          text='\n'.join(p.get_text() for p in doc)
+          repl=text.count('\ufffd')
+          blank=[i+1 for i,p in enumerate(doc) if len(p.get_text().strip())<20]
+          if abs(common[0]-expected[0])>1 or abs(common[1]-expected[1])>1:
+              raise SystemExit(f'Unexpected page size {common}; expected approx {expected}')
+          if repl:
+              raise SystemExit(f'Replacement glyphs in extracted text: {repl}')
+          picks=sorted(set([0,1,max(0,pages//4),max(0,pages//2),max(0,(3*pages)//4),pages-1]))
+          for i in picks:
+              page=doc[i]
+              pix=page.get_pixmap(matrix=fitz.Matrix(1.6,1.6),alpha=False)
+              pix.save(out/f'preview-page-{i+1:04d}.png')
+          report='\n'.join([
+              '# English Proof QA - 2026-08-08','',
+              f'- PDF: **{pdf.name}**',
+              f'- Pages: **{pages}**',
+              f'- Page size: **{common[0]} x {common[1]} pt** (~170 x 240 mm)',
+              f'- Extracted text characters: **{len(text):,}**',
+              f'- Replacement glyphs: **{repl}**',
+              f'- Very-low-text pages (<20 chars): **{blank}**',
+              f'- Preview pages rendered: **{[i+1 for i in picks]}**','',
+              '## Mechanical gate','',
+              '**PASS** - PDF generated, page size is consistent, text is extractable, and no replacement glyphs were detected.',''
+          ])
+          (out/'PROOF_QA.md').write_text(report,encoding='utf-8')
+          print(report)
+          PY
+      - name: Upload proof artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: english-book-proof-v0.8-eng
+          path: book_final_eng/proof_build/
+          if-no-files-found: error
