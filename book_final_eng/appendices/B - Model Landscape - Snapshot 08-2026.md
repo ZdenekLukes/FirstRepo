@@ -16,9 +16,9 @@ updated: 2026-08-08
 
 | Provider | Examples in this snapshot | Typical role |
 |---|---|---|
-| OpenAI | GPT-5.6 family | frontier reasoning through lower-cost/high-throughput tiers |
+| OpenAI | GPT-5.6 Sol / Terra / Luna | frontier reasoning through lower-cost/high-throughput tiers |
 | Anthropic | Claude Fable 5 / Sonnet 5 / Opus 4.8 | long-horizon work, coding, agents, knowledge work |
-| Google | Gemini 3.1 Pro / 3.6 Flash / 3.5 Flash-Lite | complex reasoning, multimodal work, high throughput |
+| Google | Gemini 3.1 Pro (API: Preview) / 3.6 Flash / 3.5 Flash-Lite | complex reasoning, multimodal work, high throughput |
 | xAI | Grok 4.5 | coding, agentic tasks, knowledge work |
 | Cohere | Command A+ | enterprise, multilingual, RAG, sovereign deployment |
 
@@ -49,6 +49,8 @@ updated: 2026-08-08
 - Anthropic Sonnet 5: https://www.anthropic.com/news/claude-sonnet-5
 - Anthropic Opus 4.8: https://www.anthropic.com/news/claude-opus-4-8
 - Google Gemini API releases: https://ai.google.dev/gemini-api/docs/changelog
+- Google Gemini 3.1 Pro Preview: https://ai.google.dev/gemini-api/docs/models/gemini-3.1-pro-preview
+- Google Gemini deprecations / release status: https://ai.google.dev/gemini-api/docs/deprecations
 - Google Gemini 3.6 Flash: https://ai.google.dev/gemini-api/docs/models/gemini-3.6-flash
 - xAI Grok 4.5: https://x.ai/news/grok-4-5
 - DeepSeek API updates: https://api-docs.deepseek.com/updates
