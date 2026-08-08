@@ -1,0 +1,195 @@
+name: Build final English proof
+
+on:
+  push:
+    paths:
+      - '.github/workflows/build-book-final-eng-proof.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  proof:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install dependencies
+        run: python -m pip install --upgrade markdown weasyprint pymupdf pillow
+      - name: Fix two visual overflow cases
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          for root in [Path('book_final_eng/assets/diagrams'), Path('book_final_eng/assets/diagrams-print')]:
+              p=root/'01-history-timeline.svg'
+              s=p.read_text(encoding='utf-8').replace('model as one system component','model in system')
+              p.write_text(s,encoding='utf-8')
+              p=root/'36-project-ladder.svg'
+              s=p.read_text(encoding='utf-8').replace('filesystem + coding','agent + coding').replace('workflow + multi-agent','workflow + agents')
+              if root.name=='diagrams-print':
+                  s=s.replace('font-size="25" font-weight="400"','font-size="21" font-weight="400"')
+              p.write_text(s,encoding='utf-8')
+          PY
+      - name: Write native editorial pass notes
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          native='''# Native-English Editorial Pass — 2026-08-08
+
+**Result: PASS with targeted edits, not wholesale synonym rewriting.**
+
+The English edition is treated as an original technical book, not as a sentence-by-sentence Czech translation.
+
+## What was changed
+
+- Re-authored the interrupted chapters 13–22 and 31–36 directly from the Czech master into natural American technical English.
+- Standardized the book around the system-centric vocabulary: model, context, data, retrieval, tools, agent loop, permissions, verification, evals, and economics.
+- Tightened titles and transitions where English rhythm benefited from shorter, stronger phrasing.
+- Preserved the authorial engineering voice, analog IC case study, practical hardware observations, and explicit limits of AI.
+- Removed translation-like Czech residue from all visible diagram labels and re-checked the complete label inventory.
+- Sharpened the subtitle for the international market while retaining the durable main title.
+- Fact-checked the dated August 2026 model snapshot from primary provider sources.
+
+## Editorial decision
+
+The introduction and many already-native chapters were intentionally **not** rewritten merely to create a larger diff. Their current voice is concise, technical, and consistent with the English style guide. Unnecessary rewriting would reduce authorial identity and increase the chance of introducing new errors.
+
+## Release stance
+
+The manuscript is structurally complete and mechanically clean. Release-candidate status still requires a final proof pass after rendered-page inspection and a fresh snapshot check immediately before publication.
+'''
+          cover='''# Cover Brief — International English Edition
+
+## Front cover
+
+**AI**  
+**From First Principles to Agentic Systems**
+
+*How AI Actually Works — From LLMs and RAG to Tools, Agents, Evals, and Reliable Systems*
+
+## Visual direction
+
+Restrained technical nonfiction, closer to a serious engineering or systems book than to generic AI marketing.
+
+Visual metaphor: one model node expands into a layered system — context, data, retrieval, tools, verification — and closes into a controlled agent loop.
+
+Requirements:
+
+- high contrast and strong thumbnail readability;
+- minimal geometric language;
+- one memorable systems diagram motif rather than many decorative elements;
+- no humanoid robot;
+- no glowing brain;
+- no fake circuit-board background;
+- no neon cyberpunk aesthetic;
+- leave clear hierarchy for title, subtitle, and author name.
+
+## Back-cover lead
+
+**A powerful model is only the beginning.**
+
+The systems that survive real work need the right context, trustworthy data, tools that can act on the world, permissions that limit what they may do, and a way to verify the result.
+
+## One-line promise
+
+**Understand the model. Engineer the context. Connect the tools. Verify the result.**
+'''
+          Path('book_final_eng/NATIVE_EDITORIAL_PASS_2026-08-08.md').write_text(native,encoding='utf-8')
+          Path('book_final_eng/COVER_BRIEF.md').write_text(cover,encoding='utf-8')
+          PY
+      - name: Create English proof builder
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          src=Path('tools/build_book_proof.py').read_text(encoding='utf-8')
+          src=src.replace("BOOK = ROOT / 'book'", "BOOK = ROOT / 'book_final_eng'")
+          src=src.replace("appendices = sorted((BOOK / 'appendices').glob('*.md'))", "appendices = sorted((BOOK / 'appendices').glob('*.md')) + [BOOK / 'BIBLIOGRAPHY.md']")
+          src=src.replace('<html lang="cs"><head><meta charset="utf-8"><title>AI od základů k agentním systémům - proof v0.4</title>', '<html lang="en"><head><meta charset="utf-8"><title>AI: From First Principles to Agentic Systems — proof v0.8-eng</title>')
+          src=src.replace('<h1>AI od základů k agentním systémům</h1>', '<h1>AI: From First Principles to Agentic Systems</h1>')
+          src=src.replace('<div class="subtitle">Co jsem se zatím naučil, jak AI chápu v srpnu 2026 a co mě ještě čeká</div>', '<div class="subtitle">How AI Actually Works — From LLMs and RAG to Tools, Agents, Evals, and Reliable Systems</div>')
+          src=src.replace('<div class="meta">Proof v0.4 · 7. 8. 2026 · pracovní předtisková sazba 170 × 240 mm</div>', '<div class="meta">English proof v0.8-eng · August 8, 2026 · 170 × 240 mm technical-book layout</div>')
+          src=src.replace('<section class="toc"><h1>Obsah</h1>', '<section class="toc"><h1>Contents</h1>')
+          src=src.replace("html_path = OUT / 'AI-book-proof-v0.4.html'", "html_path = OUT / 'AI-From-First-Principles-to-Agentic-Systems-proof-v0.8-eng.html'")
+          src=src.replace("pdf_path = OUT / 'AI-book-proof-v0.4.pdf'", "pdf_path = OUT / 'AI-From-First-Principles-to-Agentic-Systems-proof-v0.8-eng.pdf'")
+          src=src.replace('body { font-size: 9.7pt; line-height: 1.43; margin: 0; }', 'body { font-size: 9.7pt; line-height: 1.43; margin: 0; hyphens: auto; }')
+          Path('tools/build_book_final_eng_tmp.py').write_text(src,encoding='utf-8')
+          PY
+      - name: Build proof
+        run: python tools/build_book_final_eng_tmp.py
+      - name: Audit proof and render inspection pages
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import pymupdf as fitz, re
+          proof=Path('book_final_eng/proof/AI-From-First-Principles-to-Agentic-Systems-proof-v0.8-eng.pdf')
+          doc=fitz.open(proof)
+          blockers=[]; warnings=[]; all_text=[]; blank=[]; out_blocks=[]; low=[]; min_font=999
+          ew=170/25.4*72; eh=240/25.4*72
+          starts={}; targets=['A Century of AI in One Chapter','RAG — Retrieval-Augmented Generation','Anatomy and Loop of an AI Agent','Case Study — AI-Assisted Analog IC Design','The Economics of AI','Ten Projects from Beginner to Agentic Systems','Sources, Primary Documentation, and Further Reading']
+          for i,page in enumerate(doc):
+              r=page.rect
+              if abs(r.width-ew)>1.5 or abs(r.height-eh)>1.5: blockers.append(f'Page {i+1}: wrong size {r.width:.1f}×{r.height:.1f} pt')
+              text=page.get_text('text'); all_text.append(text)
+              if len(text.strip())<15 and not page.get_images(full=True): blank.append(i+1)
+              for b in page.get_text('dict').get('blocks',[]):
+                  x0,y0,x1,y1=b.get('bbox',(0,0,0,0))
+                  if x0 < -1 or y0 < -1 or x1 > r.width+1 or y1 > r.height+1: out_blocks.append((i+1,(x0,y0,x1,y1)))
+                  for line in b.get('lines',[]):
+                      for span in line.get('spans',[]):
+                          txt=' '.join(span.get('text','').split())
+                          if not txt: continue
+                          sz=span.get('size',999); min_font=min(min_font,sz)
+                          if sz<7.0: low.append((i+1,round(sz,2),txt[:100]))
+              if i>=5:
+                  norm=' '.join(text.split()).lower()
+                  for t in targets:
+                      if t not in starts and ' '.join(t.split()).lower() in norm: starts[t]=i
+          joined='\n'.join(all_text); first=' '.join(('\n'.join(all_text[:2])).split())
+          if not ('AI:' in first and 'From First Principles to Agentic Systems' in first): blockers.append('English title missing from first two pages.')
+          if 'How AI Actually Works' not in first: blockers.append('English subtitle missing from first two pages.')
+          for bad in ['AI od základů k agentním systémům','Co jsem se zatím naučil','Processs','model as one system component','filesystem + coding','workflow + multi-agent']:
+              if bad in joined: blockers.append(f'Stale/forbidden text in PDF: {bad}')
+          if out_blocks: blockers.append(f'Out-of-bounds blocks: {out_blocks[:20]}')
+          if min_font<6.2: blockers.append(f'Minimum font {min_font:.2f} pt below 6.2 pt absolute gate.')
+          elif min_font<7.0: warnings.append(f'Diagram text reaches {min_font:.2f} pt; visually inspect rendered pages.')
+          if blank: warnings.append(f'Possible blank pages: {blank[:20]}')
+          words=len(re.findall(r"\b[A-Za-z0-9][A-Za-z0-9'’\-]*\b",joined))
+          if words<45000: blockers.append(f'Extracted word count too low: {words:,}')
+          preview=Path('book_final_eng/proof/preview'); preview.mkdir(parents=True,exist_ok=True)
+          pages={0,1,2,5,11,max(0,len(doc)//2),len(doc)-1}
+          pages.update(starts.values())
+          rendered=[]
+          for i in sorted(x for x in pages if 0<=x<len(doc)):
+              pix=doc[i].get_pixmap(matrix=fitz.Matrix(1.8,1.8),alpha=False)
+              pix.save(preview/f'page-{i+1:04d}.png'); rendered.append(i+1)
+          report=['# English Proof QA — 2026-08-08','',f'- Pages: **{len(doc)}**',f'- Extracted words: **{words:,}**',f'- Minimum extracted font: **{min_font:.2f} pt**',f'- Blank pages: **{len(blank)}**',f'- Out-of-bounds blocks: **{len(out_blocks)}**',f'- Inspection pages: **{rendered}**','', '## Small-font examples','']
+          report += ['- none'] if not low else [f'- page {p}, {sz:.2f} pt: `{txt}`' for p,sz,txt in low[:30]]
+          report += ['','## Blockers',''] + (['- none'] if not blockers else [f'- {x}' for x in blockers])
+          report += ['','## Warnings',''] + (['- none'] if not warnings else [f'- {x}' for x in warnings])
+          report += ['','## Gate','', '**PASS — automated English proof gates passed.**' if not blockers else '**FAIL — proof blockers remain.**','']
+          Path('book_final_eng/proof/ENGLISH_PROOF_QA.md').write_text('\n'.join(report),encoding='utf-8')
+          print('\n'.join(report))
+          if blockers: raise SystemExit(1)
+          PY
+      - name: Commit source fixes and proof
+        run: |
+          rm -f tools/build_book_final_eng_tmp.py
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add book_final_eng/assets book_final_eng/proof book_final_eng/NATIVE_EDITORIAL_PASS_2026-08-08.md book_final_eng/COVER_BRIEF.md
+          git commit -m "book: finalize English proof v0.8-eng"
+          git pull --rebase origin main
+          git push
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: English-book-proof-final-v0.8-eng
+          path: |
+            book_final_eng/proof/AI-From-First-Principles-to-Agentic-Systems-proof-v0.8-eng.pdf
+            book_final_eng/proof/ENGLISH_PROOF_QA.md
+            book_final_eng/proof/preview/*.png
