@@ -11,6 +11,8 @@ Kniha existuje ve dvou samostatně redigovaných edicích:
 
 **Aktuální snapshot obou edic: 2026-08-08.**
 
+> **Stav projektu:** obsah obou edic je content-locked release candidate. Redakční, content-parity, mechanical PDF a digitální visual/prepress kontroly jsou dokončené. Posledním povinným produkčním gate před skutečným tiskem je printer-specific preflight + fyzický proof.
+
 ## O knize
 
 Hlavní myšlenka knihy je jednoduchá:
@@ -59,6 +61,7 @@ Obě edice prošly posledním redakčním a předtiskovým QA dne **8. srpna 202
 - PDF: **600 stran**, 170 × 240 mm
 - editorial QA: **PASS**
 - PDF mechanical QA: **PASS**
+- digital visual / diagram QA: **PASS**
 
 ### English edition
 
@@ -69,25 +72,38 @@ Obě edice prošly posledním redakčním a předtiskovým QA dne **8. srpna 202
 - editorial QA: **PASS**
 - PDF mechanical QA: **PASS**
 - CZ ↔ EN content parity patch: **PASS**
+- digital visual / diagram QA: **PASS**
 
 Anglická verze není doslovný překlad. Je přepracovaná jako samostatná mezinárodní edice s přirozenou technickou angličtinou, upraveným rytmem textu, terminologií a positioningem.
+
+## Release package
+
+Před fyzickým / komerčním vydáním používej dva kořenové dokumenty:
+
+- ✅ [`RELEASE_PACKAGE_CHECKLIST.md`](RELEASE_PACKAGE_CHECKLIST.md) — finální GO / NO-GO checklist od content locku přes obálku, ISBN a printer preflight až po fyzický proof.
+- 📝 [`RELEASE_NOTES_2026-08-08.md`](RELEASE_NOTES_2026-08-08.md) — stav obou edic, poslední redakční změny, parity patch a release principy.
+
+Nejdůležitější pravidlo pro vydání:
+
+> **Publikovat pouze přesně ten PDF artifact, který prošel content QA, visual QA, printer preflight a fyzickým proofem — a uložit k němu commit SHA a checksum.**
 
 ## Hlavní rozcestníky
 
 - 🇨🇿 [`book_final/00 - INDEX.md`](book_final/00%20-%20INDEX.md)
 - 🌍 [`book_final_eng/00 - INDEX.md`](book_final_eng/00%20-%20INDEX.md)
 
-## Co bude následovat
+## Co ještě zbývá před tiskem
 
-Obsah obou rukopisů je nyní považován za **content-locked release candidate**. Další práce se má soustředit hlavně na vydavatelskou vrstvu:
+Obsah je nyní považován za **content-locked release candidate**. Další práce je už primárně vydavatelská a produkční:
 
-1. obálka a zadní strana,
-2. titulní a copyright/ISBN strana,
-3. tiráž,
-4. finální sazba podle konkrétní tiskárny nebo distribuční platformy,
-5. fyzický proof před tiskem,
-6. samostatný fact-check snapshotových kapitol těsně před vydáním.
+1. finální obálka + zadní strana,
+2. author / copyright / ISBN / imprint / tiráž vrstva,
+3. volba konkrétní tiskárny nebo distribuční platformy,
+4. bleed, gutter, binding a spine podle jejího skutečného výrobního profilu,
+5. fyzický proof,
+6. poslední fact-check rychle se měnících snapshotových informací,
+7. release tag + checksum schváleného PDF.
 
 ---
 
-**Repository status:** Czech + English release candidates complete. Final manuscript PDFs are available directly above.
+**Repository status:** Czech + English content-locked release candidates complete. Final manuscript PDFs are linked above; physical proof remains the final production gate.
