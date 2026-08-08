@@ -64,10 +64,11 @@ Obě edice prošly posledním redakčním a předtiskovým QA dne **8. srpna 202
 
 - 36 chapters + introduction
 - 7 appendices
-- approximately **50,000 words**
+- approximately **52,000 words**
 - PDF: **471 pages**, 170 × 240 mm
 - editorial QA: **PASS**
 - PDF mechanical QA: **PASS**
+- CZ ↔ EN content parity patch: **PASS**
 
 Anglická verze není doslovný překlad. Je přepracovaná jako samostatná mezinárodní edice s přirozenou technickou angličtinou, upraveným rytmem textu, terminologií a positioningem.
 
