@@ -1,0 +1,89 @@
+name: Fact-check English snapshot
+
+on:
+  push:
+    paths:
+      - '.github/workflows/factcheck-book-final-eng.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  factcheck:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Apply verified snapshot corrections
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          # Appendix B: make tiers and preview status explicit.
+          p=Path('book_final_eng/appendices/B - Model Landscape - Snapshot 08-2026.md')
+          s=p.read_text(encoding='utf-8')
+          s=s.replace('| OpenAI | GPT-5.6 family | frontier reasoning through lower-cost/high-throughput tiers |',
+                      '| OpenAI | GPT-5.6 Sol / Terra / Luna | frontier reasoning through lower-cost/high-throughput tiers |')
+          s=s.replace('| Google | Gemini 3.1 Pro / 3.6 Flash / 3.5 Flash-Lite | complex reasoning, multimodal work, high throughput |',
+                      '| Google | Gemini 3.1 Pro (API: Preview) / 3.6 Flash / 3.5 Flash-Lite | complex reasoning, multimodal work, high throughput |')
+          if '- Google Gemini 3.1 Pro:' not in s:
+              s=s.replace('- Google Gemini API releases: https://ai.google.dev/gemini-api/docs/changelog\n',
+                          '- Google Gemini API releases: https://ai.google.dev/gemini-api/docs/changelog\n- Google Gemini 3.1 Pro Preview: https://ai.google.dev/gemini-api/docs/models/gemini-3.1-pro-preview\n- Google Gemini deprecations / release status: https://ai.google.dev/gemini-api/docs/deprecations\n')
+          p.write_text(s,encoding='utf-8')
+
+          # Chapter 5: preserve product-family naming while making API status explicit.
+          p=Path('book_final_eng/05 - The Model Landscape.md')
+          s=p.read_text(encoding='utf-8')
+          s=s.replace('- **Gemini 3.1 Pro** for complex general work,',
+                      '- **Gemini 3.1 Pro** for complex general work — the Gemini API endpoint is still labeled **Preview** in this snapshot,')
+          p.write_text(s,encoding='utf-8')
+
+          # One English typo introduced by diagram localization.
+          for root in [Path('book_final_eng/assets/diagrams'),Path('book_final_eng/assets/diagrams-print')]:
+              p=root/'26-ai-readiness.svg'
+              s=p.read_text(encoding='utf-8').replace('Processs, data, security, measurement, and people must be ready together.',
+                                                     'Processes, data, security, measurement, and people must be ready together.')
+              p.write_text(s,encoding='utf-8')
+
+          report='''# English Edition Snapshot Fact-Check — 2026-08-08
+
+Scope: fast-moving model names/statuses in Chapter 5 and Appendix B. Durable architecture claims are reviewed separately by the editorial/QA pass.
+
+## Verified corrections
+
+- **OpenAI:** GPT-5.6 is generally available as **Sol / Terra / Luna** across ChatGPT, Codex, and API as of the book snapshot.
+- **Google:** **Gemini 3.1 Pro** is a current product/model family, but the Gemini API endpoint is still **`gemini-3.1-pro-preview`**. The manuscript now says this explicitly.
+- **Google:** **Gemini 3.6 Flash** and **Gemini 3.5 Flash-Lite** are current non-preview API models in the snapshot.
+- **Google Deep Think:** Gemini 3.1 Deep Think remains a current specialized reasoning mode for science, research, and engineering.
+- **Anthropic:** Claude Fable 5 / Sonnet 5 / Opus 4.8 naming retained.
+- **xAI:** Grok 4.5 naming retained.
+- **Open-weight families:** Qwen3.6, DeepSeek V4-era family, Gemma 4, Mistral Small 4, and Llama 4 ecosystem retained with license/release caveats.
+
+## Primary sources
+
+- https://openai.com/index/gpt-5-6/
+- https://ai.google.dev/gemini-api/docs/models/gemini-3.1-pro-preview
+- https://ai.google.dev/gemini-api/docs/deprecations
+- https://deepmind.google/models/gemini/deep-think/
+- https://www.anthropic.com/claude/fable
+- https://www.anthropic.com/news/claude-sonnet-5
+- https://www.anthropic.com/news/claude-opus-4-8
+- https://x.ai/news/grok-4-5
+- https://qwen.ai/blog?id=qwen3.6-35b-a3b
+- https://api-docs.deepseek.com/updates
+- https://ai.google.dev/gemma/docs/core/model_card_4
+- https://mistral.ai/news/mistral-small-4/
+- https://ai.meta.com/blog/llama-4-multimodal-intelligence/
+
+## Editorial rule
+
+Product/model snapshots are dated and allowed to age openly. The book's durable value should come from the system model: context, data, tools, permissions, verification, evaluation, and economics.
+'''
+          Path('book_final_eng/FACT_CHECK_2026-08-08.md').write_text(report,encoding='utf-8')
+          PY
+      - name: Commit corrections
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add book_final_eng
+          git commit -m "book: fact-check English edition snapshot"
+          git push
