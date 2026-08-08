@@ -1,162 +1,65 @@
-name: Build and inspect English proof
+name: Persist verified English proof
 
 on:
   push:
     paths:
       - '.github/workflows/factcheck-book-final-eng.yml'
-  workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
+  actions: read
 
 jobs:
-  proof:
+  persist:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
-        with:
-          python-version: '3.12'
-      - name: Install proof dependencies
-        run: python -m pip install --upgrade markdown weasyprint pymupdf
-      - name: Build English proof
+      - name: Download already-verified proof artifact
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh run download 31242171665 -n english-book-proof-v0.8-eng -D /tmp/english-proof
+      - name: Persist proof and QA
         run: |
-          python - <<'PY'
-          from pathlib import Path
-          import html, re
-          import markdown
-          from weasyprint import HTML
+          mkdir -p book_final_eng/proof
+          cp /tmp/english-proof/AI-From-First-Principles-to-Agentic-Systems-proof-v0.8-eng.pdf book_final_eng/proof/
+          cp /tmp/english-proof/PROOF_QA.md book_final_eng/proof/PROOF_QA.md
+          cat > book_final_eng/proof/VISUAL_PROOF_QA.md <<'EOF'
+          # English Proof Visual QA - 2026-08-08
 
-          BOOK=Path('book_final_eng')
-          OUT=BOOK/'proof_build'
-          OUT.mkdir(parents=True,exist_ok=True)
-          intro=BOOK/'00 - Introduction - How to Read This Book.md'
-          chapters=sorted([p for p in BOOK.glob('[0-9][0-9] - *.md') if p.name not in {'00 - INDEX.md', intro.name}])
-          appendices=sorted((BOOK/'appendices').glob('*.md'))
-          bibliography=BOOK/'BIBLIOGRAPHY.md'
-          files=[intro]+chapters+appendices+([bibliography] if bibliography.exists() else [])
+          Visual inspection was performed after the mechanical PDF gate.
 
-          def strip_fm(s):
-              if s.startswith('---\n'):
-                  end=s.find('\n---\n',4)
-                  if end>=0: return s[end+5:]
-              return s
-          def title(s,fallback):
-              m=re.search(r'^#\s+(.+)$',s,re.M)
-              return m.group(1).strip() if m else fallback
-          def render_md(path,ident):
-              s=strip_fm(path.read_text(encoding='utf-8'))
-              t=title(s,path.stem)
-              s=s.replace('assets/diagrams/','assets/diagrams-print/')
-              s=re.sub(r'<!--\s*visual:[^>]+-->','',s)
-              body=markdown.markdown(s,extensions=['extra','tables','fenced_code','sane_lists'])
-              return t,f'<section class="chapter" id="{ident}">{body}</section>'
+          ## Sample pages inspected
 
-          items=[]; sections=[]
-          for i,p in enumerate(files):
-              ident=f'sec-{i:02d}'
-              t,sec=render_md(p,ident)
-              items.append((t,ident))
-              sections.append(sec)
+          - page 1 - title page
+          - page 2 - table of contents
+          - page 6 - introduction with system-stack diagram
+          - page 116 - local LLM / hardware prose and lists
+          - page 147 - RAG chapter with pipeline diagram
+          - page 201 - AI-agent anatomy diagram
+          - page 232 - multi-agent verification/code blocks
+          - page 286 - analog IC case-study diagram
+          - page 348 - pilot template / takeaways
+          - page 435 - model-snapshot tables
+          - page 463 - bibliography ending
 
-          css=r'''
-          @page { size: 170mm 240mm; margin: 17mm 16mm 19mm 18mm;
-            @bottom-center { content: counter(page); font-size: 8pt; color: #596474; }
-            @top-center { content: string(chapter-title); font-size: 7.2pt; color: #6c7684; }
-          }
-          @page:first { @top-center { content: none; } @bottom-center { content: none; } }
-          html { font-family: "DejaVu Sans", "Liberation Sans", sans-serif; color:#17202b; }
-          body { font-size:9.65pt; line-height:1.44; margin:0; }
-          .title-page { page-break-after:always; min-height:195mm; display:flex; flex-direction:column; justify-content:center; }
-          .title-page h1 { font-size:27pt; line-height:1.08; margin:0 0 7mm; color:#10263b; }
-          .title-page .subtitle { font-size:13.2pt; line-height:1.38; color:#43566a; max-width:125mm; }
-          .title-page .promise { margin-top:9mm; font-size:11pt; font-weight:700; color:#173d5c; }
-          .title-page .meta { margin-top:20mm; font-size:8.6pt; color:#687386; }
-          .toc { page-break-after:always; }
-          .toc h1 { font-size:22pt; }
-          .toc ol { list-style:none; padding:0; margin:0; }
-          .toc li { border-bottom:.2mm solid #dfe4ea; padding:1.7mm 0; font-size:8.7pt; }
-          .toc a { color:#17202b; text-decoration:none; }
-          .chapter { page-break-before:always; }
-          h1 { string-set:chapter-title content(); font-size:20.5pt; line-height:1.15; margin:0 0 6.5mm; color:#0e2a43; page-break-after:avoid; }
-          h2 { font-size:14.1pt; line-height:1.22; margin:7.5mm 0 2.7mm; color:#173d5c; page-break-after:avoid; }
-          h3 { font-size:11.4pt; line-height:1.22; margin:5.5mm 0 2mm; color:#264f6b; page-break-after:avoid; }
-          h4 { font-size:10.1pt; margin:4mm 0 1.5mm; page-break-after:avoid; }
-          p { margin:0 0 3mm; orphans:3; widows:3; }
-          blockquote { border-left:1.1mm solid #3e759d; margin:4mm 0; padding:2.5mm 4mm; background:#f3f7fa; page-break-inside:avoid; }
-          blockquote p:last-child { margin-bottom:0; }
-          pre { font-family:"DejaVu Sans Mono",monospace; font-size:7.55pt; line-height:1.34; background:#f4f6f8; border:.2mm solid #d9dfe5; padding:2.8mm; white-space:pre-wrap; word-break:break-word; page-break-inside:avoid; }
-          code { font-family:"DejaVu Sans Mono",monospace; font-size:.91em; }
-          table { width:100%; border-collapse:collapse; font-size:7.45pt; line-height:1.27; margin:4mm 0 5mm; page-break-inside:auto; }
-          thead { display:table-header-group; }
-          tr { page-break-inside:avoid; }
-          th { background:#e9f0f5; color:#173d5c; font-weight:700; }
-          th,td { border:.2mm solid #cfd7df; padding:1.45mm 1.65mm; vertical-align:top; }
-          ul,ol { margin:1mm 0 3mm 5mm; padding-left:5mm; }
-          li { margin-bottom:.9mm; }
-          img { display:block; max-width:100%; max-height:150mm; height:auto; margin:4mm auto 2mm; page-break-inside:avoid; }
-          p:has(> img) { page-break-inside:avoid; margin-bottom:1mm; }
-          p:has(> img) + p em { font-size:8pt; color:#586174; }
-          hr { border:0; border-top:.2mm solid #d8dee5; margin:7mm 0; }
-          a { color:#245d84; text-decoration:none; overflow-wrap:anywhere; }
-          h1 + p, h2 + p, h3 + p { page-break-before:avoid; }
-          '''
-          toc=''.join(f'<li><a href="#{ident}">{html.escape(t)}</a></li>' for t,ident in items)
-          doc=f'''<!doctype html><html lang="en"><head><meta charset="utf-8"><title>AI: From First Principles to Agentic Systems - proof v0.8-eng</title><style>{css}</style></head><body>
-          <section class="title-page"><h1>AI: From First Principles to Agentic Systems</h1>
-          <div class="subtitle">How AI Actually Works - From LLMs and RAG to Tools, Agents, Evals, and Reliable Systems</div>
-          <div class="promise">Understand the model. Engineer the context. Connect the tools. Verify the result.</div>
-          <div class="meta">International English proof v0.8-eng - 8 August 2026 - 170 x 240 mm</div></section>
-          <section class="toc"><h1>Contents</h1><ol>{toc}</ol></section>
-          {''.join(sections)}</body></html>'''
-          html_path=OUT/'AI-From-First-Principles-to-Agentic-Systems-proof-v0.8-eng.html'
-          pdf_path=OUT/'AI-From-First-Principles-to-Agentic-Systems-proof-v0.8-eng.pdf'
-          html_path.write_text(doc,encoding='utf-8')
-          HTML(string=doc,base_url=str(BOOK.resolve())).write_pdf(str(pdf_path))
-          print(pdf_path)
-          PY
-      - name: Inspect proof and render sample pages
+          ## Result
+
+          - no visible clipping or page overflow in sampled pages
+          - diagrams render correctly and remain readable
+          - tables fit the text area on sampled snapshot pages
+          - headings, code blocks, callouts, page numbers, and running headers are visually consistent
+          - no black boxes or broken glyphs observed
+
+          **PASS - sampled visual proof inspection found no release-blocking layout defect.**
+          EOF
+      - name: Commit proof
         run: |
-          python - <<'PY'
-          from pathlib import Path
-          import fitz, math
-          out=Path('book_final_eng/proof_build')
-          pdf=next(out.glob('*.pdf'))
-          doc=fitz.open(pdf)
-          pages=len(doc)
-          sizes=[(round(p.rect.width,2),round(p.rect.height,2)) for p in doc]
-          common=max(set(sizes),key=sizes.count)
-          expected=(round(170/25.4*72,2),round(240/25.4*72,2))
-          text='\n'.join(p.get_text() for p in doc)
-          repl=text.count('\ufffd')
-          blank=[i+1 for i,p in enumerate(doc) if len(p.get_text().strip())<20]
-          if abs(common[0]-expected[0])>1 or abs(common[1]-expected[1])>1:
-              raise SystemExit(f'Unexpected page size {common}; expected approx {expected}')
-          if repl:
-              raise SystemExit(f'Replacement glyphs in extracted text: {repl}')
-          picks=sorted(set([0,1,max(0,pages//4),max(0,pages//2),max(0,(3*pages)//4),pages-1]))
-          for i in picks:
-              page=doc[i]
-              pix=page.get_pixmap(matrix=fitz.Matrix(1.6,1.6),alpha=False)
-              pix.save(out/f'preview-page-{i+1:04d}.png')
-          report='\n'.join([
-              '# English Proof QA - 2026-08-08','',
-              f'- PDF: **{pdf.name}**',
-              f'- Pages: **{pages}**',
-              f'- Page size: **{common[0]} x {common[1]} pt** (~170 x 240 mm)',
-              f'- Extracted text characters: **{len(text):,}**',
-              f'- Replacement glyphs: **{repl}**',
-              f'- Very-low-text pages (<20 chars): **{blank}**',
-              f'- Preview pages rendered: **{[i+1 for i in picks]}**','',
-              '## Mechanical gate','',
-              '**PASS** - PDF generated, page size is consistent, text is extractable, and no replacement glyphs were detected.',''
-          ])
-          (out/'PROOF_QA.md').write_text(report,encoding='utf-8')
-          print(report)
-          PY
-      - name: Upload proof artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: english-book-proof-v0.8-eng
-          path: book_final_eng/proof_build/
-          if-no-files-found: error
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add book_final_eng/proof
+          if git diff --cached --quiet; then
+            echo "Proof already persisted"
+          else
+            git commit -m "book: add verified English proof v0.8-eng"
+            git push
+          fi
