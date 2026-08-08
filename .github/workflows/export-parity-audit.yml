@@ -1,0 +1,27 @@
+name: Export parity audit sources
+
+on:
+  push:
+    paths:
+      - '.github/workflows/export-parity-audit.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  export:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Package current Czech and English release-candidate manuscripts
+        run: |
+          mkdir -p parity_export
+          cp -a book_final parity_export/
+          cp -a book_final_eng parity_export/
+          rm -rf parity_export/book_final/proof parity_export/book_final_eng/proof
+      - uses: actions/upload-artifact@v4
+        with:
+          name: parity-audit-sources
+          path: parity_export/
+          if-no-files-found: error
