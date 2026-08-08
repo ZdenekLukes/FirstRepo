@@ -1,0 +1,113 @@
+name: Finish English SVG label localization
+
+on:
+  push:
+    paths:
+      - '.github/workflows/finalize-book-final-eng-svg-labels.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  localize:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Replace remaining Czech labels
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          pairs = [
+            ('jazyk','language'),
+            ('KONTEXT','CONTEXT'),
+            ('Kontext','Context'),
+            ('fakta','facts'),
+            ('HODNOTA','VALUE'),
+            ('pojem AI','the term AI'),
+            ('„tranzistor“','“transistor”'),
+            ('system + user + historie','system + user + history'),
+            ('Tokenizace','Tokenization'),
+            ('text → tokeny','text → tokens'),
+            ('Transformer vrstvy','Transformer layers'),
+            ('Parametry','Parameters'),
+            ('Kvalita','Quality'),
+            ('Provoz','Operations'),
+            ('latence + cena','latency + cost'),
+            ('privacy + licence','privacy + license'),
+            ('frontier modely','frontier models'),
+            ('kontrola dat','data control'),
+            ('Aplikace / UI','Application / UI'),
+            ('text / tabulka / JSON','text / table / JSON'),
+            ('Iterace','Iteration'),
+            ('pravidla aplikace','application rules'),
+            ('Moje data','My data'),
+            ('interpretace','interpretation'),
+            ('Dokumenty','Documents'),
+            ('Dotaz','Query'),
+            ('E-maily','Email'),
+            ('Meetingy','Meetings'),
+            ('Knihy','Books'),
+            ('funkce + argumenty','function + arguments'),
+            ('autentizace + logika','authentication + logic'),
+            ('Anatomie AI agenta','Anatomy of an AI Agent'),
+            ('Goal / instrukce','Goal / instructions'),
+            ('Toole','Tools'),
+            ('Kontroly','Checks'),
+            ('validace','validation'),
+            ('Autonomie','Autonomy'),
+            ('Normalizace','Normalization'),
+            ('struktura','structure'),
+            ('Specifikace','Specification'),
+            ('Simulace','Simulation'),
+            ('Extrakce','Extraction'),
+            ('sanitace','sanitization'),
+            ('Business proces','Business process'),
+            ('Proces','Process'),
+            ('Pozor','Watch out'),
+            ('industrializace','industrialization'),
+            ('Standardizovat','Standardize'),
+            ('Cena chyby','Cost of error'),
+            ('People a provoz','People and operations'),
+            ('Integrace','Integration'),
+            ('API tokeny / GPU','API tokens / GPU'),
+            ('Multimodalita','Multimodality'),
+            ('text · obraz · audio','text · image · audio'),
+            ('Efektivita','Efficiency'),
+            ('data + akce','data + actions'),
+            ('schopnost ≠ spolehlivost','capability ≠ reliability'),
+            ('Kdo vede benchmark?','Who leads the benchmark?'),
+            ('POSUN','SHIFT'),
+            ('revize','revision'),
+            ('chat nad dokumenty','chat over documents')
+          ]
+          roots=[Path('book_final_eng/assets/diagrams'),Path('book_final_eng/assets/diagrams-print')]
+          changed=0
+          for root in roots:
+            for p in root.glob('*.svg'):
+              s=p.read_text(encoding='utf-8'); old=s
+              for a,b in pairs: s=s.replace(a,b)
+              if s!=old:
+                p.write_text(s,encoding='utf-8'); changed+=1
+          print('changed files',changed)
+          assert sum(1 for _ in roots[0].glob('*.svg')) == 43
+          assert sum(1 for _ in roots[1].glob('*.svg')) == 43
+          # Exact hard gate for every Czech label known from the exhaustive label dump.
+          leftovers=[]
+          needles=[a for a,_ in pairs]
+          for root in roots:
+            for p in root.glob('*.svg'):
+              s=p.read_text(encoding='utf-8')
+              hit=[x for x in needles if x in s]
+              if hit: leftovers.append((str(p),hit))
+          if leftovers:
+            raise SystemExit(str(leftovers))
+          print('known-label gate: PASS')
+          PY
+      - name: Commit final label localization
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add book_final_eng/assets
+          git commit -m "book: finish English diagram labels"
+          git push
