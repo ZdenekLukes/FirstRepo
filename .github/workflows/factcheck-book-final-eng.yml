@@ -1,4 +1,4 @@
-name: Fact-check English snapshot
+name: Finalize English editorial metadata
 
 on:
   push:
@@ -10,80 +10,132 @@ permissions:
   contents: write
 
 jobs:
-  factcheck:
+  finalize:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Apply verified snapshot corrections
+      - name: Write fact-check and positioning
         run: |
           python - <<'PY'
           from pathlib import Path
-          # Appendix B: make tiers and preview status explicit.
-          p=Path('book_final_eng/appendices/B - Model Landscape - Snapshot 08-2026.md')
-          s=p.read_text(encoding='utf-8')
-          s=s.replace('| OpenAI | GPT-5.6 family | frontier reasoning through lower-cost/high-throughput tiers |',
-                      '| OpenAI | GPT-5.6 Sol / Terra / Luna | frontier reasoning through lower-cost/high-throughput tiers |')
-          s=s.replace('| Google | Gemini 3.1 Pro / 3.6 Flash / 3.5 Flash-Lite | complex reasoning, multimodal work, high throughput |',
-                      '| Google | Gemini 3.1 Pro (API: Preview) / 3.6 Flash / 3.5 Flash-Lite | complex reasoning, multimodal work, high throughput |')
-          if '- Google Gemini 3.1 Pro:' not in s:
-              s=s.replace('- Google Gemini API releases: https://ai.google.dev/gemini-api/docs/changelog\n',
-                          '- Google Gemini API releases: https://ai.google.dev/gemini-api/docs/changelog\n- Google Gemini 3.1 Pro Preview: https://ai.google.dev/gemini-api/docs/models/gemini-3.1-pro-preview\n- Google Gemini deprecations / release status: https://ai.google.dev/gemini-api/docs/deprecations\n')
-          p.write_text(s,encoding='utf-8')
+          p = Path('book_final_eng/05 - The Model Landscape.md')
+          s = p.read_text(encoding='utf-8')
+          s = s.replace('- **Gemini 3.1 Pro** for complex general work,', '- **Gemini 3.1 Pro** for complex general work — the Gemini API endpoint is still labeled **Preview** in this snapshot,')
+          p.write_text(s, encoding='utf-8')
 
-          # Chapter 5: preserve product-family naming while making API status explicit.
-          p=Path('book_final_eng/05 - The Model Landscape.md')
-          s=p.read_text(encoding='utf-8')
-          s=s.replace('- **Gemini 3.1 Pro** for complex general work,',
-                      '- **Gemini 3.1 Pro** for complex general work — the Gemini API endpoint is still labeled **Preview** in this snapshot,')
-          p.write_text(s,encoding='utf-8')
+          fact = [
+              '# English Edition Snapshot Fact-Check — 2026-08-08',
+              '',
+              'Scope: fast-moving model names and release status in Chapter 5 and Appendix B. Durable architecture claims are reviewed separately by the editorial and QA pass.',
+              '',
+              '## Verified points',
+              '',
+              '- **OpenAI:** GPT-5.6 is generally available as **Sol / Terra / Luna** across ChatGPT, Codex, and API as of the snapshot.',
+              '- **Google:** **Gemini 3.1 Pro** is current, but the Gemini API endpoint remains **`gemini-3.1-pro-preview`**. Appendix B now says this explicitly.',
+              '- **Google:** **Gemini 3.6 Flash** and **Gemini 3.5 Flash-Lite** are current production API models in the snapshot.',
+              '- **Google Deep Think:** Gemini 3.1 Deep Think remains a specialized reasoning mode for science, research, and engineering.',
+              '- **Anthropic / xAI / open-weight families:** retained as dated snapshot entries; each release should be checked again immediately before publication.',
+              '',
+              '## Primary sources',
+              '',
+              '- https://openai.com/index/gpt-5-6/',
+              '- https://ai.google.dev/gemini-api/docs/models/gemini-3.1-pro-preview',
+              '- https://ai.google.dev/gemini-api/docs/deprecations',
+              '- https://ai.google.dev/gemini-api/docs/latest-model',
+              '- https://deepmind.google/models/gemini/deep-think/',
+              '- https://www.anthropic.com/claude/fable',
+              '- https://www.anthropic.com/news/claude-sonnet-5',
+              '- https://www.anthropic.com/news/claude-opus-4-8',
+              '- https://x.ai/news/grok-4-5',
+              '- https://qwen.ai/blog?id=qwen3.6-35b-a3b',
+              '- https://api-docs.deepseek.com/updates',
+              '- https://ai.google.dev/gemma/docs/core/model_card_4',
+              '- https://mistral.ai/news/mistral-small-4/',
+              '- https://ai.meta.com/blog/llama-4-multimodal-intelligence/',
+              '',
+              '## Editorial rule',
+              '',
+              "Product/model snapshots are explicitly dated and allowed to age openly. The book's durable value should come from the system model: context, data, tools, permissions, verification, evaluation, and economics.",
+          ]
+          Path('book_final_eng/FACT_CHECK_2026-08-08.md').write_text('\n'.join(fact) + '\n', encoding='utf-8')
 
-          # One English typo introduced by diagram localization.
-          for root in [Path('book_final_eng/assets/diagrams'),Path('book_final_eng/assets/diagrams-print')]:
-              p=root/'26-ai-readiness.svg'
-              s=p.read_text(encoding='utf-8').replace('Processs, data, security, measurement, and people must be ready together.',
-                                                     'Processes, data, security, measurement, and people must be ready together.')
-              p.write_text(s,encoding='utf-8')
-
-          report='''# English Edition Snapshot Fact-Check — 2026-08-08
-
-Scope: fast-moving model names/statuses in Chapter 5 and Appendix B. Durable architecture claims are reviewed separately by the editorial/QA pass.
-
-## Verified corrections
-
-- **OpenAI:** GPT-5.6 is generally available as **Sol / Terra / Luna** across ChatGPT, Codex, and API as of the book snapshot.
-- **Google:** **Gemini 3.1 Pro** is a current product/model family, but the Gemini API endpoint is still **`gemini-3.1-pro-preview`**. The manuscript now says this explicitly.
-- **Google:** **Gemini 3.6 Flash** and **Gemini 3.5 Flash-Lite** are current non-preview API models in the snapshot.
-- **Google Deep Think:** Gemini 3.1 Deep Think remains a current specialized reasoning mode for science, research, and engineering.
-- **Anthropic:** Claude Fable 5 / Sonnet 5 / Opus 4.8 naming retained.
-- **xAI:** Grok 4.5 naming retained.
-- **Open-weight families:** Qwen3.6, DeepSeek V4-era family, Gemma 4, Mistral Small 4, and Llama 4 ecosystem retained with license/release caveats.
-
-## Primary sources
-
-- https://openai.com/index/gpt-5-6/
-- https://ai.google.dev/gemini-api/docs/models/gemini-3.1-pro-preview
-- https://ai.google.dev/gemini-api/docs/deprecations
-- https://deepmind.google/models/gemini/deep-think/
-- https://www.anthropic.com/claude/fable
-- https://www.anthropic.com/news/claude-sonnet-5
-- https://www.anthropic.com/news/claude-opus-4-8
-- https://x.ai/news/grok-4-5
-- https://qwen.ai/blog?id=qwen3.6-35b-a3b
-- https://api-docs.deepseek.com/updates
-- https://ai.google.dev/gemma/docs/core/model_card_4
-- https://mistral.ai/news/mistral-small-4/
-- https://ai.meta.com/blog/llama-4-multimodal-intelligence/
-
-## Editorial rule
-
-Product/model snapshots are dated and allowed to age openly. The book's durable value should come from the system model: context, data, tools, permissions, verification, evaluation, and economics.
-'''
-          Path('book_final_eng/FACT_CHECK_2026-08-08.md').write_text(report,encoding='utf-8')
+          pos = [
+              '# International Positioning — English Edition',
+              '',
+              '## Final title',
+              '',
+              '# **AI: From First Principles to Agentic Systems**',
+              '',
+              '## Final subtitle',
+              '',
+              '> **How AI Actually Works — From LLMs and RAG to Tools, Agents, Evals, and Reliable Systems**',
+              '',
+              '## One-line promise',
+              '',
+              '> **Understand the model. Engineer the context. Connect the tools. Verify the result.**',
+              '',
+              '## The category this book should own',
+              '',
+              'This is not a prompt book, a vendor catalog, or a framework cookbook. It is a practical systems book for people who want to understand the path from a language model to AI they can trust with real work.',
+              '',
+              '```text',
+              'MODEL → CONTEXT → DATA → RETRIEVAL → TOOLS → AGENT LOOP → PERMISSIONS → VERIFICATION → EVALS → ECONOMICS',
+              '```',
+              '',
+              'The book repeatedly asks the question most AI demos skip:',
+              '',
+              '> **How do we know the result is actually correct?**',
+              '',
+              '## Primary reader',
+              '',
+              'A technically curious professional who uses AI already, has seen what modern models can do, and now wants a coherent mental model for building something more reliable than chat.',
+              '',
+              '## What makes the book different',
+              '',
+              '1. **System-centric, not model-centric.** The unit of analysis is the complete AI system.',
+              '2. **Verification is a first-class layer.** Tests, simulators, databases, schemas, and human approval are part of AI engineering.',
+              '3. **Cloud, local, and hybrid are routing choices.** No ideological cloud-vs-local argument.',
+              '4. **Agent autonomy is bounded engineering, not anthropomorphism.** State, permissions, retries, budgets, and stop conditions are explicit.',
+              '5. **The analog IC case study gives the book a real technical signature.** It demonstrates AI working with physics, simulation, and engineering evidence.',
+              '6. **The book admits what ages.** Product/model snapshots are dated; durable principles are separated from them.',
+              '7. **The final projects force the reader to build evidence, not only consume concepts.**',
+              '',
+              '## Front-cover direction',
+              '',
+              'Restrained technical nonfiction. Show a system evolving from a single model node into layers of context, data, tools, verification, and a closed agent loop. High contrast, minimal geometry, no humanoid robot, no glowing brain.',
+              '',
+              '## Back-cover copy',
+              '',
+              'A powerful model is only the beginning.',
+              '',
+              'The systems that survive real work need the right context, trustworthy data, tools that can act on the world, permissions that limit what they may do, and a way to verify the result.',
+              '',
+              '**AI: From First Principles to Agentic Systems** builds that picture one layer at a time. Without unnecessary mathematics, it explains how modern language models work, how to compare cloud and local models, why RAG succeeds or fails, how tool use turns chat into action, what an AI agent actually is, and why multi-agent systems are often less useful than they look.',
+              '',
+              'Then it moves into the questions that matter in production: security, enterprise data, evaluation, economics, human approval, observability, and failure recovery.',
+              '',
+              'A detailed engineering case study applies the same architecture to analog integrated-circuit design, where AI must work with specifications, simulation, measurement, and physical constraints rather than simply generate plausible text.',
+              '',
+              'The book ends with a minimal AI stack and ten projects that progress from a single-document assistant to a measured agentic workflow.',
+              '',
+              'If an AI demo impresses you, this book will teach you to ask five more questions:',
+              '',
+              '**Where does it get its data? What does it actually see? Which tools can it use? What is it allowed to do? And how do we know the result is correct?**',
+              '',
+              '## Retailer short description',
+              '',
+              'A practical engineering guide to modern AI from LLM fundamentals to RAG, tools, local models, agents, security, evals, and production economics. Learn how to build AI systems whose outputs can be traced, constrained, measured, and verified — with hands-on projects and a real analog IC design case study.',
+              '',
+              '## Positioning boundary',
+              '',
+              '> **The strongest supportable promise is that the book teaches readers how to reason about the entire AI system — and how to verify whether that system deserves trust.**',
+          ]
+          Path('book_final_eng/INTERNATIONAL_POSITIONING.md').write_text('\n'.join(pos) + '\n', encoding='utf-8')
           PY
-      - name: Commit corrections
+      - name: Commit editorial metadata
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add book_final_eng
-          git commit -m "book: fact-check English edition snapshot"
+          git add book_final_eng/05\ -\ The\ Model\ Landscape.md book_final_eng/FACT_CHECK_2026-08-08.md book_final_eng/INTERNATIONAL_POSITIONING.md
+          git commit -m "book: finalize English positioning and snapshot fact-check"
           git push
