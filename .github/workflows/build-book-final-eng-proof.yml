@@ -35,73 +35,6 @@ jobs:
                   s=s.replace('font-size="25" font-weight="400"','font-size="21" font-weight="400"')
               p.write_text(s,encoding='utf-8')
           PY
-      - name: Write native editorial pass notes
-        run: |
-          python - <<'PY'
-          from pathlib import Path
-          native='''# Native-English Editorial Pass — 2026-08-08
-
-**Result: PASS with targeted edits, not wholesale synonym rewriting.**
-
-The English edition is treated as an original technical book, not as a sentence-by-sentence Czech translation.
-
-## What was changed
-
-- Re-authored the interrupted chapters 13–22 and 31–36 directly from the Czech master into natural American technical English.
-- Standardized the book around the system-centric vocabulary: model, context, data, retrieval, tools, agent loop, permissions, verification, evals, and economics.
-- Tightened titles and transitions where English rhythm benefited from shorter, stronger phrasing.
-- Preserved the authorial engineering voice, analog IC case study, practical hardware observations, and explicit limits of AI.
-- Removed translation-like Czech residue from all visible diagram labels and re-checked the complete label inventory.
-- Sharpened the subtitle for the international market while retaining the durable main title.
-- Fact-checked the dated August 2026 model snapshot from primary provider sources.
-
-## Editorial decision
-
-The introduction and many already-native chapters were intentionally **not** rewritten merely to create a larger diff. Their current voice is concise, technical, and consistent with the English style guide. Unnecessary rewriting would reduce authorial identity and increase the chance of introducing new errors.
-
-## Release stance
-
-The manuscript is structurally complete and mechanically clean. Release-candidate status still requires a final proof pass after rendered-page inspection and a fresh snapshot check immediately before publication.
-'''
-          cover='''# Cover Brief — International English Edition
-
-## Front cover
-
-**AI**  
-**From First Principles to Agentic Systems**
-
-*How AI Actually Works — From LLMs and RAG to Tools, Agents, Evals, and Reliable Systems*
-
-## Visual direction
-
-Restrained technical nonfiction, closer to a serious engineering or systems book than to generic AI marketing.
-
-Visual metaphor: one model node expands into a layered system — context, data, retrieval, tools, verification — and closes into a controlled agent loop.
-
-Requirements:
-
-- high contrast and strong thumbnail readability;
-- minimal geometric language;
-- one memorable systems diagram motif rather than many decorative elements;
-- no humanoid robot;
-- no glowing brain;
-- no fake circuit-board background;
-- no neon cyberpunk aesthetic;
-- leave clear hierarchy for title, subtitle, and author name.
-
-## Back-cover lead
-
-**A powerful model is only the beginning.**
-
-The systems that survive real work need the right context, trustworthy data, tools that can act on the world, permissions that limit what they may do, and a way to verify the result.
-
-## One-line promise
-
-**Understand the model. Engineer the context. Connect the tools. Verify the result.**
-'''
-          Path('book_final_eng/NATIVE_EDITORIAL_PASS_2026-08-08.md').write_text(native,encoding='utf-8')
-          Path('book_final_eng/COVER_BRIEF.md').write_text(cover,encoding='utf-8')
-          PY
       - name: Create English proof builder
         run: |
           python - <<'PY'
@@ -161,8 +94,7 @@ The systems that survive real work need the right context, trustworthy data, too
           words=len(re.findall(r"\b[A-Za-z0-9][A-Za-z0-9'’\-]*\b",joined))
           if words<45000: blockers.append(f'Extracted word count too low: {words:,}')
           preview=Path('book_final_eng/proof/preview'); preview.mkdir(parents=True,exist_ok=True)
-          pages={0,1,2,5,11,max(0,len(doc)//2),len(doc)-1}
-          pages.update(starts.values())
+          pages={0,1,2,5,11,max(0,len(doc)//2),len(doc)-1}; pages.update(starts.values())
           rendered=[]
           for i in sorted(x for x in pages if 0<=x<len(doc)):
               pix=doc[i].get_pixmap(matrix=fitz.Matrix(1.8,1.8),alpha=False)
@@ -181,7 +113,7 @@ The systems that survive real work need the right context, trustworthy data, too
           rm -f tools/build_book_final_eng_tmp.py
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add book_final_eng/assets book_final_eng/proof book_final_eng/NATIVE_EDITORIAL_PASS_2026-08-08.md book_final_eng/COVER_BRIEF.md
+          git add book_final_eng/assets book_final_eng/proof
           git commit -m "book: finalize English proof v0.8-eng"
           git pull --rebase origin main
           git push
