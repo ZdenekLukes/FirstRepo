@@ -1,0 +1,63 @@
+name: Final English SVG localization verification
+
+on:
+  push:
+    paths:
+      - '.github/workflows/verify-book-final-eng-svg-labels.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Apply remaining map and verify exact visible labels
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import ast, re, html
+          src=Path('.github/workflows/finalize-book-final-eng-svg-labels.yml').read_text(encoding='utf-8')
+          a=src.index('pairs = [') + len('pairs = ')
+          b=src.index('\n          ]', a) + len('\n          ]')
+          pairs=ast.literal_eval(src[a:b])
+          roots=[Path('book_final_eng/assets/diagrams'),Path('book_final_eng/assets/diagrams-print')]
+          for root in roots:
+            for p in root.glob('*.svg'):
+              s=p.read_text(encoding='utf-8')
+              for old,new in pairs: s=s.replace(old,new)
+              p.write_text(s,encoding='utf-8')
+          needles=set(old for old,_ in pairs)
+          all_labels=[]
+          bad=[]
+          for root in roots:
+            for p in sorted(root.glob('*.svg')):
+              s=p.read_text(encoding='utf-8')
+              labels=re.findall(r'<(?:text|title|desc)(?:\s[^>]*)?>(.*?)</(?:text|title|desc)>',s,re.S)
+              labels=[html.unescape(re.sub(r'<[^>]+>','',x)).strip() for x in labels]
+              labels=[x for x in labels if x]
+              if root.name=='diagrams':
+                all_labels.append((p.name,labels))
+              exact=[x for x in labels if x in needles]
+              diac=[x for x in labels if re.search(r'[áčďéěíňóřšťúůýžÁČĎÉĚÍŇÓŘŠŤÚŮÝŽ]',x)]
+              if exact or diac: bad.append((str(p), sorted(set(exact+diac))))
+          if bad:
+            for p,x in bad: print(p,x)
+            raise SystemExit(f'Untranslated visible labels remain in {len(bad)} files')
+          out=['# Final visible SVG labels — English edition','']
+          for name,labels in all_labels:
+            out += [f'## {name}',''] + [f'- {x}' for x in labels] + ['']
+          Path('book_final_eng/SVG_FINAL_LABELS.md').write_text('\n'.join(out)+'\n',encoding='utf-8')
+          assert len(all_labels)==43
+          assert sum(1 for _ in roots[1].glob('*.svg'))==43
+          print('Final SVG localization: PASS; 43 screen + 43 print')
+          PY
+      - name: Commit localized assets and final label inventory
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add book_final_eng/assets book_final_eng/SVG_FINAL_LABELS.md
+          git commit -m "book: verify complete English diagram localization"
+          git push
