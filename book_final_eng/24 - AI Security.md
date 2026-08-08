@@ -505,6 +505,20 @@ What decisions or content does it create?
 
 Other jurisdictions have different legal regimes. The transferable engineering principle is to keep **jurisdiction-specific policy outside model behavior**, so rules can be updated without pretending that the LLM itself is the compliance system.
 
+### AI literacy is an operating capability, not one-off training
+
+Safe operation depends on users understanding a small set of practical truths:
+
+- the model can hallucinate;
+- a model and a tool are different security objects;
+- sensitive data needs explicit handling rules;
+- some outputs require independent verification;
+- an agent must have a defined action boundary.
+
+This is not generic “AI awareness.” It is an operating capability closer to security awareness: people need enough understanding to recognize when the system has moved outside its safe envelope.
+
+That capability also has to evolve. A team that was trained on chat-only assistants may still be unprepared for agents with file, database, or production-system access.
+
 ### A minimal AI system card
 
 | Field | Question |

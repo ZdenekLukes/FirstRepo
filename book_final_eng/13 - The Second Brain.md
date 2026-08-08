@@ -520,6 +520,59 @@ That is the right power relationship:
 
 ---
 
+## 13.16 Prevent the Second Brain from Becoming a Digital Warehouse
+
+The main enemy of a second brain is not too little data.
+
+It is **too much unstructured data**.
+
+Automation can make this worse. A system that saves every email, web page, transcript, screenshot, and document may become a technically perfect archive that is practically difficult to use.
+
+A useful architecture separates three layers:
+
+```text
+RAW ARCHIVE
+→ original transcripts, PDFs, email, web captures
+
+KNOWLEDGE
+→ validated notes, decisions, summaries, durable references
+
+WORKING
+→ current projects, open questions, tasks, active evidence
+```
+
+The raw archive preserves history. The knowledge layer contains information that has been selected, structured, and given enough metadata to be reusable. The working layer contains what matters now.
+
+AI can help move information between these layers, but the promotion rules should remain explicit and human-governed. Otherwise automatic capture quietly turns into automatic clutter.
+
+A minimal second-brain architecture can therefore stay surprisingly simple:
+
+```text
+             SOURCES
+
+notes | PDFs | email | transcripts | web
+                ↓
+        extraction / metadata
+                ↓
+          knowledge store
+          ┌─────┴─────┐
+          ↓           ↓
+     human view     AI index
+      Obsidian        RAG
+          ↓           ↓
+          └─────┬─────┘
+                ↓
+               AI
+                ↓
+       search / summary / agent
+```
+
+The important property is architectural independence:
+
+> **The source knowledge is not trapped inside the model. The model is a work layer over it.**
+
+---
+
 ## Key Takeaways
 
 1. **A second brain is an external knowledge system, not an imitation of biological memory.**

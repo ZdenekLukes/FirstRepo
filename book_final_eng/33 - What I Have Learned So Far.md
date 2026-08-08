@@ -367,6 +367,84 @@ That is the biggest lesson I have taken from this journey so far:
 
 ---
 
+## 33.11 What I Would Do Differently
+
+If I were starting again, I would spend less time searching for the “best” model and start building small end-to-end experiments earlier.
+
+Something like:
+
+```text
+1. one document
+2. one local model
+3. one tool
+4. one RAG pipeline
+5. one agent
+6. one real workflow
+```
+
+For every step I would record:
+
+```text
+what worked
+what failed
+why
+```
+
+I would also separate failure classes much earlier:
+
+```text
+MODEL PROBLEM
+vs.
+CONTEXT PROBLEM
+vs.
+TOOL PROBLEM
+vs.
+DATA PROBLEM
+vs.
+VERIFICATION PROBLEM
+```
+
+Without this separation, it is very easy to keep changing models while never fixing the real bottleneck.
+
+Most importantly, I would focus earlier on the **closed loop**. Not merely:
+
+```text
+AI proposes something
+```
+
+but:
+
+```text
+AI proposes
+→ a tool executes
+→ the system measures
+→ the result is verified
+```
+
+That is where the technology becomes most interesting to me: not when the model sounds intelligent, but when the system can connect reasoning to evidence and measurable outcomes.
+
+## 33.12 Seven Rules I Would Put on Page One
+
+If I had to restart with seven rules in front of me, they would be these:
+
+1. **Do not start by choosing the best model. Define the task precisely first.**
+2. **When the result is poor, identify whether the failure is in the model, data, context, tool, permissions, state, or verifier.**
+3. **Verify externally whenever you can.** A test, simulator, database, or deterministic rule is stronger evidence than confident prose.
+4. **Build small end-to-end experiments.** One working closed loop teaches more than ten disconnected chatbot demos.
+5. **A smaller model inside a well-designed workflow can be more valuable than a frontier model without the right context and tools.**
+6. **Add autonomy only after you have evals, limits, and a reliable way to stop or escalate the system.**
+7. **Invest in data, integrations, and evals so the model can be replaced tomorrow.** Those assets are more durable than today's benchmark winner.
+
+If I compress my current view into one sentence, it is still this:
+
+> **The most important skill is not choosing the smartest model. It is giving the model the right context and tools at the right moment — and reliably verifying what comes out.**
+
+That is not a final answer about AI. It is a working compass. Models, prices, frameworks, and interfaces will keep changing. The stable questions are: **What is the goal? What evidence is needed? What should the model decide? What should a tool do? What are the permission boundaries? And how will we know the result is correct?**
+
+Once those questions are explicit, AI stops being a magic box and becomes engineering material.
+
+---
+
 ## Key Takeaways
 
 1. **My thinking moved from model-centric to system-centric.**

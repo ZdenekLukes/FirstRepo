@@ -461,6 +461,61 @@ This is one of the reasons standards matter in a market where the model layer ch
 
 ---
 
+## 15.14 A Constrained MCP Example: AI-Assisted Analog Design
+
+Consider an agent connected to an analog-design environment. Giving it an unrestricted shell would make the integration powerful, but it would also make the security boundary unnecessarily broad.
+
+A safer MCP server can expose only the operations the workflow actually needs:
+
+```text
+TOOLS
+
+run_spectre_simulation(
+    testbench,
+    corner,
+    temperature
+)
+
+get_measurement(
+    run_id,
+    measurement
+)
+
+list_available_testbenches()
+```
+
+The agent cannot execute:
+
+```text
+rm -rf project/
+```
+
+because no such tool exists. Its action space is defined by the host, not by what the model can imagine.
+
+Above those tools, a skill can encode the engineering procedure:
+
+```text
+SKILL: verify-LDO-design
+
+1. read the specification
+2. select the required testbenches
+3. run the required corners
+4. extract measurements
+5. compare results with the specification
+6. produce a verification report
+```
+
+This separation is useful beyond analog design:
+
+- **MCP tools provide the hands.**
+- **The skill provides the workflow.**
+- **The LLM provides interpretation and bounded decision-making.**
+- **Host software defines permissions and the security boundary.**
+
+The result is more useful than a generic shell and easier to audit.
+
+---
+
 ## Key Takeaways
 
 1. **MCP is a protocol, not a model or agent framework.**

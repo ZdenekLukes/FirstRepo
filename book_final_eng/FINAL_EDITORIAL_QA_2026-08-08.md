@@ -9,9 +9,10 @@
 - Print SVGs: **43**
 - Markdown image references checked: **43**
 - Index wiki links checked: **50**
-- Approximate manuscript words: **50,401**
+- Approximate manuscript words: **51,569**
 - Exact long-paragraph repeats: **0**
 - Snapshot date: **2026-08-08**
+- Content parity patch: **Chapters 13, 15, 18, 24, 33, 36 applied**
 
 ## Blockers
 
@@ -23,4 +24,4 @@
 
 ## Gate
 
-**PASS — final editorial manuscript gate passed.**
+**PASS — final editorial manuscript gate passed after the CZ↔EN parity patch.**

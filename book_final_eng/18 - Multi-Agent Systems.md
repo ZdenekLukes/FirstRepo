@@ -477,6 +477,41 @@ If the multi-agent design does not improve an important metric, simpler is bette
 
 ---
 
+## 18.16 Engineering Example: An Analog Block
+
+A plausible multi-agent architecture for analog design might look like this:
+
+```text
+                  ORCHESTRATOR
+                        │
+          ┌─────────────┼─────────────┐
+          ↓             ↓             ↓
+   KNOWLEDGE AGENT   DESIGN AGENT   SIM AGENT
+   specs + prior art  sizing         Spectre
+          │             │             │
+          └─────────────┼─────────────┘
+                        ↓
+                    REVIEWER
+                        ↓
+                 HUMAN DESIGNER
+```
+
+The diagram is attractive. That does not mean it should be the starting architecture.
+
+I would first build one closed loop:
+
+```text
+specification → simulation → evaluation
+```
+
+Only after that loop works would I split it. Perhaps retrieval and design reasoning pollute each other's context. Perhaps simulation can run independently in parallel. Perhaps the reviewer needs different permissions or a different model. Those are real reasons to introduce additional agents.
+
+> **A multi-agent system should evolve from a working single-agent workflow, not substitute for designing one.**
+
+That rule prevents a common failure mode: adding organizational complexity before the underlying task is understood.
+
+---
+
 ## Key Takeaways
 
 1. **More agents do not automatically mean more intelligence.**

@@ -65,7 +65,7 @@ Obě edice prošly posledním redakčním a předtiskovým QA dne **8. srpna 202
 - 36 chapters + introduction
 - 7 appendices
 - approximately **50,000 words**
-- PDF: **463 pages**, 170 × 240 mm
+- PDF: **471 pages**, 170 × 240 mm
 - editorial QA: **PASS**
 - PDF mechanical QA: **PASS**
 

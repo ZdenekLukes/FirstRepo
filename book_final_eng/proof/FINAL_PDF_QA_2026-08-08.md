@@ -1,11 +1,12 @@
 # Final PDF QA — 2026-08-08
 
 - PDF: **AI-From-First-Principles-to-Agentic-Systems-final-en.pdf**
-- Pages: **463**
+- Pages: **471**
 - Page size: **481.89 x 680.31 pt** (~170 x 240 mm)
-- Extracted text characters: **437,331**
+- Extracted text characters: **446,953**
 - Replacement glyphs: **0**
 - Very-low-text pages (<20 chars): **[]**
+- Content parity patch: **included**
 
 ## Mechanical gate
 

@@ -139,6 +139,14 @@ Desired output:
 parameter | rev B | rev C | change | source
 ```
 
+A useful procedure is deliberately boring:
+
+1. define the output schema before asking the model to compare anything;
+2. identify every document and revision explicitly;
+3. generate the structured table;
+4. manually verify a random sample of rows;
+5. require the system to mark conflicts instead of silently choosing one source.
+
 Require conflict marking when sources disagree. Manually verify a random sample.
 
 The lesson is provenance: in enterprise work, knowing **which revision a number came from** may be more important than getting an answer quickly.
@@ -179,6 +187,8 @@ Which older decision did this replace?
 ```
 
 If the system cannot distinguish current authoritative information from history, it is not ready to become agent memory.
+
+Test it with questions whose answers changed over time. A good result should retrieve not only the latest answer, but also the date, source, status, and the older decision it replaced. This turns “search my notes” into a test of real knowledge management.
 
 ---
 
@@ -250,6 +260,15 @@ answer + sources
 ```
 
 Start small — perhaps 20–50 documents — and create 30 golden questions with known authoritative sources.
+
+Use this order:
+
+1. ingest and parse the corpus;
+2. create chunks and metadata;
+3. build the index;
+4. label the authoritative source for every golden question;
+5. measure retrieval without an LLM;
+6. only then add answer generation.
 
 Measure retrieval **before** generation:
 
@@ -497,6 +516,18 @@ Also build a single-agent baseline.
 
 If multi-agent does not create measurable value, the simpler system wins.
 
+### Human approval
+
+Until reliability and risk evidence justify otherwise, require explicit approval for actions that:
+
+- modify production data;
+- publish an official result;
+- send external communication;
+- trigger a financially significant action;
+- trigger a technically consequential or hard-to-reverse action.
+
+The approval boundary should be defined by consequence, not by whether the action happens to be initiated by one agent or five.
+
 ---
 
 ## Document Every Project
@@ -528,6 +559,25 @@ It will show:
 - which problems were not model problems;
 - which integrations stayed useful after model changes;
 - what you learned about your own data and processes.
+
+---
+
+## Recommended Difficulty Progression
+
+| Project | New capability | Typical risk |
+|---|---|---|
+| 1 | context grounding | answering outside the source |
+| 2 | provenance | mixing documents or revisions |
+| 3 | knowledge management | stale or superseded information |
+| 4 | local inference | performance and false expectations |
+| 5 | retrieval | bad chunks, missed evidence, injection |
+| 6 | tool use | incorrect tool call or arguments |
+| 7 | agent loop | permissions that are too broad |
+| 8 | coding agent | unintended change or regression |
+| 9 | enterprise workflow | data, identity, auditability |
+| 10 | orchestration | complexity without measurable value |
+
+The progression is intentional. Each project adds one new failure surface while keeping the previous layers visible enough to debug.
 
 ---
 
