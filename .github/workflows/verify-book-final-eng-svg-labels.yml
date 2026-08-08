@@ -1,4 +1,4 @@
-name: Final English SVG localization verification
+name: Complete English manuscript QA
 
 on:
   push:
@@ -10,54 +10,175 @@ permissions:
   contents: write
 
 jobs:
-  verify:
+  qa:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Apply remaining map and verify exact visible labels
+        with:
+          fetch-depth: 0
+      - name: Audit actual English manuscript
         run: |
           python - <<'PY'
           from pathlib import Path
-          import ast, re, html
-          src=Path('.github/workflows/finalize-book-final-eng-svg-labels.yml').read_text(encoding='utf-8')
-          a=src.index('pairs = [') + len('pairs = ')
-          b=src.index('\n          ]', a) + len('\n          ]')
-          pairs=ast.literal_eval(src[a:b])
-          roots=[Path('book_final_eng/assets/diagrams'),Path('book_final_eng/assets/diagrams-print')]
-          for root in roots:
-            for p in root.glob('*.svg'):
-              s=p.read_text(encoding='utf-8')
-              for old,new in pairs: s=s.replace(old,new)
-              p.write_text(s,encoding='utf-8')
-          needles=set(old for old,_ in pairs)
-          all_labels=[]
-          bad=[]
-          for root in roots:
-            for p in sorted(root.glob('*.svg')):
+          import re, subprocess, collections
+
+          BOOK = Path('book_final_eng')
+          intro = BOOK / '00 - Introduction - How to Read This Book.md'
+          index = BOOK / '00 - INDEX.md'
+          chapters = sorted([p for p in BOOK.glob('[0-9][0-9] - *.md') if p.name not in {index.name, intro.name}])
+          appendices = sorted((BOOK / 'appendices').glob('*.md'))
+          manuscript = [intro] + chapters + appendices
+          blockers=[]
+          warnings=[]
+
+          def frontmatter(text):
+              if not text.startswith('---\n'):
+                  return {}
+              end=text.find('\n---\n',4)
+              if end < 0:
+                  return {}
+              fm={}
+              for line in text[4:end].splitlines():
+                  if ':' in line:
+                      k,v=line.split(':',1)
+                      fm[k.strip()]=v.strip().strip('"')
+              return fm
+
+          def prose(text):
+              if text.startswith('---\n'):
+                  end=text.find('\n---\n',4)
+                  if end>=0: text=text[end+5:]
+              text=re.sub(r'```.*?```',' ',text,flags=re.S)
+              text=re.sub(r'`[^`]*`',' ',text)
+              text=re.sub(r'<!--.*?-->',' ',text,flags=re.S)
+              text=re.sub(r'https?://\S+',' ',text)
+              return text
+
+          if not intro.exists(): blockers.append('Missing English introduction.')
+          nums=[]
+          for p in chapters:
+              try: nums.append(int(p.name[:2]))
+              except: blockers.append(f'Invalid chapter filename: {p.name}')
+          if nums != list(range(1,37)):
+              blockers.append(f'Chapter numbering is not exactly 01..36: {nums}')
+          if len(chapters)!=36: blockers.append(f'Expected 36 numbered chapters, found {len(chapters)}.')
+          if len(appendices)!=7: blockers.append(f'Expected 7 appendices, found {len(appendices)}.')
+
+          for p in manuscript:
+              text=p.read_text(encoding='utf-8')
+              fm=frontmatter(text)
+              if fm.get('version')!='0.8-eng': blockers.append(f'{p}: version={fm.get("version")!r}, expected 0.8-eng')
+              if fm.get('status') not in {'international-draft','release-candidate'}: warnings.append(f'{p}: unusual status {fm.get("status")!r}')
+
+          screen=sorted((BOOK/'assets/diagrams').glob('*.svg'))
+          printable=sorted((BOOK/'assets/diagrams-print').glob('*.svg'))
+          if len(screen)!=43: blockers.append(f'Expected 43 screen SVGs, found {len(screen)}.')
+          if len(printable)!=43: blockers.append(f'Expected 43 print SVGs, found {len(printable)}.')
+          screen_names={p.name for p in screen}; print_names={p.name for p in printable}
+          if screen_names != print_names:
+              blockers.append('Screen and print SVG filename sets differ.')
+
+          image_refs=[]
+          for p in manuscript:
+              text=p.read_text(encoding='utf-8')
+              for ref in re.findall(r'!\[[^\]]*\]\(([^)]+)\)',text):
+                  image_refs.append((p,ref))
+                  q=BOOK/ref if ref.startswith('assets/') else p.parent/ref
+                  if not q.exists(): blockers.append(f'Missing image: {p.name} -> {ref}')
+                  if ref.startswith('assets/diagrams/'):
+                      pr=BOOK/ref.replace('assets/diagrams/','assets/diagrams-print/')
+                      if not pr.exists(): blockers.append(f'Missing print image: {p.name} -> {pr}')
+
+          wiki=[]
+          itext=index.read_text(encoding='utf-8')
+          for target in re.findall(r'\[\[([^\]|]+)(?:\|[^\]]+)?\]\]',itext):
+              wiki.append(target)
+              q=BOOK/(target+'.md')
+              if target=='ENGLISH_EDITION_QA':
+                  continue
+              if not q.exists(): blockers.append(f'Broken index link: [[{target}]]')
+
+          placeholder_hits=[]
+          patterns=[r'\bTODO\b',r'\bFIXME\b',r'\[TBD\]',r'\[DOPLNIT\]',r'PLACEHOLDER']
+          for p in manuscript:
+              text=p.read_text(encoding='utf-8')
+              for pat in patterns:
+                  if re.search(pat,text,re.I): placeholder_hits.append((p.name,pat))
+          if placeholder_hits: blockers.append(f'Editorial placeholders found: {placeholder_hits[:20]}')
+
+          czech_hits=[]
+          cz_diac=re.compile(r'[áčďéěíňóřšťúůýžÁČĎÉĚÍŇÓŘŠŤÚŮÝŽ]')
+          cz_words=re.compile(r'\b(kapitola|kapitoly|nástroj|nástroje|výsledek|výsledky|správný|správně|uživatel|uživatelé|poznámky|dokumenty|simulace|měření|náklady|bezpečnost)\b',re.I)
+          for p in manuscript:
+              body=prose(p.read_text(encoding='utf-8'))
+              for n,line in enumerate(body.splitlines(),1):
+                  if cz_diac.search(line) or cz_words.search(line):
+                      czech_hits.append((p.name,n,' '.join(line.split())[:180]))
+          if czech_hits: blockers.append(f'Possible Czech prose remains in manuscript: {czech_hits[:20]}')
+
+          svg_bad=[]
+          for p in screen+printable:
               s=p.read_text(encoding='utf-8')
               labels=re.findall(r'<(?:text|title|desc)(?:\s[^>]*)?>(.*?)</(?:text|title|desc)>',s,re.S)
-              labels=[html.unescape(re.sub(r'<[^>]+>','',x)).strip() for x in labels]
-              labels=[x for x in labels if x]
-              if root.name=='diagrams':
-                all_labels.append((p.name,labels))
-              exact=[x for x in labels if x in needles]
-              diac=[x for x in labels if re.search(r'[áčďéěíňóřšťúůýžÁČĎÉĚÍŇÓŘŠŤÚŮÝŽ]',x)]
-              if exact or diac: bad.append((str(p), sorted(set(exact+diac))))
-          if bad:
-            for p,x in bad: print(p,x)
-            raise SystemExit(f'Untranslated visible labels remain in {len(bad)} files')
-          out=['# Final visible SVG labels — English edition','']
-          for name,labels in all_labels:
-            out += [f'## {name}',''] + [f'- {x}' for x in labels] + ['']
-          Path('book_final_eng/SVG_FINAL_LABELS.md').write_text('\n'.join(out)+'\n',encoding='utf-8')
-          assert len(all_labels)==43
-          assert sum(1 for _ in roots[1].glob('*.svg'))==43
-          print('Final SVG localization: PASS; 43 screen + 43 print')
+              labels=[re.sub(r'<[^>]+>','',x) for x in labels]
+              bad=[x for x in labels if cz_diac.search(x) or cz_words.search(x)]
+              if bad: svg_bad.append((p.name,bad[:5]))
+          if svg_bad: blockers.append(f'Possible Czech SVG labels remain: {svg_bad[:20]}')
+
+          paragraphs=collections.defaultdict(list)
+          total_words=0
+          for p in manuscript:
+              body=prose(p.read_text(encoding='utf-8'))
+              total_words += len(re.findall(r"\b[A-Za-z0-9][A-Za-z0-9'’\-]*\b",body))
+              for para in re.split(r'\n\s*\n',body):
+                  key=' '.join(para.split())
+                  if len(key)>=180: paragraphs[key].append(p.name)
+          repeats=[(k,v) for k,v in paragraphs.items() if len(set(v))>1]
+          if repeats: warnings.append(f'{len(repeats)} exact long paragraphs repeat across files.')
+
+          title_text=index.read_text(encoding='utf-8')
+          required=[
+              'AI: From First Principles to Agentic Systems',
+              'How AI Actually Works — From LLMs and RAG to Tools, Agents, Evals, and Reliable Systems',
+              'MODEL ≠ AI APPLICATION ≠ AGENT ≠ AI SYSTEM'
+          ]
+          for phrase in required:
+              if phrase not in title_text: blockers.append(f'Index missing required positioning phrase: {phrase}')
+
+          baseline='9c87a445167d2c9e72adceabf9bac76330c87852'
+          old_tree=subprocess.check_output(['git','rev-parse',f'{baseline}:book_final'],text=True).strip()
+          new_tree=subprocess.check_output(['git','rev-parse','HEAD:book_final'],text=True).strip()
+          if old_tree != new_tree:
+              blockers.append(f'Czech book_final tree changed: baseline {old_tree}, current {new_tree}')
+
+          report=[
+              '# English Edition QA — 2026-08-08','',
+              f'- Introduction: **{"present" if intro.exists() else "missing"}**',
+              f'- Numbered chapters: **{len(chapters)}**',
+              f'- Appendices: **{len(appendices)}**',
+              f'- Screen SVGs: **{len(screen)}**',
+              f'- Print SVGs: **{len(printable)}**',
+              f'- Markdown image references checked: **{len(image_refs)}**',
+              f'- Index wiki links checked: **{len(wiki)}**',
+              f'- Approximate manuscript words: **{total_words:,}**',
+              f'- Exact long-paragraph repeats: **{len(repeats)}**',
+              f'- Czech master tree unchanged: **{"YES" if old_tree==new_tree else "NO"}**','',
+              '## Blockers',''
+          ]
+          report += ['- none'] if not blockers else [f'- {x}' for x in blockers]
+          report += ['','## Warnings','']
+          report += ['- none'] if not warnings else [f'- {x}' for x in warnings]
+          report += ['','## Gate','']
+          report += ['**PASS — complete English manuscript is mechanically consistent.**' if not blockers else '**FAIL — fix blockers above before proof/release.**','']
+          (BOOK/'ENGLISH_EDITION_QA.md').write_text('\n'.join(report),encoding='utf-8')
+          print('\n'.join(report))
           PY
-      - name: Commit localized assets and final label inventory
+      - name: Commit QA report
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add book_final_eng/assets book_final_eng/SVG_FINAL_LABELS.md
-          git commit -m "book: verify complete English diagram localization"
+          git add book_final_eng/ENGLISH_EDITION_QA.md
+          git commit -m "book: run complete English manuscript QA"
           git push
+      - name: Enforce QA gate
+        run: grep -Fq '**PASS — complete English manuscript is mechanically consistent.**' book_final_eng/ENGLISH_EDITION_QA.md
