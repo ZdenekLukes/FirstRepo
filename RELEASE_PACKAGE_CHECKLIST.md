@@ -32,7 +32,8 @@ Current trim used by the manuscript proofs: **170 × 240 mm**.
 - [x] 43 figure references are present in each edition.
 - [x] Screen and print SVG sets exist for the book diagrams.
 - [x] Diagram text-overflow / box-fit issues were explicitly reviewed during the final visual pass.
-- [ ] Confirm that the exact visually approved SVG revisions are the revisions packaged into the publication build.
+- [x] Exact visually corrected SVG revisions are packaged into the PDFs currently linked from the root README.
+- [x] All 43 figure pages in each GitHub-built PDF were reviewed digitally as contact sheets, with high-resolution spot checks of the previously most problematic diagrams.
 - [ ] Inspect every figure again at final physical size, not only zoomed on screen.
 - [ ] Check the thinnest strokes and pale gray text on the actual target paper / printer.
 - [ ] Confirm that all captions remain comfortably readable in the physical proof.
