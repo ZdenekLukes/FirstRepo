@@ -108,7 +108,7 @@ The engineering rule remains the same: choose from your own evals, latency, cost
 
 Google’s August 2026 lineup is in the **Gemini 3.x** family, including several distinct roles:
 
-- **Gemini 3.1 Pro** for complex general work,
+- **Gemini 3.1 Pro** for complex general work — the Gemini API endpoint is still labeled **Preview** in this snapshot,
 - **Gemini 3.1 Deep Think** for demanding reasoning in science and engineering,
 - **Gemini 3.6 Flash** for a strong efficiency/capability balance,
 - **Gemini 3.5 Flash-Lite** for high-throughput, lower-cost workloads,
